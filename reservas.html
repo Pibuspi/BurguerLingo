@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="Main-burguer.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="CHEF=DUO.PNG" type="image/png">
+
+    <style>
+        header {
+            background-color: #08c958;
+            color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav a {
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+        }
+
+        .info {
+            text-align: center;
+            color: #08c958;
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        
+         /* Link de voltar */
+        main p a {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: #08c958;
+            font-weight: bold;
+        }
+  
+        header h1 {
+            font-size: 24px;
+        }
+         
+    </style>
+</head>
+<style>
+body {
+  font-family: arial, helvetica, sans-serif;
+  background-image: #ffffff
+}
+
+box {
+  background-color: #ffffff
+}
+</style> 
+<body>
+<header>
+    <img src="LogoBurguerDuo.png" alt="Logo da Empresa">
+    <nav>
+    <a href="cardapio.html">CARDÁPIOS</a>
+    <a href="sobre nos.html">SOBRE NÓS</a>
+    <a href="reservas.html">RESERVAS</a>
+    </nav>
+    <style> nav a {
+        font-size: 20px; /* altera o tamanho da fonte */
+       color: white;
+       text-decoration: none;
+       margin-left: 100px; /* Espaçamento entre os links */
+   }
+    </style>
+   
+</header>
+
+<section class="info">
+    <p>Formulário de Reservas (confirmações, trocas e cancelamentos via e-mail ou whatsapp)</p>
+    <p>Endereço: Rua Jair Bolsonaro, 222, Jardim Bostil, Guarulhos</p>
+</section>
+
+<div class="box">
+    <form id="Formulario" autocomplete="off">
+        <fieldset>
+           <div class="inputbox">
+            <label for="NOME"><font color="#08c958">Nome:</font></label>
+            <input type="text" id="NOME" name="nome" required>
+           </div>
+          <br>
+             <div class="inputbox">
+            <label for="TELEFONE"><font color="#08c958">Telefone:</font></label>
+            <input type="tel" id="TELEFONE" name="telefone" required>
+          </div>
+          <br>
+            <label for="EMAIL"><font color="#08c958">Email:</font></label>
+            <input type="email" id="EMAIL" name="email" required>
+          <br><br>
+          <div class="inputbox">
+            <label for="data"><font color="#08c958">Data (DD/MM/AAAA):</font></label>
+            <input type="date" id="data" name="data" required>
+          </div>
+          <br>
+          <div>
+            <label for="HORARIO"><font color="#08c958">Horário:</font></label>
+            <select id="HORARIO" name="HORARIO" required>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+            </select>
+          </div>
+          <br>
+            <button type="submit">Reservar</button>
+        </fieldset>
+    </form>
+</div>
+
+</body>
+
+    <p><a href="BURGUER LINGO.html">Voltar a Página Principal</a></p>
+
+  <footer>
+    © 2025 Todos os direitos reservados
+  </footer>
+</html>
