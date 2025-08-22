@@ -1,4 +1,3 @@
-  /* Corpo da página */
   body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -14,8 +13,6 @@
     justify-content: space-around;
     flex-wrap: wrap;}
 
-
-  /* Barra de pesquisa */
   #search {
     margin: 30px auto;
     padding: 10px;
@@ -26,7 +23,6 @@
     display: block;
   }
 
-  /* Container dos cards */
   #menu {
     display: flex;
     flex-wrap: wrap;
@@ -34,9 +30,7 @@
     gap: 30px;
     padding: 20px;
   }
-  /* Estilo de cada card */
 
-  /* Link de voltar */
   main p a {
     display: inline-block;
     margin-top: 30px;
@@ -57,22 +51,20 @@ font-size:24px;
 
    }
 
-   /* Estilo do link "voltar ao cardápio" */
   a {
-    display: inline-block;              /* Permite aplicar margem e padding */
-    margin-top: 20px;                   /* Espaço acima do link */
-    text-decoration: none;              /* Remove sublinhado */
-    color: #08c958;                     /* Cor verde igual ao tema */
-    font-size: 18px;                    /* Tamanho do texto */
+    display: inline-block;              
+    margin-top: 20px;                
+    text-decoration: none;              
+    color: #08c958;               
+    font-size: 18px;               
   }
   
-  /* Rodapé da página */
   footer {
-    margin-top: 40px;                   /* Espaço entre o conteúdo e o rodapé */
-    padding: 20px;                      /* Espaçamento interno */
-    text-align: center;                 /* Centraliza o texto */
-    font-size: 14px;                    /* Fonte menor para o rodapé */
-    color: #ffffff;                        /* Cor de texto mais clara */
+    margin-top: 40px;              
+    padding: 20px;                    
+    text-align: center;               
+    font-size: 14px;                    
+    color: #ffffff;               
   }
   header img {
  height: 50px;
@@ -80,10 +72,10 @@ font-size:24px;
 }
 
   nav a {
-    font-size: 20px; /* altera o tamanho da fonte */
+    font-size: 20px;
     color: white;
     text-decoration: none;
-    margin-left: 100px; /* Espaçamento entre os links */
+    margin-left: 100px;
   }
     nav a {
     color: white;
