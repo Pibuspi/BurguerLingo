@@ -1,0 +1,103 @@
+body {
+    font-family: Arial, sans-serif;
+ background-color: #f2f5f2;
+ margin: 0;
+ padding: 0;
+}
+header {
+ background-color: #08c958;
+ color: white;
+ padding: 10px 20px;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+}
+
+header img {
+ height: 50px;
+ margin-right: 15px;
+}
+
+nav a {
+ font-size: 18px;
+ color: white;
+ text-decoration: none;
+ margin-left: 20px;
+}
+
+.inicio {
+ padding: 20px;
+}
+
+.card {
+ width: 220px;
+ border: 1px solid #ccc;
+ border-radius: 10px;
+ overflow: hidden;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ text-align: center;
+ margin: 20px;
+ display: inline-block;
+ vertical-align: top;
+ background-color: white;
+}
+
+.card img {
+ width: 100%;
+ height: 140px;
+ object-fit: cover;
+}
+
+.card p {
+ padding: 10px;
+ font-size: 30px;
+ color: #333;
+}
+ .cardsc {
+display: flex;                    /* Usa Flexbox para alinhar os cards */
+gap: 2rem;                        /* Espaço entre os cards */
+flex-wrap: wrap;                  /* Permite que os cards quebrem para a próxima linha */
+justify-content: center;    
+}
+
+ .cardsl {
+display: flex;                    /* Usa Flexbox para alinhar os cards */
+gap: 2rem;                        /* Espaço entre os cards */
+flex-wrap: wrap;                  /* Permite que os cards quebrem para a próxima linha */
+justify-content: left;}
+
+ .cardsr {
+display: flex;                    /* Usa Flexbox para alinhar os cards */
+gap: 2rem;                        /* Espaço entre os cards */
+flex-wrap: wrap;                  /* Permite que os cards quebrem para a próxima linha */
+justify-content: right;} 
+  nav a {
+    font-size: 20px; /* altera o tamanho da fonte */
+    color: white;
+    text-decoration: none;
+    margin-left: 100px; /* Espaçamento entre os links */
+  }
+    nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+    .card:hover {
+    transform: scale(1.05);
+  }
+h8{color: #333;}
+h7{color: #333;
+font-size:300%;}
+.cardscm {
+display: flex;                    /* Usa Flexbox para alinhar os cards */
+gap: 2rem;                        /* Espaço entre os cards */
+flex-wrap: wrap;                  /* Permite que os cards quebrem para a próxima linha */
+justify-content: left;  
+position: relative;
+width: 100%;
+height: 85vh;
+background: url("burgerlinmgo.jpeg");
+      
+}

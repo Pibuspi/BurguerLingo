@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="CHEF+DUO .png" type="image/png">
+  <title>BURGUER LINGO</title>
+  <link rel="stylesheet" href="Main-burguer.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    
+    nav a {
+      font-size: 18px;
+      color: white;
+      text-decoration: none;
+      margin-left: 40px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #f1f1f1;
+    }
+
+
+    .sobre-nos-section {
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url("burguernos.png") no-repeat center center;
+      background-size: cover;
+      margin-top: 40px;
+      overflow: hidden;
+    }
+
+   
+    .sobre-nos-section::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3); 
+      z-index: 1;
+    }
+
+    .sobre-nos-texto {
+      color: #ffffff;
+      font-size: 3.5rem;
+      font-weight: bold;
+      text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.8);
+      z-index: 2;
+      position: relative;
+    }
+
+    .fundadores-section {
+      padding: 50px 20px;
+      text-align: center;
+      background-color: #ffffff;
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.8s ease-in-out;
+    }
+
+    .fundadores-section.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .fundadores-fotos {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .fundador {
+      flex: 1 1 250px;
+      max-width: 300px;
+      text-align: center;
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .fundador:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .fundador img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .fundador p {
+      font-size: 1rem;
+      margin: 5px 0;
+    }
+
+
+  </style>
+</head>
+<body>
+    <header>
+    <img src="LogoBurguerDuo.png" alt="Logo da Empresa">
+    <nav>
+    <a href="cardapio.html">CARDÁPIOS</a>
+    <a href="sobre nos.html">SOBRE NÓS</a>
+    <a href="reservas.html">RESERVAS</a>
+    <a href="BURGUER LINGO.html">HOME</a>
+    <a href="fale conosco.html">FALE CONOSCO</a>
+    <a href="licao.html">LIÇÕES</a>
+    </nav>
+    <style>
+        nav a {
+     font-size: 20px; /* altera o tamanho da fonte */
+    color: white;
+    text-decoration: none;
+    margin-left: 100px; /* Espaçamento entre os links */
+    }
+    </style>
+
+    </header>
+
+
+  <section class="sobre-nos-section">
+    <div class="sobre-nos-texto">Sobre Nós</div>
+  </section>
+
+  <section id="fundadores" class="fundadores-section">
+    <h2>Nossos Fundadores</h2>
+    <div class="fundadores-fotos">
+      <div class="fundador">
+        <img src="corujo.jpeg" alt="Foto do Fundador 1">
+        <p><strong>Mr. Lingo</strong></p>
+        <p>A Coruja do Duolingo, apoiou nosso projeto de hamburgueria e nos ajudou a 
+          traduzir diversos nomes, além de criar tarefas para o público.
+        </p>
+      </div>
+      <div class="fundador">
+        <img src="jacquin.jpg" alt="Foto do Fundador 2">
+        <p><strong>Erik Jacquin</strong></p>
+        <p>O Cheff Jacquin nos proporcionou dicas e receitas para os melhores
+          hambúrgueres do Brasil.
+        </p>
+      </div>
+      <div class="fundador">
+        <img src="sergiao.jpg" alt="Foto do Fundador 3">
+        <p><strong>Sergio Sacani</strong></p>
+        <p>Sergião foguetes criou a ideia do burguerlingo e nos ajudou com a programação
+          do site.
+        </p>
+      </div>
+    </div>
+    <p style="margin-top: 30px; max-width: 700px; margin-left: auto; margin-right: auto; text-align: justify;">
+      Nossa história começou com uma simples dúvida que atormentava nosso fundador: “Como se fala hambúrguer em chinês?”.
+      Foi a partir dessa curiosidade que tudo ganhou vida. Com muito trabalho árduo, dedicamos anos para responder não só essa pergunta, mas também ajudar o mundo inteiro a conhecer o hambúrguer em todas as línguas possíveis.
+      Hoje, somos reconhecidos como a maior hamburgueria poliglota do planeta, onde nossos funcionários dominam praticamente todos os idiomas.
+      Com orgulho, ostentamos 5 estrelas Michelin e tivemos o privilégio de ter Erick Jacquin como nosso mestre, elevando nossa gastronomia a outro nível.
+    </p>
+  </section>
+
+  <p style="text-align:center; margin-top:20px;"><a href="BURGUER LINGO.html">Voltar à Página Principal</a></p>
+
+  <footer>
+    © 2025 Todos os direitos reservados
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      const section = document.querySelector('.fundadores-section');
+      const rect = section.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        section.classList.add('visible');
+      }
+    });
+  </script>
+</body>
+</html>
+
