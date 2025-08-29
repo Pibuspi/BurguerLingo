@@ -38,7 +38,7 @@ if (window.location.pathname.includes("progresso.html")) {
 
       if (progresso[idioma][licao] !== "bloqueada") {
         div.onclick = () => {
-          window.location.href = `licao.html?idioma=${encodeURIComponent(idioma)}&numero=${i + 1}`;
+          window.location.href = licaoIdioma.html?idioma=${encodeURIComponent(idioma)}&numero=${i + 1}`;
         };
       }
 
@@ -50,7 +50,7 @@ if (window.location.pathname.includes("progresso.html")) {
 // =====================
 // LIÇÃO.HTML → Carregar etapas da lição com progresso e corações
 // =====================
-if (window.location.pathname.includes("licao.html")) {
+if (window.location.pathname.includes("licaoIdioma.html")) {
   const urlParams = new URLSearchParams(window.location.search);
   const idioma = urlParams.get("idioma");
   const numero = urlParams.get("numero");
@@ -273,3 +273,4 @@ if (window.location.pathname.includes("licao.html")) {
 
   carregarEtapa();
 }
+
