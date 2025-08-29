@@ -38,7 +38,8 @@ if (window.location.pathname.includes("progresso.html")) {
 
       if (progresso[idioma][licao] !== "bloqueada") {
         div.onclick = () => {
-          window.location.href = licaoIdioma.html?idioma=${encodeURIComponent(idioma)}&numero=${i + 1}`;
+          window.location.href = `licaoIdioma.html?idioma=${encodeURIComponent(idioma)}&numero=${i + 1}`;
+
         };
       }
 
