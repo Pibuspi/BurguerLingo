@@ -75,7 +75,11 @@ font-size:24px;
     font-size: 20px;
     color: white;
     text-decoration: none;
-    margin-left: 100px;
+    margin-left: 100px; /* Espaçamento entre os links */
+    transition: color 0.3s;
+  }
+  nav a:hover{
+    color:rgb(183, 218, 181);
   }
     nav a {
     color: white;
