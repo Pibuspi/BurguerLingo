@@ -1,0 +1,70 @@
+/* ======= ESTILO DA PÁGINA DE PROGRESSO ======= */
+body {
+  font-family: Arial, sans-serif;
+  background: #f0fdf4;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+header {
+  background: #58cc02;
+  color: white;
+  padding: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.mapa {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 50px;
+}
+
+.licao {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+  border: 5px solid #ccc;
+  transition: transform 0.2s;
+  font-size: 1.2em;
+}
+
+
+.licao:hover {
+  transform: scale(1.1);
+}
+
+/* Estados das lições */
+.licao.desbloqueada {
+  background: #ffcc00;
+  border-color: #ffaa00;
+}
+
+.licao.bloqueada {
+  background: #eee;
+  border-color: #bbb;
+  color: #777;
+  cursor: not-allowed;
+}
+
+.licao.concluida {
+  background: #00c853;
+  border-color: #009624;
+  color: white;
+}
+
+ /* Estilo do link "voltar ao cardápio" */
+  a {
+    display: inline-block;              /* Permite aplicar margem e padding */
+    margin-top: 20px;                   /* Espaço acima do link */
+    text-decoration: none;              /* Remove sublinhado */
+    color: #08c958;                     /* Cor verde igual ao tema */
+    font-size: 18px;                    /* Tamanho do texto */
+  }

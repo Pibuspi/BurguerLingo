@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif; /* fonte padrão do site */
 
   background-color: #f4f4f4;            /* Cor de fundo cinza claro */
-  color: #ffffff;                          /* Cor do texto padrão: cinza escuro */
+  color: #333;                          /* Cor do texto padrão: cinza escuro */
   margin: 0;                            /* Remove margens externas padrão do navegador */
   padding: 0;                           /* Remove padding padrão */
   display: flex;                        /* Usa flexbox para organizar os elementos */
@@ -36,10 +36,10 @@ nav a {
 
 /* Conteúdo centralizado da página */
 .container {
-  max-width: 1000px;                   /* Largura máxima do conteúdo */
+  max-width: 800px;                   /* Largura máxima do conteúdo */
   text-align: center;                 /* Centraliza o texto */
   padding: 30px 20px;                 /* Espaçamento interno */
-  background-color: #13e293;            /* Fundo branco para destacar o conteúdo */
+  background-color: white;            /* Fundo branco para destacar o conteúdo */
   margin-top: 20px;                   /* Espaço entre o cabeçalho e o conteúdo */
   border-radius: 10px;                /* Borda arredondada */
   box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Sombra suave ao redor do container */

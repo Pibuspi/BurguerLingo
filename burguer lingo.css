@@ -97,7 +97,7 @@ flex-wrap: wrap;                  /* Permite que os cards quebrem para a próxim
 justify-content: left;  
 position: relative;
 width: 100%;
-height: 100vh;
-background-image:url(restauranteanteanteante.jpeg);
+height: 85vh;
+background: url("burgerlinmgo.jpeg");
       
 }

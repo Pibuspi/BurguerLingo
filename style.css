@@ -1,0 +1,149 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f0f9f0;
+}
+
+header {
+  background: #58cc02;
+  color: white;
+  padding: 15px;
+  font-size: 1.5em;
+}
+
+footer {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+button {
+  background: #58cc02;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  margin: 8px;
+  border-radius: 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #46a302;
+}
+
+.idiomas {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 40px 0;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  width: 150px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 80px;
+}
+
+.progresso {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.licao .frase {
+  font-size: 1.4em;
+  margin: 40px 0 20px;
+}
+
+.opcoes button {
+  display: block;
+  margin: 10px auto;
+  width: 200px;
+}
+
+.progresso-etapas {
+  margin-top: 20px;
+}
+
+.bolinha {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin: 3px;
+  border-radius: 50%;
+  background: #ccc;
+}
+
+.bolinha.ativa {
+  background: #58cc02;
+}
+
+.parabens {
+  background: linear-gradient(135deg, #58cc02, #b2f7b2);
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.parabens main {
+  background: rgba(0,0,0,0.2);
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.parabens .avatar {
+  width: 200px;
+  margin: 20px 0;
+}
+
+#barra-progresso {
+  width: 80%;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  margin: 10px auto;
+  overflow: hidden;
+}
+#progresso {
+  height: 100%;
+  width: 0%;
+  background-color: #58cc02;
+  transition: width 0.5s ease;
+}
+
+#coracoes-container {
+  text-align: right;
+  padding: 10px;
+  font-size: 24px;
+  color: red;
+}
+
+#sair {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.botao-correto-pulo {
+  background-color: gold !important;
+  color: black !important;
+}
