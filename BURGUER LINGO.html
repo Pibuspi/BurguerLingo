@@ -1,319 +1,127 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="CHEF+DUO .png" type="image/png" />
-  <title>BURGUER LINGO</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
-  <link rel="stylesheet" href="burguer lingo.css">
-  <link rel="stylesheet" href="Main-burguer.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="CHEF+DUO .png" type="image/png">
+    <title>BURGUER LINGO</title>
+    <link rel="stylesheet" href="burguer lingo.css">
+    <link rel="stylesheet" href="Main-burguer.css">
+   <!-- Conecta o CSS -->
 </head>
 <body>
-  <header>
+    <header>
     <img src="LogoBurguerDuo.png" alt="Logo da Empresa">
     <nav>
-      <a href="cardapio.html">CARDÁPIOS</a>
-      <a href="sobre nos.html">SOBRE NÓS</a>
-      <a href="reservas.html">RESERVAS</a>
-      <a href="fale conosco.html">FALE CONOSCO</a>
-      <a href="licao.html">LIÇÕES</a>
+    <a href="cardapio.html">CARDÁPIOS</a>
+    <a href="sobre nos.html">SOBRE NÓS</a>
+    <a href="reservas.html">RESERVAS</a>
+    <a href="BURGUER LINGO.html">HOME</a>
+    <a href="fale conosco.html">FALE CONOSCO</a>
+    <a href="licao.html">LIÇÕES</a>
     </nav>
-<button id="openLoginBtn" class="btn btn-outline-light ms-3">Login / Cadastro</button>
-
     <style>
-      nav a {
-        font-size: 20px;
-        color: white;
-        text-decoration: none;
-        margin-left: 100px;
-      }
+        nav a {
+     font-size: 20px; /* altera o tamanho da fonte */
+    color: white;
+    text-decoration: none;
+    margin-left: 100px; /* Espaçamento entre os links */
+    }
     </style>
-  </header>
-  <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="loginModalLabel">Bem-vindo ao Burguer Lingo</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-        </div>
-        <div class="modal-body">
 
-          <ul class="nav nav-tabs" id="loginTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab">Entrar</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" type="button" role="tab">Cadastrar</button>
-            </li>
-          </ul>
-          <div class="tab-content pt-3">
+    </header>
 
-            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-              <form id="formLogin" novalidate>
-                <div class="mb-3">
-                  <label for="loginEmail" class="form-label">E-mail</label>
-                  <input type="email" class="form-control" id="loginEmail" name="email" required placeholder="Digite seu e-mail">
-                  <div class="invalid-feedback">Informe um e-mail válido.</div>
-                </div>
-                <div class="mb-3">
-                  <label for="loginSenha" class="form-label">Senha</label>
-                  <input type="password" class="form-control" id="loginSenha" name="senha" required minlength="6" placeholder="Digite sua senha">
-                  <div class="invalid-feedback">A senha deve ter pelo menos 6 caracteres.</div>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Entrar</button>
-              </form>
-            </div>
+  <script>
 
-            <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
-              <form id="formCadastro" novalidate>
-                <div class="mb-3">
-                  <label for="cadNome" class="form-label">Nome completo</label>
-                  <input type="text" class="form-control" id="cadNome" name="nome" required placeholder="Digite seu nome">
-                  <div class="invalid-feedback">Informe seu nome.</div>
-                </div>
-                <div class="mb-3">
-                  <label for="cadEmail" class="form-label">E-mail</label>
-                  <input type="email" class="form-control" id="cadEmail" name="email" required placeholder="Digite seu e-mail">
-                  <div class="invalid-feedback">Informe um e-mail válido.</div>
-                </div>
-                <div class="mb-3">
-                  <label for="cadSenha" class="form-label">Senha</label>
-                  <input type="password" class="form-control" id="cadSenha" name="senha" required minlength="6" placeholder="Crie uma senha">
-                  <div class="invalid-feedback">A senha deve ter pelo menos 6 caracteres.</div>
-                </div>
-                <button type="submit" class="btn btn-success w-100">Cadastrar</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    const menuBtn = document.getElementById('menu-btn');
+const sidebar = document.getElementById('sidebar');
 
+menuBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('active');
+});
+
+  </script>
   <section class="cardscm">
-    <a href="cardapio.html"><div class="card">Cardapio</div></a>
-    <a href="reservas.html"><div class="card">Peça Já</div></a>
-  </section>
+    <a href="cardapio.html">
+        <div class="card">
+            Cardapio
+        </div>
+    </a>
 
-  <div style="font-size: 200%;">Só os melhores</div>
-
+    <a href="reservas.html">
+        <div class="card">
+           
+                Peça Já
+            
+        </div>
+    </a>
+</section>
+<div style="font-size: 200%;">
+Só os melhores
+</div>
+  </script>
   <section class="cardsc">
     <a href="Brasilpage.html">
-      <div class="card">
-        <img src="VAI BRASIL.jpeg" alt="Logo da Empresa">
-        <h8>O Brasil é tão diverso que poderíamos abrir um restaurante só com os sabores de cada estado.</h8>
-      </div>
+        <div class="card">
+            
+            <img src="VAI BRASIL.jpeg" alt="Logo da Empresa">
+
+            <h8>
+                O Brasil é tão diverso que poderíamos abrir um restaurante só com os sabores de cada estado.
+            </h8>
+
+        </div>
     </a>
 
     <a href="Guerrafriapage.html">
-      <div class="card">
-        <img src="guerra fria.jpeg" alt="Logo da Empresa">
-        <h8>Combo guerra fria: 30% de desconto</h8>
-      </div>
-    </a>
+        <div class="card">
+           
+            <img src="guerra fria.jpeg" alt="Logo da Empresa">
 
+             <h8>
+               Combo guerra fria: 30% de desconto
+            </h8>
+            
+        </div>
+    </a>
     <a href="Italiapage.html">
-      <div class="card">
-        <img src="italiano.jpeg" alt="Logo da Empresa">
-        <h8>Nosso restaurante pode não vender pizzas, mas se não se preocupe</h8>
-      </div>
-    </a>
-  </section>
+        <div class="card">
 
-  <section class="cardsc">
-    <a href="cardapio.html">
-      <div class="card">
-        <img src="Confira nosso cardapio.jpg" alt="confira nosso cardapio" width="300">
-      </div>
-    </a>
-    <a href="reservas.html">
-      <div class="card">
-        <img src="Faça seu pedido.jpg" alt="faça seu pedido">
-      </div>
-    </a>
-  </section>
+            <img src="italiano.jpeg" alt="Logo da Empresa">
 
-  <footer>© 2025 Todos os direitos reservados</footer>
+            <h8>
+                Nosso restaurante pode não vender pizzas, mas se não se preocupe
+            </h8>
 
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="loginModalLabel">Bem-vindo ao Burguer Lingo</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-      </div>
-      <div class="modal-body">
-        <ul class="nav nav-tabs" id="loginTabs" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab">Entrar</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" type="button" role="tab">Cadastrar</button>
-          </li>
-        </ul>
-
-        <div class="tab-content pt-3">
-
-          <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-            <form id="formLogin" novalidate>
-              <div class="mb-3">
-                <label for="loginEmail" class="form-label">E-mail</label>
-                <input type="email" class="form-control" id="loginEmail" required placeholder="Digite seu e-mail">
-                <div class="invalid-feedback">Informe um e-mail válido.</div>
-              </div>
-              <div class="mb-3">
-                <label for="loginSenha" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="loginSenha" required minlength="6" placeholder="Digite sua senha">
-                <div class="invalid-feedback">A senha deve ter pelo menos 6 caracteres.</div>
-              </div>
-              <button type="submit" class="btn btn-primary w-100">Entrar</button>
-            </form>
-            <div id="loginMsg" class="mt-2 text-center"></div>
-          </div>
-
-          <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
-            <form id="formCadastro" novalidate>
-              <div class="mb-3">
-                <label for="cadNome" class="form-label">Nome completo</label>
-                <input type="text" class="form-control" id="cadNome" required placeholder="Digite seu nome">
-                <div class="invalid-feedback">Informe seu nome.</div>
-              </div>
-              <div class="mb-3">
-                <label for="cadEmail" class="form-label">E-mail</label>
-                <input type="email" class="form-control" id="cadEmail" required placeholder="Digite seu e-mail">
-                <div class="invalid-feedback">Informe um e-mail válido.</div>
-              </div>
-              <div class="mb-3">
-                <label for="cadSenha" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="cadSenha" required minlength="6" placeholder="Crie uma senha">
-                <div class="invalid-feedback">A senha deve ter pelo menos 6 caracteres.</div>
-              </div>
-              <button type="submit" class="btn btn-success w-100">Cadastrar</button>
-            </form>
-            <div id="cadMsg" class="mt-2 text-center"></div>
-          </div>
 
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+    </a>
+</section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<section class="cardsc">
+    <a href="cardapio.html">
+        <div class="card">
+          <img src="Confira nosso cardapio.jpg" alt="confira nosso cardapio"  width="300">
+        </div>
+    </a>
+    <a href="reservas.html">
+        <div class="card">
+          <img src="Faça seu pedido.jpg" alt="faça seu pedido">
+        </div>
+    </a>
+</section>
 
-<script>
 
-  async function hashSenha(senha) {
-    const enc = new TextEncoder();
-    const hashBuffer = await crypto.subtle.digest('SHA-256', enc.encode(senha));
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2,'0')).join('');
-  }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const modalEl = document.getElementById('loginModal');
-    const loginModal = new bootstrap.Modal(modalEl, {});
 
-    const openBtn = document.getElementById('openLoginBtn');
-    if(openBtn) openBtn.addEventListener('click', () => loginModal.show());
 
-    const formLogin = document.getElementById('formLogin');
-    const formCadastro = document.getElementById('formCadastro');
-    const loginMsg = document.getElementById('loginMsg');
-    const cadMsg = document.getElementById('cadMsg');
 
-    formCadastro.addEventListener('submit', async (e) => {
-      e.preventDefault();
-  if (!formCadastro.checkValidity()) {
-    formCadastro.classList.add('was-validated');
-    return;
-  }
 
-  const nome = document.getElementById('cadNome').value.trim();
-  const email = document.getElementById('cadEmail').value.trim().toLowerCase();
-  const senha = document.getElementById('cadSenha').value;
 
-  let res = await fetch("/cadastrar", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ nome, email, senha }),
-  });
+  <footer>
+    © 2025 Todos os direitos reservados
+  </footer>
 
-  let data = await res.json();
-  if (data.sucesso) {
-    cadMsg.innerText = "✅ Cadastro realizado!";
-    cadMsg.className = "text-success";
-    formCadastro.reset();
-    new bootstrap.Tab(document.querySelector('#login-tab')).show(); 
-  } else {
-    cadMsg.innerText = data.erro;
-    cadMsg.className = "text-danger";
-  }
-});
-
-    formLogin.addEventListener('submit', async (e) => {
-       e.preventDefault();
-  if (!formLogin.checkValidity()) {
-    formLogin.classList.add('was-validated');
-    return;
-  }
-
-  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
-  const senha = document.getElementById('loginSenha').value;
-
-  let res = await fetch("/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, senha }),
-  });
-
-  let data = await res.json();
-  if (data.sucesso) {
-    loginMsg.innerText = `✅ Bem-vindo, ${data.nome}`;
-    loginMsg.className = "text-success";
-    formLogin.reset();
-    loginModal.hide();
-
-    sessionStorage.setItem('loggedUser', JSON.stringify({ email, nome: data.nome }));
-    mostrarUsuarioLogado(data.nome);
-  } else {
-    loginMsg.innerText = data.erro;
-    loginMsg.className = "text-danger";
-  }
-});
-
-    function mostrarUsuarioLogado(nome) {
-      const btn = document.getElementById('openLoginBtn');
-      if(!btn) return;
-      btn.textContent = 'Olá, ' + nome;
-      btn.classList.remove('btn-outline-light');
-      btn.classList.add('btn-success');
-
-      let existing = document.getElementById('logoutBtn');
-      if(existing) existing.remove();
-
-      const logoutBtn = document.createElement('button');
-      logoutBtn.id = 'logoutBtn';
-      logoutBtn.className = 'btn btn-link text-white ms-2';
-      logoutBtn.innerText = 'Sair';
-      logoutBtn.addEventListener('click', () => {
-        sessionStorage.removeItem('loggedUser');
-        location.reload();
-      });
-      btn.after(logoutBtn);
-    }
-
-    const sess = sessionStorage.getItem('loggedUser');
-    if(sess) {
-      const u = JSON.parse(sess);
-      mostrarUsuarioLogado(u.nome);
-    }
-  });
-</script>
-
+  
 </body>
 </html>
