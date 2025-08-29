@@ -1,49 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Lição - Burguer Lingo</title>
-  <link rel="stylesheet" href="design_licao.css">
+  <title>Lição</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <div class="lesson-container">
-    <h1 id="idiomaTitulo">Lição de Idioma</h1>
-
-    <!-- Avatar do Duolingo -->
-    <img src="duo-avatar.png" alt="Avatar Duolingo" class="avatar" />
-
-    <!-- Botão iniciar -->
-    <button id="btnIniciar">🍔 Iniciar Lição</button>
-
-    <!-- Barra de progresso -->
-    <div class="progresso">
-      <div id="barraProgresso"></div>
-    </div>
+  <header>
+    <button id="sair" title="Sair">❌</button>
+    <h1 id="titulo-licao">Lição</h1>
+    <div id="coracoes-container"></div>
+  </header>
+  
+  <div id="barra-progresso">
+    <div id="progresso"></div>
   </div>
-
-  <script src="licao.js"></script>
-  <script>
-    // Pega o idioma da URL
-const urlParams = new URLSearchParams(window.location.search);
-const idioma = urlParams.get('idioma') || 'idioma';
-
-// Atualiza o título com o idioma
-document.getElementById('idiomaTitulo').innerText = `Lição de ${idioma.charAt(0).toUpperCase() + idioma.slice(1)}`;
-
-// Configura o botão
-const btn = document.getElementById('btnIniciar');
-const barra = document.getElementById('barraProgresso');
-
-let progresso = 0;
-
-btn.addEventListener('click', () => {
-  progresso += 20; // Simula progresso
-  if (progresso > 100) progresso = 100;
-  barra.style.width = progresso + '%';
-
-});
-
-  </script>
+  
+  <main>
+    <div id="container"></div>
+    <button id="confirmar">Confirmar</button>
+    <button id="pular">Pular</button>
+  </main>
+  
+  <script src="script.js"></script>
 </body>
 </html>
