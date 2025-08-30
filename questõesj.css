@@ -1,0 +1,208 @@
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f5f5f5;
+    text-align: center;
+  }
+  header {
+    background-color: #08c958;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;}
+
+
+
+  /* Barra de pesquisa */
+  #search {
+    margin: 30px auto;
+    padding: 10px;
+    width: 60%;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: block;
+  }
+
+  /* Container dos cards */
+  #menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+  }
+  /* Estilo de cada card */
+
+  /* Link de voltar */
+  main p a {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    color: #08c958;
+    font-weight: bold;
+  }
+  
+  header h1 {
+font-size:24px;
+  }
+  footer {
+    text-align: center;
+    padding: 10px;
+    background-color:#08c958;
+    color:white;
+    font-size: 14px;
+
+   }
+
+   /* Estilo do link "voltar ao cardápio" */
+  a {
+    display: inline-block;              /* Permite aplicar margem e padding */
+    margin-top: 20px;                   /* Espaço acima do link */
+    text-decoration: none;              /* Remove sublinhado */
+    color: #000000;                     /* Cor verde igual ao tema */
+    font-size: 18px;                    /* Tamanho do texto */
+  }
+  
+  /* Rodapé da página */
+  footer {
+    margin-top: 40px;                   /* Espaço entre o conteúdo e o rodapé */
+    padding: 20px;                      /* Espaçamento interno */
+    text-align: center;                 /* Centraliza o texto */
+    font-size: 14px;                    /* Fonte menor para o rodapé */
+    color: #ffffff;                        /* Cor de texto mais clara */
+  }
+  header img {
+ height: 50px;
+ margin-right: 15px;
+}
+
+  nav a {
+    font-size: 20px; /* altera o tamanho da fonte */
+    color: white;
+    text-decoration: none;
+    margin-left: 100px; /* Espaçamento entre os links */
+    transition: color 0.3s;
+  }
+  nav a:hover{
+    color:rgb(183, 218, 181);
+  }
+    nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+.cardfaq {
+ width: 220px;
+ border: 1px solid #ccc;
+ border-radius: 10px;
+ overflow: hidden;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ text-align: center;
+ margin: 20px;
+ display: inline-block;
+ vertical-align: top;
+ background-color: white;
+ position: absolute; 
+ top: 70%; 
+ left: 15%;
+ transform: translate(-50%, -50%);
+}
+.cardque {
+ width: 220px;
+ border: 1px solid #ccc;
+ border-radius: 10px;
+ overflow: hidden;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ text-align: center;
+ margin: 20px;
+ display: inline-block;
+ vertical-align: top;
+ background-color: white;
+ position: absolute; 
+ top: 60%; 
+ left: 15%;
+ transform: translate(-50%, -50%);
+}
+
+.texto { 
+text-align: center ;
+}
+.textin {
+
+text-align: left ;
+}
+
+.card11 {
+ width: 220px;
+ border: 1px solid #ccc;
+ border-radius: 10px;
+ overflow: hidden;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ text-align: center;
+ margin: 20px;
+ display: inline-block;
+ vertical-align: top;
+ background-color: white;
+}
+.cardfaq {
+ width: 220px;
+ border: 1px solid #ccc;
+ border-radius: 10px;
+ overflow: hidden;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ text-align: center;
+ margin: 20px;
+ display: inline-block;
+ vertical-align: top;
+ background-color: white;
+ position: absolute; 
+ top: 70%; 
+ left: 15%;
+ transform: translate(-50%, -50%);
+}
+.cardqq {
+ width: 220px;
+ border: 1px solid #ccc;
+ border-radius: 10px;
+ overflow: hidden;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ text-align: center;
+ margin: 20px;
+ display: inline-block;
+ vertical-align: top;
+ background-color: white;
+ position: absolute; 
+ top: 95%; 
+ left: 15%;
+ transform: translate(-50%, -50%);
+}
+
+.ajudatexto-section {
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url("eeee.webp") no-repeat center center;
+      background-size: cover;
+      margin-top: 40px;
+    }
+
+   
+    .ajuda-section::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3); 
+      z-index: 1;
+    }
