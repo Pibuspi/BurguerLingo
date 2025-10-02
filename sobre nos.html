@@ -1,71 +1,133 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <link rel="stylesheet" href="Main-burguer.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservas</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="icon" href="CHEF=DUO.PNG" type="image/png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="CHEF+DUO .png" type="image/png">
+  <title>BURGUER LINGO</title>
+  <link rel="stylesheet" href="Main-burguer.css">
 
-    <style>
-        header {
-            background-color: #08c958;
-            color: white;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    nav a {
+      font-size: 18px;
+      color: white;
+      text-decoration: none;
+      margin-left: 40px;
+      transition: color 0.3s;
+    }
 
-        nav a {
-            font-size: 20px;
-            color: white;
-            text-decoration: none;
-            margin-left: 30px;
-        }
+    nav a:hover {
+      color: #f1f1f1;
+    }
 
-        .info {
-            text-align: center;
-            color: #08c958;
-            font-size: 20px;
-            margin: 20px 0;
-        }
 
-        
-         /* Link de voltar */
-        main p a {
-            display: inline-block;
-            margin-top: 30px;
-            text-decoration: none;
-            color: #08c958;
-            font-weight: bold;
-        }
-  
-        header h1 {
-            font-size: 24px;
-        }
-         
-    </style>
+    .sobre-nos-section {
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url("burguernos.png") no-repeat center center;
+      background-size: cover;
+      margin-top: 40px;
+      overflow: hidden;
+    }
+
+   
+    .sobre-nos-section::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3); 
+      z-index: 1;
+    }
+
+    .sobre-nos-texto {
+      color: #ffffff;
+      font-size: 3.5rem;
+      font-weight: bold;
+      text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.8);
+      z-index: 2;
+      position: relative;
+    }
+
+    .fundadores-section {
+      padding: 50px 20px;
+      text-align: center;
+      background-color: #ffffff;
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.8s ease-in-out;
+    }
+
+    .fundadores-section.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .fundadores-fotos {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .fundador {
+      flex: 1 1 250px;
+      max-width: 300px;
+      text-align: center;
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .fundador:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+    .fundador img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .fundador p {
+      font-size: 1rem;
+      margin: 5px 0;
+
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #08c958;
+      color: white;
+      margin-top: 30px;
+    }
+
+  </style>
 </head>
-<style>
-body {
-  font-family: arial, helvetica, sans-serif;
-  background-image: #ffffff
-}
-
-box {
-  background-color: #ffffff
-}
-</style> 
 <body>
     <header>
     <img src="LogoBurguerDuo.png" alt="Logo da Empresa">
     <nav>
-    <a href="sobre nos.html">SOBRE NÓS</a>
     <a href="ajudajeff.html">PERGUNTAS FREQUENTES</a>
+    <a href="cardapio.html">CARDÁPIOS</a>
+    <a href="reservas.html">RESERVAS</a>
     <a href="fale conosco.html">FALE CONOSCO</a>
-
     </nav>
     <style>
         nav a {
@@ -77,56 +139,58 @@ box {
     </style>
 
     </header>
+  <section class="sobre-nos-section">
+    <div class="sobre-nos-texto">Sobre Nós</div>
+  </section>
 
-<section class="info">
-    <p>Formulário de Reservas (confirmações, trocas e cancelamentos via e-mail ou whatsapp)</p>
-    <p>Endereço: Rua Jair Bolsonaro, 222, Jardim Bostil, Guarulhos</p>
-</section>
+  <section id="fundadores" class="fundadores-section">
+    <h2>Nossos Fundadores</h2>
+    <div class="fundadores-fotos">
+      <div class="fundador">
+        <img src="corujo.jpeg" alt="Foto do Fundador 1">
+        <p><strong>Mr. Lingo</strong></p>
+        <p>A Coruja do Duolingo, apoiou nosso projeto de hamburgueria e nos ajudou a 
+          traduzir diversos nomes, além de criar tarefas para o público.
+        </p>
+      </div>
+      <div class="fundador">
+        <img src="jacquin.jpg" alt="Foto do Fundador 2">
+        <p><strong>Erik Jacquin</strong></p>
+        <p>O Cheff Jacquin nos proporcionou dicas e receitas para os melhores
+          hambúrgueres do Brasil.
+        </p>
+      </div>
+      <div class="fundador">
+        <img src="sergiao.jpg" alt="Foto do Fundador 3">
+        <p><strong>Sergio Sacani</strong></p>
+        <p>Sergião foguetes criou a ideia do burguerlingo e nos ajudou com a programação
+          do site.
+        </p>
+      </div>
+    </div>
+    <p style="margin-top: 30px; max-width: 700px; margin-left: auto; margin-right: auto; text-align: justify;">
+      Nossa história começou com uma simples dúvida que atormentava nosso fundador: “Como se fala hambúrguer em chinês?”.
+      Foi a partir dessa curiosidade que tudo ganhou vida. Com muito trabalho árduo, dedicamos anos para responder não só essa pergunta, mas também ajudar o mundo inteiro a conhecer o hambúrguer em todas as línguas possíveis.
+      Hoje, somos reconhecidos como a maior hamburgueria poliglota do planeta, onde nossos funcionários dominam praticamente todos os idiomas.
+      Com orgulho, ostentamos 5 estrelas Michelin e tivemos o privilégio de ter Erick Jacquin como nosso mestre, elevando nossa gastronomia a outro nível.
+    </p>
+  </section>
 
-<div class="box">
-    <form id="Formulario" autocomplete="off">
-        <fieldset>
-           <div class="inputbox">
-            <label for="NOME"><font color="#08c958">Nome:</font></label>
-            <input type="text" id="NOME" name="nome" required>
-           </div>
-          <br>
-             <div class="inputbox">
-            <label for="TELEFONE"><font color="#08c958">Telefone:</font></label>
-            <input type="tel" id="TELEFONE" name="telefone" required>
-          </div>
-          <br>
-            <label for="EMAIL"><font color="#08c958">Email:</font></label>
-            <input type="email" id="EMAIL" name="email" required>
-          <br><br>
-          <div class="inputbox">
-            <label for="data"><font color="#08c958">Data (DD/MM/AAAA):</font></label>
-            <input type="date" id="data" name="data" required>
-          </div>
-          <br>
-          <div>
-            <label for="HORARIO"><font color="#08c958">Horário:</font></label>
-            <select id="HORARIO" name="HORARIO" required>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="12:00">12:00</option>
-                <option value="13:00">13:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
-            </select>
-          </div>
-          <br>
-            <button type="submit">Reservar</button>
-        </fieldset>
-    </form>
-</div>
-
-</body>
-
-    <p><a href="BURGUER LINGO.html">Voltar a Página Principal</a></p>
+  <p style="text-align:center; margin-top:20px;"><a href="BURGUER LINGO.html">Voltar à Página Principal</a></p>
 
   <footer>
     © 2025 Todos os direitos reservados
   </footer>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      const section = document.querySelector('.fundadores-section');
+      const rect = section.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        section.classList.add('visible');
+      }
+    });
+  </script>
+</body>
 </html>
+
