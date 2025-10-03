@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Nunito, sans-serif;
   text-align: center;
   background: #f0f9f0;
 }
@@ -111,3 +111,4 @@ button:hover {
   width: 200px;
   margin: 20px 0;
 }
+
