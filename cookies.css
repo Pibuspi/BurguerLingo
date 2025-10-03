@@ -1,5 +1,5 @@
 * {
-    font-family: Arial, sans-serif;
+    font-family: Nunito, sans-serif;
 }
 
 body{
@@ -40,4 +40,5 @@ body{
 
 .cookies-msg .cookies-btn button:hover{
     transform: scale(0.9);
+
 }
