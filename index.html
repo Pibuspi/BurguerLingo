@@ -185,13 +185,13 @@ const carrossel = document.querySelector('.carrossel-cards');
 const btnEsq = document.querySelector('.seta.esquerda');
 const btnDir = document.querySelector('.seta.direita');
 
-let posicao = 0;
+let posicao = -10;
 
 // Função para calcular largura de cada card + gap
 function getCardWidth() {
   const card = carrossel.querySelector('.card');
   const style = window.getComputedStyle(carrossel);
-  const gap = parseInt(style.gap) || 20;
+  const gap = parseInt(style.gap) || -10;
   return card.offsetWidth + gap;
 }
 
