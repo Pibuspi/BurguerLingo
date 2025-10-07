@@ -191,7 +191,7 @@ let posicao = 0;
 function getCardWidth() {
   const card = carrossel.querySelector('.card');
   const style = window.getComputedStyle(carrossel);
-  const gap = parseInt(style.gap) || 0;
+  const gap = parseInt(style.gap) || 20;
   return card.offsetWidth + gap;
 }
 
