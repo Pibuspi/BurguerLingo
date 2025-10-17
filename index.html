@@ -4,260 +4,202 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="CHEF+DUO .png" type="image/png">
-    <title>BURGUER LINGO</title>
-    <link rel="stylesheet" href="burguer lingo.css">
+    <title>BURGUER LINGO | Onde o Sabor Encontra o Mundo</title>
     <link rel="stylesheet" href="Main-burguer.css">
-   <!-- Conecta o CSS -->
+    <link rel="stylesheet" href="burguer lingo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-    <img src="LogoBurguerDuo.png" alt="Logo da Empresa">
-    <nav>
-    <a href="ajudajeff.html">PERGUNTAS FREQUENTES</a>
-    <a href="sobre nos.html">SOBRE NÓS</a>
-    <a href="fale conosco.html">FALE CONOSCO</a>
-    <a href="licao.html">LIÇÕES</a>
-    </nav>
-    <style>
-        nav a {
-     font-size: 20px; /* altera o tamanho da fonte */
-    color: white;
-    text-decoration: none;
-    margin-left: 100px; /* Espaçamento entre os links */
-    }
-    </style>
+    
+    <div id="sidebar" class="menu-lateral">
+        <button id="close-btn" class="close-btn">&times;</button> <h2>MENU BURGUER LINGO</h2>
+        <a href="cardapio.html"><i class="fas fa-burger"></i> Cardápio</a>
+        <a href="licao.html"><i class="fas fa-book-open"></i> Lingo Lessons (Lições)</a>
+        <a href="reservas.html"><i class="fas fa-table"></i> Reservas</a>
+        <a href="login.html"><i class="fas fa-user-circle"></i> Login</a>
+        <a href="fale conosco.html"><i class="fas fa-headset"></i> Fale Conosco</a>
+        <a href="tickets.html"><i class="fas fa-ticket-alt"></i> Tickets e Descontos</a>
+        <a href="sobre nos.html"><i class="fas fa-info-circle"></i> Sobre Nós</a>
+        <a href="ajudajeff.html"><i class="fas fa-question-circle"></i> Perguntas Frequentes</a>
+    </div>
 
+    <header class="main-header">
+        <button id="menu-btn" class="menu-hamburguer"><i class="fas fa-bars"></i></button>
+
+        <a href="index.html" class="logo-link">
+            <img src="LogoBurguerDuo.png" alt="Logo Burguer Lingo">
+        </a>
+        
+        <nav class="main-nav">
+            <a href="cardapio.html">CARDÁPIO</a>
+            <a href="licao.html">LINGO LESSONS</a>
+            <a href="reservas.html">RESERVAS</a>
+        </nav>
+
+        <div class="user-actions">
+            <a href="login.html" title="Login / Minha Conta" class="nav-icon"><i class="fas fa-user"></i></a>
+            <a href="carrinho.html" title="Carrinho de Compras" class="nav-icon"><i class="fas fa-shopping-cart"></i></a>
+        </div>
     </header>
 
-  <script>
-
-    const menuBtn = document.getElementById('menu-btn');
-const sidebar = document.getElementById('sidebar');
-
-menuBtn.addEventListener('click', () => {
-  sidebar.classList.toggle('active');
-});
-
-  </script>
-   <section class="cardscm">
-   
-</section>
-<div class="carrossel">
-  <h2>Só os melhores</h2>
-  <div class="carrossel-container">
-    <button class="seta esquerda">&#10094;</button>
-    <div class="carrossel-cards">
-
-      
-
-      <a href="Italiapage.html">
-        <div class="card">
-          <img src="italiano.jpeg" alt="Logo da Empresa">
-          <p>Nosso restaurante pode não vender pizzas, mas não se preocupe, existe o nosso Hamburguer Italiano</p>
+    <section class="hero-carousel">
+        <div class="carousel-slide active-slide">
+            <h1>BURGUER LINGO: O Passaporte Culinário que Fala a Sua Língua.</h1>
+            <p>5 Estrelas Michelin, Chef Jacquin e a Única Plataforma de Imersão Linguística Gastronômica.</p>
+            <a href="licao.html" class="cta-button primary-cta">Comece a Aprender e Ganhe Desconto!</a>
+            <a href="cardapio.html" class="cta-button secondary-cta">Ver Cardápio Global</a>
         </div>
-      </a>
-      <a href="Mexicopage.html">
-        <div class ="card">
-          <img src = "mexicano.jpeg" alt = "Logo da Empresa">
-          <p>O tempero espanhol: experimente nosso sabor mexicano</p>
-        </div>
-      </a>
-      
-      <a href= "Francespage.html">
-        <div class = "card">
-          <img src = "frances.jpeg" alt = "Logo da Empresa">
-          <p>Descubra o sabor Francês a cada mordida</p>
-          
-        </div>
-      </a>
-        <a href="Brasilpage.html">
-        <div class="card">
-          <img src="VAI BRASIL.jpeg" alt="Logo da Empresa">
-          <p>Sinta tudo de melhor do nosso país com apenas uma mordida</p>
-        </div>
-      </a>
+        </section>
 
-      <a href="Guerrafriapage.html">
-        <div class="card">
-          <img src="guerra fria.jpeg" alt="Logo da Empresa">
-          <p>Combo guerra fria: 30% de desconto</p>
-        </div>
-      </a>
-      
-      <a href  = "alemaopage.html">
-        <div class="card">
-          <img src = "Alemanha.jpg" alt = "Logo da Empresa">
-          <p> TESTE</p>
-        </div>
+    <section class="summary-blocks">
+        <h2>O que te espera no Burguer Lingo?</h2>
+        <div class="info-grid">
+            
+            <a href="cardapio.html" class="info-card">
+                <i class="fas fa-globe"></i>
+                <h3>Cardápio Global</h3>
+                <p>Descubra lanches inspirados em dezenas de países. Sabor e cultura em um só lugar. **(Resumo do Cardápio)**</p>
+            </a>
+            
+            <a href="licao.html" class="info-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Lingo Lessons</h3>
+                <p>Nossa área interativa. Aprenda a pedir o seu lanche na língua nativa e ganhe cupons. **(Resumo das Lições)**</p>
+            </a>
 
-      </a>
+            <a href="reservas.html" class="info-card">
+                <i class="fas fa-bell"></i>
+                <h3>Reserve sua Mesa</h3>
+                <p>Experiência completa com nossa equipe poliglota e ambiente imersivo. Agende já! **(Resumo das Reservas)**</p>
+            </a>
+
+            <a href="tickets.html" class="info-card">
+                <i class="fas fa-award"></i>
+                <h3>Tickets e Bilhetes</h3>
+                <p>Sua recompensa por dominar o lingo! Colecione bilhetes e troque por descontos exclusivos. **(Resumo dos Tickets)**</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="menu-carousel-section">
+        <h2>Sabores em Destaque</h2>
+        <div class="carrossel">
+            <div class="carrossel-container">
+                <button class="seta esquerda">&#10094;</button>
+                <div class="carrossel-cards">
+                    <a href="Italiapage.html"><div class="card"><img src="italiano.jpeg" alt="Hamburguer Italiano"><p>IL ROMANO: Sabor da Itália.</p></div></a>
+                    <a href="Mexicopage.html"><div class="card"><img src = "mexicano.jpeg" alt = "Hamburguer Mexicano"><p>EL MACHO: Calor do México.</p></div></a>
+                    </div>
+                <button class="seta direita">&#10095;</button>
+            </div>
+        </div>
+    </section>
     
-
-    </div>
-    <button class="seta direita">&#10095;</button>
-  </div>
-</div>
-<style>
-  .carrossel {
-  text-align: center;
-  background-color: #f5f5f5;
-  padding: 0 50px;
-}
-
-.carrossel-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  max-width: 500%;
-  margin: auto;
-}
-
-.carrossel-cards {
-  display: flex;
-  gap: 20px;
-  transition: transform 0.5s ease;
-}
-
-.card {
-  min-width: 250px;
-  background: rgb(255, 255, 255);
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgb(255, 255, 255);
-  overflow: hidden;
-}
-
-.card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.card p {
-  padding: 10px;
-  font-size: 15px;
-}
-
-/* === SETAS DO CARROSSEL === */
-.seta {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  border-radius: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 35px;
-  color: #174c7e;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 10;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-}
-
-.seta:hover {
-  background: linear-gradient(135deg, #669c14, #0edc4c);
-  border-color: transparent;
-  color: rgb(37, 107, 114);
-  box-shadow: 0 6px 15px rgba(255, 123, 0, 0.4);
-  transform: translateY(-50%) scale(1.1);
-}
-
-.seta.esquerda {
-  left: 10px;
-}
-
-.seta.direita {
-  right: 10px;
-}
-
-
-</style>
-
-<script>
-const carrossel = document.querySelector('.carrossel-cards');
-const btnEsq = document.querySelector('.seta.esquerda');
-const btnDir = document.querySelector('.seta.direita');
-
-let posicao = -10;
-
-// Função para calcular largura de cada card + gap
-function getCardWidth() {
-  const card = carrossel.querySelector('.card');
-  const style = window.getComputedStyle(carrossel);
-  const gap = parseInt(style.gap) || -10;
-  return card.offsetWidth + gap;
-}
-
-// Função para calcular o máximo que o carrossel pode ir
-function getMaxScroll() {
-  const cardWidth = getCardWidth();
-  const containerWidth = document.querySelector('.carrossel-container').offsetWidth;
-  const visiveis = Math.floor(containerWidth / cardWidth);
-  return -(cardWidth * (carrossel.children.length - visiveis));
-}
-
-// Atualiza posição
-function updateCarousel() {
-  carrossel.style.transform = `translateX(${posicao}px)`;
-}
-
-// Botão → (direita)
-btnDir.addEventListener('click', () => {
-  const passo = getCardWidth();
-  const maxScroll = getMaxScroll();
-  if (posicao > maxScroll) {
-    posicao -= passo;
-    if (posicao < maxScroll) posicao = maxScroll;
-    updateCarousel();
-  }
-});
-
-// Botão ← (esquerda)
-btnEsq.addEventListener('click', () => {
-  const passo = getCardWidth();
-  if (posicao < 0) {
-    posicao += passo;
-    if (posicao > 0) posicao = 0;
-    updateCarousel();
-  }
-});
-
-// Recalcula ao redimensionar a janela (responsivo)
-window.addEventListener('resize', () => {
-  const maxScroll = getMaxScroll();
-  if (posicao < maxScroll) {
-    posicao = maxScroll;
-    updateCarousel();
-  }
-});
-</script>
-
-
-<section class="cardsc">
-    <a href="cardapio.html">
-        <div class="card">
-          <img src="Confira nosso cardapio.jpg" alt="confira nosso cardapio"  width="300">
+    <footer>
+        <div class="footer-links">
+            <a href="ajudajeff.html" class="strong-link">PERGUNTAS FREQUENTES</a>
+            <a href="sobre nos.html" class="strong-link">SOBRE NÓS</a>
+            <a href="fale conosco.html">Fale Conosco</a>
+            <a href="politica.html">Política de Privacidade</a>
         </div>
-    </a>
-    <a href="reservas.html">
-        <div class="card">
-          <img src="Faça seu pedido.jpg" alt="faça seu pedido">
-        </div>
-    </a>
-</section>
+        <p>© 2025 BURGUER LINGO. Todos os direitos reservados.</p>
+    </footer>
 
-</section>
-  <footer>
-    © 2025 Todos os direitos reservados
-  </footer>
+   <script>
+    // JS para o Menu Lateral (Sidebar)
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar');
 
-  
+    // Toggle a classe 'active' para mostrar/esconder o menu lateral
+    menuBtn.addEventListener('click', () => {
+        sidebar.classList.add('active');
+    });
+    closeBtn.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+    });
+
+    // O seu JS de controle do carrossel (corrigido):
+    const carrossel = document.querySelector('.carrossel-cards');
+    const btnEsq = document.querySelector('.seta.esquerda');
+    const btnDir = document.querySelector('.seta.direita');
+
+    // CORREÇÃO CRÍTICA: Posição inicial deve ser 0
+    let posicao = 0;
+
+    // Função para calcular largura de cada card + gap
+    function getCardWidth() {
+        const card = carrossel.querySelector('.card');
+        if (!card) return 0; // Prevenção
+        const style = window.getComputedStyle(carrossel);
+        const gap = parseInt(style.gap) || 20; // Usa o valor do CSS (20px)
+        return card.offsetWidth + gap;
+    }
+
+    // Função para calcular o máximo que o carrossel pode ir
+    function getMaxScroll() {
+        const cardWidth = getCardWidth();
+        const containerWidth = document.querySelector('.carrossel-container').offsetWidth;
+        const totalCardsWidth = cardWidth * carrossel.children.length;
+        
+        // O valor máximo de rolagem negativa é a diferença entre a largura total dos cards
+        // e a largura visível do container.
+        const maxScroll = -(totalCardsWidth - containerWidth);
+
+        // Garante que o maxScroll não seja positivo (o que ocorreria se o conteúdo for menor que o container)
+        return Math.min(0, maxScroll);
+    }
+
+    // CORREÇÃO CRÍTICA: Atualiza posição (Sintaxe correta de template literal)
+    function updateCarousel() {
+        carrossel.style.transform = `translateX(${posicao}px)`;
+        
+        // Opcional: Desabilitar botões nos limites
+        btnEsq.disabled = posicao >= 0;
+        btnDir.disabled = posicao <= getMaxScroll();
+    }
+
+    // Botão → (direita)
+    btnDir.addEventListener('click', () => {
+        const passo = getCardWidth();
+        const maxScroll = getMaxScroll();
+        if (posicao > maxScroll) {
+            posicao -= passo;
+            // Garante que não ultrapasse o limite máximo (mais negativo)
+            if (posicao < maxScroll) {
+                posicao = maxScroll;
+            }
+            updateCarousel();
+        }
+    });
+
+    // Botão ← (esquerda)
+    btnEsq.addEventListener('click', () => {
+        const passo = getCardWidth();
+        if (posicao < 0) { // Só move se não estiver na posição 0
+            posicao += passo;
+            // Garante que não ultrapasse o limite mínimo (0)
+            if (posicao > 0) {
+                posicao = 0;
+            }
+            updateCarousel();
+        }
+    });
+
+    // Inicializa a posição do carrossel ao carregar a página
+    window.addEventListener('load', updateCarousel);
+
+    // Recalcula ao redimensionar a janela (responsivo)
+    window.addEventListener('resize', () => {
+        const maxScroll = getMaxScroll();
+        // Se a nova posição máxima for menor que a posição atual, move para a nova posição máxima
+        if (posicao < maxScroll) {
+            posicao = maxScroll;
+        } else if (posicao > 0) { // Se por algum motivo estiver positivo, volta para 0
+             posicao = 0;
+        }
+        updateCarousel();
+    });
+</script> 
 </body>
 </html>
