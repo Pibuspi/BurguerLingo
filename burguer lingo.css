@@ -1,1 +1,299 @@
+/* --- Paleta de Cores e Variáveis de Configuração --- */
+:root {
+    --color-primary: #08c958; /* Verde Principal */
+    --color-secondary: #ffc107; /* Amarelo Destaque */
+    --color-header-bg: #08c958; 
+    --color-footer-bg: #333; 
+    --color-text-dark: #333;
+    --color-text-light: #fff;
+    --spacing-default: 20px;
+}
+
+/* --- Base e Sobrescrita Geral --- */
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5 !important; 
+    color: var(--color-text-dark);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.3s;
+    /* Sobrescreve a margem-top genérica em todos os links do novo layout */
+    margin-top: 0 !important; 
+}
+
+
+/* ---------------------------------------------------- */
+/* --- 1. HEADER E NAVEGAÇÃO PRINCIPAL (Sobrescrita) --- */
+
+.main-header {
+    background-color: var(--color-header-bg) !important; 
+    padding: 10px var(--spacing-default) !important;
+    display: flex !important;
+    justify-content: space-between !important; 
+    align-items: center !important;
+    flex-wrap: nowrap !important; 
+    position: sticky; 
+    top: 0;
+    z-index: 1000;
+}
+
+.main-nav {
+    display: flex; 
+}
+.main-nav a {
+    color: var(--color-text-light);
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 15px !important; 
+}
+.main-nav a:hover {
+    color: var(--color-secondary);
+}
+
+.user-actions .nav-icon {
+    color: var(--color-text-light);
+    font-size: 24px;
+    margin-left: var(--spacing-default);
+}
+
+/* === MODIFICAÇÃO CRÍTICA PARA PC/NOTEBOOK: O BOTÃO HAMBÚRGUER FICA SEMPRE VISÍVEL === */
+.menu-hamburguer {
+    display: block !important; /* CRÍTICO: Força o botão a ser visível em todas as telas */
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* ---------------------------------------------------- */
+/* --- 2. MENU LATERAL (SIDEBAR) --- */
+
+.menu-lateral {
+    height: 100%;
+    width: 0; /* CRÍTICO: ESCONDE O MENU POR PADRÃO */
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    background-color: var(--color-footer-bg); 
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.menu-lateral.active {
+    width: 250px; /* MOSTRA O MENU NO DESKTOP */
+    padding-left: var(--spacing-default);
+}
+
+.menu-lateral h2 {
+    color: var(--color-primary);
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #555;
+}
+
+.menu-lateral a {
+    padding: 15px 5px;
+    color: var(--color-text-light);
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    cursor: pointer;
+}
+
+/* ---------------------------------------------------- */
+/* --- 3. HERO E BOTÕES CTA --- */
+
+.hero-carousel {
+    padding: 100px var(--spacing-default);
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('burgerlinmgo.jpeg') no-repeat center center; 
+    background-size: cover;
+    color: var(--color-text-light);
+}
+
+.hero-carousel h1 {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.cta-button {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 20px 10px;
+    display: inline-block;
+    border: 2px solid transparent;
+}
+
+.primary-cta {
+    background-color: var(--color-primary); 
+    color: var(--color-text-light);
+    border-color: var(--color-primary);
+}
+.secondary-cta {
+    background-color: transparent; 
+    color: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+
+/* ---------------------------------------------------- */
+/* --- 4. BLOCOS DE RESUMO (INFO-GRID) --- */
+
+.summary-blocks {
+    padding: 40px var(--spacing-default);
+    text-align: center;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.info-card {
+    background: var(--color-text-light);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+    color: var(--color-text-dark);
+}
+.info-card i {
+    font-size: 2.5em;
+    color: var(--color-secondary);
+    margin-bottom: 10px;
+}
+
+
+/* ---------------------------------------------------- */
+/* --- 5. CARROSSEL E FOTOS --- */
+
+.menu-carousel-section {
+    padding: 40px var(--spacing-default);
+    text-align: center;
+}
+
+.carrossel {
+    overflow: hidden; /* CRÍTICO: Esconde conteúdo fora da tela */
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.carrossel-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.carrossel-cards {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 20px; /* Crucial para o cálculo do JS */
+}
+
+/* Sobrescreve as regras antigas do .card */
+.card {
+    min-width: 280px !important; 
+    max-width: 280px !important;
+    height: auto;
+    flex-shrink: 0; /* CRÍTICO: Impede que o card encolha */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin: 0 !important; /* Remove margens que quebram o deslize */
+    display: block !important;
+    text-align: center;
+}
+
+.card img {
+    /* CORRIGE AS FOTOS ENORMES */
+    width: 100%;
+    height: 180px; 
+    object-fit: cover; 
+}
+
+.card p {
+    font-size: 1.1em; 
+    color: var(--color-primary); 
+    padding: 10px;
+    margin: 0;
+}
+
+.seta {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    font-size: 2em;
+    cursor: pointer;
+    z-index: 50;
+    padding: 5px 10px;
+    border-radius: 50%;
+    line-height: 1;
+    color: var(--color-primary);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.esquerda { left: 0; }
+.direita { right: 0; }
+
+
+/* ---------------------------------------------------- */
+/* --- 6. FOOTER (Sobrescrita) --- */
+
+footer {
+    background-color: var(--color-footer-bg) !important; 
+    color: var(--color-text-light) !important;
+    padding: 30px var(--spacing-default) !important;
+    text-align: center !important;
+    margin-top: 50px !important; 
+}
+
+.footer-links a {
+    color: #ccc !important; 
+    margin: 0 15px !important;
+    font-size: 16px !important;
+    display: inline-block !important;
+}
+
+/* ---------------------------------------------------- */
+/* --- 7. RESPONSIVIDADE (Ajustada para Manter o Menu Lateral) --- */
+
+@media (max-width: 900px) {
+    /* Mantém o menu principal (main-nav) visível no header (não há "display: none" aqui) */
+
+    /* Apenas ajusta o layout da sidebar para ocupar 100% da tela em dispositivos pequenos */
+    .menu-lateral.active {
+        width: 100%; 
+    }
+
+    /* Ajuste para o grid de informações em telas pequenas */
+    .info-grid {
+        grid-template-columns: 1fr; 
+    }
+}
 
