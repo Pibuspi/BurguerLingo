@@ -10,13 +10,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
     
+<!-- POP-UP DE VÍDEO: "Nosso Comercial" -->
 <div id="video-popup" class="video-popup-overlay">
   <div class="video-popup-content">
     <button class="close-video-btn" id="closeVideoBtn">&times;</button>
     <h2>🎬 Veja Nosso Comercial</h2>
     <div class="video-container">
       <iframe 
-        src="https://www.youtube.com/embed/fjJPmVl2kog?autoplay=0&controls=1&loop=0&mute=0&rel=0"
+        id="videoFrame"
+        src="https://www.youtube.com/embed/fjJPmVl2kog?autoplay=0&controls=1&loop=0&mute=1&rel=0&enablejsapi=1"
         title="Comercial Burguer Lingo"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -100,6 +102,7 @@
 window.addEventListener("load", () => {
   const videoPopup = document.getElementById("video-popup");
   const closeVideoBtn = document.getElementById("closeVideoBtn");
+  const videoFrame = document.getElementById("videoFrame");
 
   setTimeout(() => {
     videoPopup.classList.add("active");
@@ -107,9 +110,12 @@ window.addEventListener("load", () => {
 
   closeVideoBtn.addEventListener("click", () => {
     videoPopup.classList.remove("active");
+
+    videoFrame.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
   });
 });
 </script>
+
 
 <body>
     
