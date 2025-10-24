@@ -1,130 +1,227 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link rel="stylesheet" href="Main-burguer.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservas</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="icon" href="CHEF=DUO.PNG" type="image/png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservas - Burguer Duo</title>
+  <link rel="icon" href="CHEF=DUO.PNG" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
 
-    <style>
-        header {
-            background-color: #08c958;
-            color: white;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        nav a {
-            font-size: 20px;
-            color: white;
-            text-decoration: none;
-            margin-left: 30px;
-        }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: url('https://images.unsplash.com/photo-1551782450-a2132b4ba21d') no-repeat center center/cover;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-        .info {
-            text-align: center;
-            color: #08c958;
-            font-size: 20px;
-            margin: 20px 0;
-        }
+    header {
+      background-color: #08c958;
+      padding: 15px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
 
-        
-         /* Link de voltar */
-        main p a {
-            display: inline-block;
-            margin-top: 30px;
-            text-decoration: none;
-            color: #08c958;
-            font-weight: bold;
-        }
-  
-        header h1 {
-            font-size: 24px;
-        }
-         
-    </style>
+    header img {
+      height: 60px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 40px;
+      font-size: 18px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00391f;
+      text-decoration: underline;
+    }
+
+    .info {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 20px;
+      color: #f1f1f1;
+      text-shadow: 1px 1px 4px #000;
+    }
+
+    .box {
+      background: rgba(0, 0, 0, 0.7);
+      width: 90%;
+      max-width: 600px;
+      margin: 0 auto 50px;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    .box h2 {
+      text-align: center;
+      color: #08c958;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #08c958;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border: 2px solid #08c958;
+    }
+
+    button {
+      width: 100%;
+      background-color: #08c958;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #06a747;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #08c958;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 -3px 8px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+      }
+      nav a {
+        margin: 10px 0;
+      }
+      .box {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
-<style>
-body {
-  font-family: Nunito, sans-serif;
-  background-image: #ffffff
-}
 
-box {
-  background-color: #ffffff
-}
-</style> 
 <body>
-    <header>
+  <header>
     <a href="index.html"><img src="LogoBurguerDuo.png" alt="Logo da Empresa"></a>
     <nav>
-    <a href="sobre nos.html">SOBRE NÓS</a>
-    <a href="ajudajeff.html">PERGUNTAS FREQUENTES</a>
-    <a href="fale conosco.html">FALE CONOSCO</a>
-
+      <a href="sobre nos.html">SOBRE NÓS</a>
+      <a href="ajudajeff.html">PERGUNTAS FREQUENTES</a>
+      <a href="fale conosco.html">FALE CONOSCO</a>
     </nav>
-    <style>
-        nav a {
-     font-size: 20px; /* altera o tamanho da fonte */
-    color: white;
-    text-decoration: none;
-    margin-left: 100px; /* Espaçamento entre os links */
-    }
-    </style>
+  </header>
 
-    </header>
+  <section class="info">
+    <p><strong>Formulário de Reservas</strong> — Confirmações, trocas e cancelamentos via e-mail ou WhatsApp.</p>
+    <p><strong>Endereço:</strong> Rua Jair Bolsonaro, 222, Jardim Bostil, Guarulhos</p>
+  </section>
 
-<section class="info">
-    <p>Formulário de Reservas (confirmações, trocas e cancelamentos via e-mail ou whatsapp)</p>
-    <p>Endereço: Rua Jair Bolsonaro, 222, Jardim Bostil, Guarulhos</p>
-</section>
-
-<div class="box">
+  <div class="box">
+    <h2>Reserve sua Mesa 🍔</h2>
     <form id="Formulario" autocomplete="off">
-        <fieldset>
-           <div class="inputbox">
-            <label for="NOME"><font color="#08c958">Nome:</font></label>
-            <input type="text" id="NOME" name="nome" required>
-           </div>
-          <br>
-             <div class="inputbox">
-            <label for="TELEFONE"><font color="#08c958">Telefone:</font></label>
-            <input type="tel" id="TELEFONE" name="telefone" required>
-          </div>
-          <br>
-            <label for="EMAIL"><font color="#08c958">Email:</font></label>
-            <input type="email" id="EMAIL" name="email" required>
-          <br><br>
-          <div class="inputbox">
-            <label for="data"><font color="#08c958">Data (DD/MM/AAAA):</font></label>
-            <input type="date" id="data" name="data" required>
-          </div>
-          <br>
-          <div>
-            <label for="HORARIO"><font color="#08c958">Horário:</font></label>
-            <select id="HORARIO" name="HORARIO" required>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="12:00">12:00</option>
-                <option value="13:00">13:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
-            </select>
-          </div>
-          <br>
-            <button type="submit">Reservar</button>
-        </fieldset>
+      <label for="nome">Nome completo:</label>
+      <input type="text" id="nome" name="nome" required>
+
+      <label for="telefone">Telefone:</label>
+      <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required>
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="data">Data da reserva:</label>
+      <input type="date" id="data" name="data" required>
+
+      <label for="horario">Horário:</label>
+      <select id="horario" name="horario" required>
+        <option value="">Selecione um horário</option>
+        <option>18:00</option>
+        <option>19:00</option>
+        <option>20:00</option>
+        <option>21:00</option>
+        <option>22:00</option>
+      </select>
+
+      <label for="pessoas">Número de pessoas:</label>
+      <input type="number" id="pessoas" name="pessoas" min="1" max="20" required>
+
+      <label for="mesa">Preferência de mesa:</label>
+      <select id="mesa" name="mesa">
+        <option>Interna</option>
+        <option>Externa</option>
+        <option>Próxima ao balcão</option>
+        <option>Área reservada (VIP)</option>
+      </select>
+
+      <label for="contato">Preferência de contato:</label>
+      <select id="contato" name="contato">
+        <option>WhatsApp</option>
+        <option>E-mail</option>
+        <option>Telefone</option>
+      </select>
+
+      <label for="obs">Observações adicionais:</label>
+      <textarea id="obs" name="obs" rows="3" placeholder="Ex: aniversariante, alergias, pedidos especiais..."></textarea>
+
+      <button type="submit">Reservar Agora</button>
     </form>
-</div>
+  </div>
 
+  <footer>© 2025 Burguer Duo — Todos os direitos reservados</footer>
+
+  <script>
+    document.getElementById('Formulario').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const nome = document.getElementById('nome').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const data = document.getElementById('data').value;
+      const horario = document.getElementById('horario').value;
+      const pessoas = document.getElementById('pessoas').value;
+
+      if (!nome || !telefone || !email || !data || !horario || !pessoas) {
+        alert('⚠️ Por favor, preencha todos os campos obrigatórios!');
+        return;
+      }
+
+      alert(`🍔 Reserva feita com sucesso!\n\nNome: ${nome}\nData: ${data}\nHorário: ${horario}\nPessoas: ${pessoas}\n\nEntraremos em contato para confirmar sua reserva.`);
+      this.reset();
+    });
+  </script>
 </body>
-
-  <footer>
-    © 2025 Todos os direitos reservados
-  </footer>
 </html>
