@@ -97,7 +97,7 @@ a {
 }
 
 .menu-lateral.active {
-    width: 250px; 
+    width: 250px;
     padding-left: var(--spacing-default);
 }
 
@@ -112,7 +112,9 @@ a {
     padding: 15px 5px;
     color: var(--color-text-light);
     display: block;
+    text-align: center;
 }
+
 
 .close-btn {
     position: absolute;
