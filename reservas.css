@@ -1,0 +1,82 @@
+/* ---------------------------------------------------- */
+/* --- Estilos da Página de Reservas (reservas.css) --- */
+/* ---------------------------------------------------- */
+
+/* Configuração do Background e Layout da Página */
+body.page-reservas {
+    /* CRÍTICO: Removido 'display: flex' e 'flex-direction: column' 
+       para evitar conflitos com o header e o menu lateral. */
+    background: url('https://images.unsplash.com/photo-1551782450-a2132b4ba21d') no-repeat center center/cover;
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* Informações e Endereço */
+.info {
+    /* CRÍTICO: Ajusta o espaçamento superior para que o conteúdo não fique escondido pelo header fixo/sticky. */
+    padding-top: 80px; 
+    text-align: center;
+    margin: 0 0 20px;
+    font-size: 20px;
+    color: #f1f1f1;
+    text-shadow: 1px 1px 4px #000;
+}
+
+/* Box do Formulário */
+.box {
+    background: rgba(0, 0, 0, 0.8);
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto 50px;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+.box h2 {
+    text-align: center;
+    color: #08c958; 
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #08c958; 
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #444; 
+    background-color: #333; 
+    color: #fff;
+    outline: none;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+input:focus, select:focus, textarea:focus {
+    border: 2px solid #08c958;
+}
+
+button[type="submit"] {
+    width: 100%;
+    background-color: #08c958;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #06a747;
+}
+
+
