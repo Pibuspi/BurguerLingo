@@ -3,152 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reservas - Burguer Duo</title>
+  <title>Reservas - BURGUER LINGO</title>
   <link rel="icon" href="CHEF=DUO.PNG" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: url('https://images.unsplash.com/photo-1551782450-a2132b4ba21d') no-repeat center center/cover;
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    header {
-      background-color: #08c958;
-      padding: 15px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    header img {
-      height: 60px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 40px;
-      font-size: 18px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #00391f;
-      text-decoration: underline;
-    }
-
-    .info {
-      text-align: center;
-      margin: 40px 0 20px;
-      font-size: 20px;
-      color: #f1f1f1;
-      text-shadow: 1px 1px 4px #000;
-    }
-
-    .box {
-      background: rgba(0, 0, 0, 0.7);
-      width: 90%;
-      max-width: 600px;
-      margin: 0 auto 50px;
-      padding: 30px 40px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
-
-    .box h2 {
-      text-align: center;
-      color: #08c958;
-      margin-bottom: 25px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      color: #08c958;
-      font-weight: bold;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      margin-bottom: 15px;
-      font-size: 16px;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border: 2px solid #08c958;
-    }
-
-    button {
-      width: 100%;
-      background-color: #08c958;
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background-color: #06a747;
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      background-color: #08c958;
-      color: white;
-      font-weight: bold;
-      box-shadow: 0 -3px 8px rgba(0,0,0,0.2);
-    }
-
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-      }
-      nav a {
-        margin: 10px 0;
-      }
-      .box {
-        padding: 20px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="Main-burguer.css">
+  <link rel="stylesheet" href="burguer lingo.css">
+  <link rel="stylesheet" href="reservas.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
 </head>
 
-<body>
-  <header>
-    <a href="index.html"><img src="LogoBurguerDuo.png" alt="Logo da Empresa"></a>
-    <nav>
-      <a href="sobre nos.html">SOBRE NÓS</a>
-      <a href="ajudajeff.html">PERGUNTAS FREQUENTES</a>
-      <a href="fale conosco.html">FALE CONOSCO</a>
-    </nav>
-  </header>
+<body class="page-reservas">
+   
+    <div id="sidebar" class="menu-lateral">
+        <button id="close-btn" class="close-btn">&times;</button> <h2>MENU BURGUER LINGO</h2>
+        <a href="cardapio.html"><i class="fas fa-burger"></i> Cardápio</a>
+        <a href="licao.html"><i class="fas fa-book-open"></i> Lingo Lessons (Lições)</a>
+        <a href="reservas.html"><i class="fas fa-table"></i> Reservas</a>
+        <a href="login.html"><i class="fas fa-user-circle"></i> Login</a>
+        <a href="fale conosco.html"><i class="fas fa-headset"></i> Fale Conosco</a>
+        <a href="tickets.html"><i class="fas fa-ticket-alt"></i> Tickets e Descontos</a>
+        <a href="sobre nos.html"><i class="fas fa-info-circle"></i> Sobre Nós</a>
+        <a href="ajudajeff.html"><i class="fas fa-question-circle"></i> Perguntas Frequentes</a>
+    </div>
+
+    <header class="main-header">
+        <button id="menu-btn" class="menu-hamburguer"><i class="fas fa-bars"></i></button>
+
+        <a href="index.html" class="logo-link">
+            <img src="LogoBurguerDuo.png" alt="Logo Burguer Lingo">
+        </a>
+        
+        <nav class="main-nav">
+            <a href="cardapio.html">CARDÁPIO</a>
+            <a href="licao.html">LINGO LESSONS</a>
+            <a href="reservas.html">RESERVAS</a>
+        </nav>
+
+        <div class="user-actions">
+            <a href="login.html" title="Login / Minha Conta" class="nav-icon"><i class="fas fa-user"></i></a>
+            <a href="carrinho.html" title="Carrinho de Compras" class="nav-icon"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </header> 
 
   <section class="info">
     <p><strong>Formulário de Reservas</strong> — Confirmações, trocas e cancelamentos via e-mail ou WhatsApp.</p>
     <p><strong>Endereço:</strong> Rua Jair Bolsonaro, 222, Jardim Bostil, Guarulhos</p>
+    
   </section>
 
   <div class="box">
@@ -201,9 +101,31 @@
     </form>
   </div>
 
-  <footer>© 2025 Burguer Duo — Todos os direitos reservados</footer>
+  <footer>
+        <div class="footer-links">
+            <a href="ajudajeff.html" class="strong-link">Perguntas Frequentes</a>
+            <a href="sobre nos.html" class="strong-link">Sobre Nós</a>
+            <a href="fale conosco.html">Fale Conosco</a>
+            <a href="politica.html">Política de Privacidade</a>
+        </div>
+        <p>© 2025 BURGUER LINGO. Todos os direitos reservados.</p>
+    </footer>
 
   <script>
+
+    // JS para o Menu Lateral (Sidebar)
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar');
+
+    // Toggle a classe 'active' para mostrar/esconder o menu lateral
+    menuBtn.addEventListener('click', () => {
+        sidebar.classList.add('active');
+    });
+    closeBtn.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+    });
+
     document.getElementById('Formulario').addEventListener('submit', function(event) {
       event.preventDefault();
 
