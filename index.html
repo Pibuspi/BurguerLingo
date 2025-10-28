@@ -360,12 +360,12 @@ window.addEventListener("load", () => {
         sidebar.classList.remove('active');
     });
 
-    // O seu JS de controle do carrossel (corrigido):
+    //JS de controle do carrossel:
     const carrossel = document.querySelector('.carrossel-cards');
     const btnEsq = document.querySelector('.seta.esquerda');
     const btnDir = document.querySelector('.seta.direita');
 
-    // CORREÇÃO CRÍTICA: Posição inicial deve ser 0
+    // Posição inicial deve ser 0
     let posicao = 0;
 
     // Função para calcular largura de cada card + gap
@@ -373,7 +373,7 @@ window.addEventListener("load", () => {
         const card = carrossel.querySelector('.card');
         if (!card) return 0; // Prevenção
         const style = window.getComputedStyle(carrossel);
-        const gap = parseInt(style.gap) || 20; // Usa o valor do CSS (20px)
+        const gap = parseInt(style.gap) || 0; // Usa o valor do CSS
         return card.offsetWidth + gap;
     }
 
@@ -391,42 +391,57 @@ window.addEventListener("load", () => {
         return Math.min(0, maxScroll);
     }
 
-    // CORREÇÃO CRÍTICA: Atualiza posição (Sintaxe correta de template literal)
+    // Atualiza posição 
     function updateCarousel() {
         carrossel.style.transform = `translateX(${posicao}px)`;
         
         // Opcional: Desabilitar botões nos limites
-        btnEsq.disabled = posicao >= 0;
-        btnDir.disabled = posicao <= getMaxScroll();
+        btnEsq.disabled = false;
+        btnDir.disabled = false;
     }
 
-    // Botão → (direita)
-    btnDir.addEventListener('click', () => {
-        const passo = getCardWidth();
-        const maxScroll = getMaxScroll();
-        if (posicao > maxScroll) {
-            posicao -= passo;
-            // Garante que não ultrapasse o limite máximo (mais negativo)
-            if (posicao < maxScroll) {
-                posicao = maxScroll;
-            }
-            updateCarousel();
-        }
-    });
+    // Botão → (direita) - Lógica Infinita
+    btnDir.addEventListener('click', () => {
+        const passo = getCardWidth();
+        const maxScroll = getMaxScroll();
+        
+        // Verifica se chegamos ou passamos do limite máximo (mais negativo)
+        if (posicao <= maxScroll) {
+            // Se sim, volta para o início (posicao = 0)
+            posicao = 0; 
+        } else {
+            // Caso contrário, move um passo para a direita (negativo)
+            posicao -= passo;
+            
+            // Garante que não ultrapasse o limite máximo (se o passo for maior que o restante)
+            if (posicao < maxScroll) {
+                posicao = maxScroll;
+            }
+        }
+        updateCarousel();
+    });
 
-    // Botão ← (esquerda)
+
+    // Botão ← (esquerda) - Lógica Infinita
     btnEsq.addEventListener('click', () => {
         const passo = getCardWidth();
-        if (posicao < 0) { // Só move se não estiver na posição 0
+        const maxScroll = getMaxScroll();
+        
+        // Verifica se estamos no início (posicao = 0)
+        if (posicao >= 0) {
+            // Se sim, vai para o final do carrossel
+            posicao = maxScroll; 
+        } else {
+            // Caso contrário, move um passo para a esquerda (positivo)
             posicao += passo;
+            
             // Garante que não ultrapasse o limite mínimo (0)
             if (posicao > 0) {
                 posicao = 0;
             }
-            updateCarousel();
         }
+        updateCarousel();
     });
-
     // Inicializa a posição do carrossel ao carregar a página
     window.addEventListener('load', updateCarousel);
 
@@ -442,7 +457,7 @@ window.addEventListener("load", () => {
         updateCarousel ();
     });
 
-    // JS da Animação da Seção "Fundadores" (TRANSFERIDO)
+    // JS da Animação da Seção "Fundadores" 
         window.addEventListener('scroll', function() {
             const section = document.querySelector('.fundadores-section');
             const rect = section.getBoundingClientRect();
