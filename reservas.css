@@ -13,13 +13,12 @@ body.page-reservas {
 
 /* Informações e Endereço */
 .info {
-    /* CRÍTICO: Ajusta o espaçamento superior para que o conteúdo não fique escondido pelo header fixo/sticky. */
-    padding-top: 80px; 
-    text-align: center;
-    margin: 0 0 20px;
-    font-size: 20px;
-    color: #f1f1f1;
-    text-shadow: 1px 1px 4px #000;
+    /* Adiciona um espaço de 50 pixels abaixo e acima da seção, separando-a do formulário (.box) */
+    margin-top: 50px;
+    margin-bottom: 50px; 
+    
+    /* Centraliza o texto da seção, como 'Dúvidas, sugestões...' */
+    text-align: center; 
 }
 
 /* Box do Formulário */
