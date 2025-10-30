@@ -1,104 +1,132 @@
-<DOCTYPE HTML>
+
+<!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="CHEF+DUO .png"  type="img/png">
-        <link rel="stylesheet" href="questõesj.css">
-        <link rel="stylesheet" href="cardapio.css">
-        <link rel="stylesheet" href="burguer lingo.css">  
-         <link rel="stylesheet" href="Main-burguer.css">              
-        <title>AJUDA</title>
-    </head>
-    <body>
-        <header>
-            <a href="index.html"><img src="LogoBurguerDuo.png" alt="Logo da Empresa"></a>
-        <nav>
-            <a href="sobre nos.html">SOBRE NÓS</a>
-            <a href="reservas.html">RESERVAS</a>
-            <a href="fale conosco.html">FALE CONOSCO</a>
-        </nav>
-        <style>
-            nav a {
-            font-size: 20px; /* altera o tamanho da fonte */
-            color: white;
-            text-decoration: none;
-            margin-left: 100px; /* Espaçamento entre os links */
-            }
-        </style>
-        </header>
-        <main> 
-            <div class="container">
-                <h1 ALIGN="center">Precisa de ajuda?</h1>
-            </div> <br>
-            <p style="font-size: 19px;" ALIGN="center">Para qualquer caso de dúvida, confira as perguntas frequentes ou contate nosso suporte.</p>
-            <br>
-        </main>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="CHEF+DUO .png" type="image/png">
+  <title>Perguntas Frequentes</title>
+  <link rel="stylesheet" href="ajudajeff.css">
+  <link rel="stylesheet" href="Main-burguer.css">
+  <link rel="stylesheet" href="questõesj.css">
+  <link rel="stylesheet" href="cardapio.css">
+  <link rel="stylesheet" href="burguer lingo.css">  
+  <style>
+    nav a {
+      font-size: 20px;
+      color: white;
+      text-decoration: none;
+      margin-left: 100px;
+    }
+  </style>
+</head>
 
-        <div class="texto">
-             <h2>
-   Perguntas Frequentes (FAQ)        
-             </h2><br>
-            <p style="font-size: 19px;" ALIGN="center">
-                Algumas das perguntas mais frequentes que recebemos, que podem ser as suas também.
-            </p>
-            <br>
-        </div>
+<body>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  let faqQuestionContainers = document.querySelectorAll('.faq-question-container');
+  faqQuestionContainers.forEach(function(faqQuestionContainer) {
+    faqQuestionContainer.onclick = function() {
+      this.parentElement.classList.toggle("active");
+    };
+  });
+});
+</script>
+
+<header>
+  <a href="index.html"><img src="LogoBurguerDuo.png" alt="Logo da Empresa"></a>
+  <nav>
+    <a href="sobre nos.html">Sobre nós</a>
+    <a href="fale conosco.html">Fale conosco</a>
+  </nav>
+</header>
+
+<div class="perguntas_frequentes">
+  <div class="responsive-container-block">
+    <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-5 wk-ipadp-5 faq-head-bg">
+      <div class="faq-head-content">
+        <p class="text-blk faq-heading1">Qual sua dúvida?</p>
+        <p class="text-blk faq-subheading">Aqui temos uma lista com as perguntas mais frequentes a respeito do Burguerlingo:</p>
+      </div>
+    </div>
+
+    <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-7 wk-ipadp-7 faq-dropdown-bg">
+      <div class="container-block">
         
-        </div> 
-        <div class="card img">
-            <h8><a href="higiene.html">
-               <img src="images (80).jpeg">
-               Nós trabalhamos de modo higiênico?
-               
-            </a>
-            </h8>
-        </div>
-        
-        <div class="card img">
-            <h8><a href="sobrereservas.html">
-               <img src="images (7).png"> 
-               Como funciona nosso sistema de reservas?
-                
-            </a>
-            </h8>
-        </div>
-        
-        <div class="card img">
-            <h8><a href="saude.html">
-            <img src="hamburguer.jpg">
-                Nossos hamburgúeres são saudáveis?
-            </a>
-            </h8>
+        <div class="faq">
+          <span class="faq-question-container">
+            <p class="text-blk faq-questions">Esse restaurante é vinculado oficialmente ao Duolingo?</p>
+            <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
+          </span>
+          <div class="answer-box">
+            <p class="text-blk faq-answer">Sim, somos uma franquia oficialmente vinculada.</p>
+          </div>
         </div>
 
-        <div class="texto">         
-            <h2>
-            Contate nosso suporte
-            </h2>
+        <div class="faq">
+          <span class="faq-question-container">
+            <p class="text-blk faq-questions">Qual o horário de funcionamento do restaurante?</p>
+            <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
+          </span>
+          <div class="answer-box">
+            <p class="text-blk faq-answer">Nós atendemos das 8:00 às 00:00, todos os dias da semana.</p>
+          </div>
         </div>
-        <div class="card img">
-            <h8><a href="suporte.html">
-               <img src="ducida.avif"> 
-               Sua dúvida não foi respondida? Fale com nosso suporte!
-                
-            </a>
-            </h8>
-        </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-     <br><br><br><br><br>
-   
 
-  <footer>
-    © 2025 Todos os direitos reservados
-  </footer>
+        <div class="faq">
+          <span class="faq-question-container">
+            <p class="text-blk faq-questions">Quais métodos de pagamento são aceitos?</p>
+            <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
+          </span>
+          <div class="answer-box">
+            <p class="text-blk faq-answer">Dinheiro vivo, cartão de crédito, débito, vale-refeição e pix.</p>
+          </div>
+        </div>
+<div class="faq">
+          <span class="faq-question-container">
+            <p class="text-blk faq-questions">Posso ter algum tipo de desconto se eu tiver uma conta no Duolingo?</p>
+            <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
+          </span>
+          <div class="answer-box">
+            <p class="text-blk faq-answer">Infelizmente não.</p>
+          </div>
+        </div>
+<div class="faq">
+          <span class="faq-question-container">
+            <p class="text-blk faq-questions">Posso retirar algum ingrediente do hambúrguer?</p>
+            <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
+          </span>
+          <div class="answer-box">
+            <p class="text-blk faq-answer">Sim, presencialmente e ao fazer o pedido online.</p>
+          </div>
+        </div>
+
+        <div class="faq">
+          <span class="faq-question-container">
+            <p class="text-blk faq-questions">Posso pagar fiado?</p>
+            <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
+          </span>
+          <div class="answer-box">
+            <p class="text-blk faq-answer">O pagamento fiado é apenas permitido para maiores de 75 anos acompanhados dos avós.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="ajudajeff.html" class="strong-link">Perguntas Frequentes</a>
+    <a href="sobre nos.html" class="strong-link">Sobre Nós</a>
+    <a href="fale conosco.html">Fale Conosco</a>
+    <a href="politica.html">Política de Privacidade</a>
+  </div>
+  <p>© 2025 BURGUER LINGO. Todos os direitos reservados.</p>
+</footer>
+
+</body>
 </html>
-    </body>
-</html>
+
 
