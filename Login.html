@@ -1,14 +1,357 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        
-        <title> Login</title>
-    </head>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="CHEF+DUO .png" type="image/png">
+    <title>Login - BURGUER LINGO</title>
+    <link rel="stylesheet" href="Main-burguer.css">
+    <link rel="stylesheet" href="burguer lingo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* --- Import e Reset --- */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        * {
+            margin: 0; 
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* --- CORREÇÃO CRÍTICA DO BODY (Layout Flexbox) --- */
+        body {
+            background: url('imagemComendo.jpg') no-repeat center center/cover;
+            min-height: 100vh;
+            
+            /* CRÍTICO PARA EMPURRAR O FOOTER */
+            display: flex;
+            flex-direction: column; 
+            align-items: stretch; 
+            
+            position: relative;
+            padding-top: 0; 
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 0;
+        }
+        
+        /* HEADER FIXO: Sobrescreve Main-burguer.css */
+        .main-header {
+            position: fixed !important; 
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            z-index: 2000; 
+        }
+        
+        /* CONTAINER (Conteúdo principal): Compensação do Header Fixo */
+        .container {
+            margin-top: 80px !important; /* Compensa o header fixo */
+            margin-bottom: 40px; 
+            
+            /* Centralização e Estilo do Formulário */
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #fff;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+            position: relative;
+            overflow: hidden;
+            width: 768px;
+            max-width: 90%; 
+            min-height: 480px;
+            z-index: 1;
+        }
+        
+        /* FOOTER CORRIGIDO: Usa a regra do Body Flexbox */
+        footer {
+            margin-top: auto; /* CRÍTICO: Empurra para o final */
+            width: 100%; 
+            z-index: 1;
+            /* Cor e Padding vêm do Main-burguer.css, mas garantimos o layout */
+        }
+
+
+        /* --- ESTILOS CRÍTICOS DO MENU LATERAL (SIDEBAR) --- */
+        .menu-lateral {
+            position: fixed;
+            top: 0;
+            left: -300px; /* Esconde o menu para a esquerda */
+            width: 280px;
+            height: 100%;
+            background-color: var(--color-footer-bg, #333); /* Cor escura */
+            color: var(--color-text-light, #fff);
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+            transition: left 0.4s ease;
+            z-index: 6000; /* Z-INDEX alto para cobrir o header e o conteúdo */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .menu-lateral.active {
+            left: 0; /* Move para a tela quando ativo */
+        }
+
+        .menu-lateral h2 {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .menu-lateral a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            display: block;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.2s;
+            margin: 0; /* Remove a margin herdada de `a` */
+            font-size: 1rem;
+        }
+
+        .menu-lateral a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* --- ESTILOS DO FORMULÁRIO (Originais) --- */
+        .container p {
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.3px;
+            margin: 20px 0;
+        }
+
+        .container span {
+            font-size: 12px;
+        }
+
+        .container a {
+            color: #333;
+            font-size: 13px;
+            text-decoration: none;
+            margin: 15px 0 10px;
+        }
+
+        .container button {
+            background-color: #33c928;
+            color: #fff;
+            font-size: 12px;
+            padding: 10px 45px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .container button.hidden {
+            background-color: transparent;
+            border-color: #fff;
+        }
+
+        .container form {
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            height: 100%;
+        }
+
+        .container input {
+            background-color: #eee;
+            border: none;
+            margin: 8px 0;
+            padding: 10px 15px;
+            font-size: 13px;
+            border-radius: 8px;
+            width: 100%;
+            outline: none;
+        }
+
+        .form-container {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .sign-in {
+            left: 0;
+            width: 50%;
+            z-index: 2;
+        }
+
+        .container.active .sign-in {
+            transform: translateX(100%);
+        }
+
+        .sign-up {
+            left: 0;
+            width: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .container.active .sign-up {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+            animation: move 0.6s;
+        }
+
+        @keyframes move {
+            0%, 49.99% {
+                opacity: 0;
+                z-index: 1;
+            }
+
+            50%, 100% {
+                opacity: 1;
+                z-index: 5;
+            }
+        }
+
+        .social-icons {
+            margin: 20px 0;
+        }
+
+        .social-icons a {
+            border: 1px solid #ccc;
+            border-radius: 20%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 3px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .toggle-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: all 0.6s ease-in-out;
+            border-radius: 150px 0 0 150px;
+            z-index: 1000;
+        }
+
+        .container.active .toggle-container {
+            transform: translateX(-100%);
+            border-radius: 0 150px 100px 0;
+        }
+
+        .toggle {
+            background-color: #33c928;
+            height: 100%;
+            background: linear-gradient(to
+                    right, #5c6bc0, #33c928);
+            color: #fff;
+            position: relative;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            transform: translateX(0);
+            transition: all 0.6s ease-in-out;
+        }
+
+        .container.active .toggle {
+            transform: translateX(50%);
+        }
+
+        .toggle-panel {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 30px;
+            text-align: center;
+            top: 0;
+            transform: translateX(0);
+            transition: all 0.6s ease-in-out;
+        }
+
+        .toggle-left {
+            transform: translateX(-200%);
+        }
+
+        .container.active .toggle-left {
+            transform: translateX(0);
+        }
+
+        .toggle-right {
+            right: 0;
+            transform: translateX(0);
+        }
+
+        .container.active .toggle-right {
+            transform: translateX(200%);
+        }
+    </style>
+</head>
 <body>
+    <div id="sidebar" class="menu-lateral">
+        <button id="close-btn" class="close-btn">&times;</button> <h2>MENU BURGUER LINGO</h2>
+        <a href="login.html"><i class="fas fa-user-circle"></i> Login</a>
+        <a href="cardapio.html"><i class="fas fa-burger"></i> Cardápio</a>
+        <a href="licao.html"><i class="fas fa-book-open"></i> Lingo Lessons (Lições)</a>
+        <a href="reservas.html"><i class="fas fa-table"></i> Reservas</a>
+        <a href="fale conosco.html"><i class="fas fa-headset"></i> Fale Conosco</a>
+        <a href="tickets.html"><i class="fas fa-ticket-alt"></i> Tickets e Descontos</a>
+        <a href="ajudajeff.html"><i class="fas fa-question-circle"></i> Perguntas Frequentes</a>
+    </div>
+
+    <header class="main-header">
+        <button id="menu-btn" class="menu-hamburguer"><i class="fas fa-bars"></i></button>
+
+        <a href="index.html" class="logo-link">
+            <img src="LogoBurguerDuo.png" alt="Logo Burguer Lingo">
+        </a>
+        
+        <nav class="main-nav">
+            <a href="cardapio.html">CARDÁPIO</a>
+            <a href="licao.html">LINGO LESSONS</a>
+            <a href="reservas.html">RESERVAS</a>
+        </nav>
+
+        <div class="user-actions">
+            <a href="login.html" title="Login / Minha Conta" class="nav-icon"><i class="fas fa-user"></i></a>
+            <a href="carrinho.html" title="Carrinho de Compras" class="nav-icon"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </header>
 
 
     <div class="container" id="container">
@@ -16,18 +359,18 @@
             <form>
                 <h1> Crie uma conta</h1>
                 <div class="social-icons">
-                        <a href="#" class="icon"> <i
-                         class="fa-brands 
-                         fa-google-plus-g"></i></a>
-                         <a href="#" class="icon"> <i
-                         class="fa-brands 
-                         fa-facebook-f"></i></a>
-                         <a href="#" class="icon"> <i
-                         class="fa-brands 
-                         fa-github"></i></a>
-                         <a href="#" class="icon"> <i
-                         class="fa-brands 
-                         fa-linkedin-in"></i></a>
+                    <a href="#" class="icon"> <i
+                       class="fa-brands 
+                       fa-google-plus-g"></i></a>
+                      <a href="#" class="icon"> <i
+                       class="fa-brands 
+                       fa-facebook-f"></i></a>
+                      <a href="#" class="icon"> <i
+                       class="fa-brands 
+                       fa-github"></i></a>
+                      <a href="#" class="icon"> <i
+                       class="fa-brands 
+                       fa-linkedin-in"></i></a>
                 </div>
                 <span> Ou use o Email para criar a conta</span>
                 <input type="text"
@@ -43,18 +386,18 @@
             <form>
                 <h1> Login</h1>
                 <div class="social-icons">
-                        <a href="#" class="icon"> <i
-                         class="fa-brands 
-                         fa-google-plus-g"></i></a>
-                         <a href="#" class="icon"> <i
-                         class="fa-brands 
-                         fa-facebook-f"></i></a>
-                         <a href="#" class="icon"> <i
-                         class="fa-brands 
-                         fa-github"></i></a>
-                         <a href="#" class="icon"> <i
-                         class="fa-brands 
-                         fa-linkedin-in"></i></a>
+                    <a href="#" class="icon"> <i
+                       class="fa-brands 
+                       fa-google-plus-g"></i></a>
+                      <a href="#" class="icon"> <i
+                       class="fa-brands 
+                       fa-facebook-f"></i></a>
+                      <a href="#" class="icon"> <i
+                       class="fa-brands 
+                       fa-github"></i></a>
+                      <a href="#" class="icon"> <i
+                       class="fa-brands 
+                       fa-linkedin-in"></i></a>
                 </div>
                 <span> Ou use o Email para entrar na sua conta</span>
 
@@ -66,283 +409,61 @@
                 <button> Login</button>
             </form>
         </div>
-     <div class="toggle-container">
-    <div class="toggle">
-        <div class="toggle-panel toggle-left">
-            <h1>Bem vindo de volta</h1>
-            <p>Entre com as suas credenciais pessoais e comece todos os sites futurísticos</p>
-            <button class="hidden" id="login">Login</button>
-        </div>
+      <div class="toggle-container">
+        <div class="toggle">
+            <div class="toggle-panel toggle-left">
+                <h1>Bem vindo de volta</h1>
+                <p>Entre com as suas credenciais pessoais e comece todos os sites futurísticos</p>
+                <button class="hidden" id="login">Login</button>
+            </div>
 
-        <div class="toggle-panel toggle-right">
-            <h1>Olá, Amigo</h1>
-            <p>Registre-se com as suas credenciais pessoais e comece todos os sites futurísticos</p>
-            <button class="hidden" id="registre-se">Cadastre-se</button>
+            <div class="toggle-panel toggle-right">
+                <h1>Olá, Amigo</h1>
+                <p>Registre-se com as suas credenciais pessoais e comece todos os sites futurísticos</p>
+                <button class="hidden" id="registre-se">Cadastre-se</button>
+            </div>
         </div>
     </div>
-</div>
 
     </div>
-    <style>
-            @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-    *{
-        margin: 0; 
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Montserrat', sans-serif;
-    }
+    <footer>
+        <div class="footer-links">
+            <a href="ajudajeff.html" class="strong-link">Perguntas Frequentes</a>
+            <a href="sobre nos.html" class="strong-link">Sobre Nós</a>
+            <a href="fale conosco.html">Fale Conosco</a>
+            <a href="politica.html">Política de Privacidade</a>
+        </div>
+        <p>© 2025 BURGUER LINGO. Todos os direitos reservados.</p>
+    </footer>
 
-            body {
-        background: url('imagemComendo.jpg') no-repeat center center/cover;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        }
 
-            body::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.55); /* escurece a imagem */
-        z-index: 0;
-        }
-
-    .container{
-        background-color: #fff;
-        border-radius: 30px;
-        box-shadow: 0 5px 15px rgba(0, 0,
-        0, 0.35);
-        position: relative;
-        overflow: hidden;
-        width: 768px;
-        max-width: 100%;
-        min-height: 480px;
-        z-index: 1;
-
-    }
-
-    .container p{
-        font-size: 14px;
-        line-height: 20px;
-        letter-spacing: 0.3px;
-        margin: 20px 0;
-    }
-
-    .container span{
-        font-size: 12px;
-    }
-
-    .container a{
-        color:#333;
-        font-size:13px;
-        text-decoration: none;
-        margin: 15px 0 10px;
-    }
-
-    .container button{
-        background-color: #33c928;
-        color: #fff;
-        font-size: 12px;
-        padding: 10px 45px;
-        border: 1px solid transparent;
-        border-radius: 8px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        margin-top: 10px;
-        cursor: pointer;
-    }
-
-    .container button.hidden {
-        background-color: transparent;
-        border-color: #fff;
-    }
-
-    .container form{
-        background-color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: 0 40px;
-        height: 100%;
-
-    }
-
-    .container input{
-        background-color: #eee;
-        border: none;
-        margin: 8px 0;
-        padding: 10px 15px;
-        font-size: 13px;
-        border-radius: 8px;
-        width: 100%;
-        outline: none;
-    }
-
-    .form-container{
-        position: absolute;
-        top: 0;
-        height: 100%;
-        transition: all 0.6s ease-in-out;
-    }
-
-    .sign-in{
-        left:0;
-        width: 50%;
-        z-index:2;
-    }
-
-    .container.active .sign-in{
-        transform: translateX(100%);
-    }
-
-    .sign-up{
-        left: 0;
-        width: 50%;
-        opacity: 0;
-        z-index: 1;
-    }
-
-    .container.active .sign-up{
-        transform: translateX(100%);
-        opacity: 1;
-        z-index:5;
-        animation: move 0.6s;
-    }
-
-    @keyframes move{
-        0%, 49.99%{
-            opacity: 0;
-            z-index: 1;
-        }
-        50%, 100%{
-            opacity: 1;
-            z-index: 5;
-        }
-    }
-
-    .social-icons{
-        margin: 20px 0;
-    }
-
-    .social-icons a{
-        border: 1px solid #ccc;
-        border-radius: 20%;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 3px;
-        width: 40px;
-        height: 40px;
-    }
-
-    .toggle-container{
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 50%;
-        height: 100%;
-        overflow: hidden;
-        transition: all 0.6s ease-in-out;
-        border-radius: 150px 0 0 150px;
-        z-index: 1000;
-    }
-
-    .container.active .toggle-container{
-        transform: translateX(-100%);
-        border-radius: 0 150px 100px 0;
-    }
-
-    .toggle{
-        background-color: #33c928;
-        height:100%;
-        background: linear-gradient(to
-        right, #5c6bc0, #33c928);
-        color: #fff;
-        position: relative;
-        left: -100%;
-        height: 100%;
-        width: 200%;
-        transform: translateX(0);
-        transition: all 0.6s ease-in-out;
-    }
-
-    .container.active .toggle{
-        transform: translateX(50%);
-    }
-
-    .toggle-panel{
-        position: absolute;
-        width: 50%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: 0 30px;
-        text-align: center;
-        top: 0;
-        transform: translateX(0);
-        transition: all 0.6s ease-in-out;
-    }
-
-    .toggle-left{
-        transform: translateX(-200%);
-    }
-
-    .container.active .toggle-left{
-        transform: translateX(0);
-    }
-
-    .toggle-right{ 
-        right: 0;
-        transform: translateX(0);
-    }
-
-    .container.active .toggle-right{
-        transform: translateX(200%);
-    }
-    </style>
     <script>
-        const container = document.getElementById
-    ('container');
+        // JS para o Menu Lateral (Sidebar)
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const sidebar = document.getElementById('sidebar');
 
-    const registerBtn = document.
-    getElementById('registre-se');
-    const loginBtn = document.getElementById
-    ('login');
+        // Toggle a classe 'active' para mostrar/esconder o menu lateral
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.add('active');
+        });
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+        });
 
-    registerBtn.addEventListener('click', () => {
-        container.classList.add("active");
-    });
+        // JS do formulário de Login/Cadastro
+        const container = document.getElementById('container');
+        const registerBtn = document.getElementById('registre-se');
+        const loginBtn = document.getElementById('login');
 
-    loginBtn.addEventListener('click', () => {
-        container.classList.remove("active");
-    });
+        registerBtn.addEventListener('click', () => {
+            container.classList.add("active");
+        });
+
+        loginBtn.addEventListener('click', () => {
+            container.classList.remove("active");
+        });
     </script>
-
-    <!--USO DE API DO GOOGLE
-
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
-
-    <div id="g_id_onload"
-        data-client_id="909207212446-optkgmesavhufmvk9duv8tm8hbr01mrv.apps.googleusercontent.com"
-        data-login_uri="http://localhost:5500/login"
-        data-auto_prompt="false">
-    </div>
-
-    <div class="g_id_signin"
-        data-type="standard"
-        data-shape="rectangular"
-        data-theme="outline"
-        data-text="sign_in_with"
-        data-size="large"
-        data-logo_alignment="left">
-    </div>
--->
 </body>
 </html>
