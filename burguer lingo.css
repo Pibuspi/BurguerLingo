@@ -271,6 +271,7 @@ footer {
     padding: 30px var(--spacing-default) !important;
     text-align: center !important;
     margin-top: 50px !important; 
+    bottom: 0;
 }
 
 .footer-links a {
