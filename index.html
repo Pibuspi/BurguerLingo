@@ -335,7 +335,92 @@ window.addEventListener("load", () => {
       Com orgulho, ostentamos 5 estrelas Michelin e tivemos o privilégio de ter Erick Jacquin como nosso mestre, elevando nossa gastronomia a outro nível.
     </p>
   </section>
-    
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+  let faqQuestionContainers = document.querySelectorAll('.faq-question-container');
+  faqQuestionContainers.forEach(function(faqQuestionContainer) {
+    faqQuestionContainer.onclick = function() {
+      this.parentElement.classList.toggle("active");
+    };
+  });
+});
+</script>
+
+
+<div class="perguntas_frequentes">
+  <div class="responsive-container-block">
+    <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-5 wk-ipadp-5 faq-head-bg">
+      <div class="faq-head-content">
+        <p class="text-blk faq-heading1">Qual sua dúvida?</p>
+        <p class="text-blk faq-subheading">Aqui temos uma lista com as perguntas mais frequentes a respeito do Burguerlingo:</p>
+      </div>
+    </div>
+
+    <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-7 wk-ipadp-7 faq-dropdown-bg">
+      <div class="container-block">
+        
+        <div class="faq">
+          <span class="faq-question-container">
+            <p class="text-blk faq-questions">Esse restaurante é vinculado oficialmente ao Duolingo?</p>
+            <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
+          </span>
+          <div class="answer-box">
+            <p class="text-blk faq-answer">Sim, somos uma franquia oficialmente vinculada.</p>
+          </div>
+        </div>
+
+        <div class="faq">
+          <span class="faq-question-container">
+            <p class="text-blk faq-questions">Qual o horário de funcionamento do restaurante?</p>
+            <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
+          </span>
+          <div class="answer-box">
+            <p class="text-blk faq-answer">Nós atendemos das 8:00 às 00:00, todos os dias da semana.</p>
+          </div>
+        </div>
+
+        <div class="faq">
+          <span class="faq-question-container">
+            <p class="text-blk faq-questions">Quais métodos de pagamento são aceitos?</p>
+            <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
+          </span>
+          <div class="answer-box">
+            <p class="text-blk faq-answer">Dinheiro vivo, cartão de crédito, débito, vale-refeição e pix.</p>
+          </div>
+        </div>
+<div class="faq">
+          <span class="faq-question-container">
+            <p class="text-blk faq-questions">Posso ter algum tipo de desconto se eu tiver uma conta no Duolingo?</p>
+            <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
+          </span>
+          <div class="answer-box">
+            <p class="text-blk faq-answer">Infelizmente não.</p>
+          </div>
+        </div>
+<div class="faq">
+          <span class="faq-question-container">
+            <p class="text-blk faq-questions">Posso retirar algum ingrediente do hambúrguer?</p>
+            <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
+          </span>
+          <div class="answer-box">
+            <p class="text-blk faq-answer">Sim, presencialmente e ao fazer o pedido online.</p>
+          </div>
+        </div>
+
+        <div class="faq">
+          <span class="faq-question-container">
+            <p class="text-blk faq-questions">Posso pagar fiado?</p>
+            <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
+          </span>
+          <div class="answer-box">
+            <p class="text-blk faq-answer">O pagamento fiado é apenas permitido para maiores de 75 anos acompanhados dos avós.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
     <footer>
         <div class="footer-links">
             <a href="ajudajeff.html" class="strong-link">Perguntas Frequentes</a>
@@ -345,7 +430,7 @@ window.addEventListener("load", () => {
         </div>
         <p>© 2025 BURGUER LINGO. Todos os direitos reservados.</p>
     </footer>
-
+   
    <script>
     // JS para o Menu Lateral (Sidebar)
     const menuBtn = document.getElementById('menu-btn');
@@ -467,5 +552,167 @@ window.addEventListener("load", () => {
             }
         });
 </script> 
+    
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&display=swap');
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Nunito, sans-serif;
+}
+
+.perguntas_frequentes {
+  width: 100%;
+}
+
+.perguntas_frequentes .responsive-container-block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.perguntas_frequentes .text-blk {
+  margin: 0;
+  line-height: 25px;
+}
+
+.perguntas_frequentes .faq-head-bg {
+  background: #08c958;
+  color: #fff;
+  padding: 80px 60px;
+}
+
+.perguntas_frequentes .faq-heading1 {
+  font-size: 40px;
+  line-height: 55px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.perguntas_frequentes .faq-subheading {
+  font-size: 18px;
+  line-height: 26px;
+  margin-bottom: 50px;
+  max-width: 590px;
+}
+
+.perguntas_frequentes .faq-dropdown-bg {
+  padding: 80px 60px;
+}
+
+.perguntas_frequentes .faq {
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 25px;
+}
+
+.perguntas_frequentes .faq-question-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.perguntas_frequentes .faq-questions {
+  color: #525252;
+  font-size: 20px;
+}
+
+.perguntas_frequentes .faq-answer {
+  padding-left: 20px;
+  color: #9c9c9c;
+  font-size: 18px;
+  line-height: 26px;
+  margin-bottom: 20px;
+}
+
+.perguntas_frequentes .answer-box {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.perguntas_frequentes .faq.active .answer-box {
+  max-height: 550px;
+}
+
+.perguntas_frequentes .openimg {
+  transition: transform 0.3s ease-in;
+}
+
+.perguntas_frequentes .faq.active .openimg {
+  transform: rotate(180deg);
+}
+
+[class^="wk-"], [class*=" wk-"] {
+  float: left;
+}
+
+.wk-desk-1 {width: 8.33%;}
+.wk-desk-2 {width: 16.66%;}
+.wk-desk-3 {width: 25%;}
+.wk-desk-4 {width: 33.33%;}
+.wk-desk-5 {width: 41.66%;}
+.wk-desk-6 {width: 50%;}
+.wk-desk-7 {width: 58.33%;}
+.wk-desk-8 {width: 66.66%;}
+.wk-desk-9 {width: 75%;}
+.wk-desk-10 {width: 83.33%;}
+.wk-desk-11 {width: 91.66%;}
+.wk-desk-12 {width: 100%;}
+
+@media (max-width: 1024px) {
+  .faq-answer { font-size: 18px; }
+}
+
+@media (max-width: 768px) {
+  .faq-heading1 {
+    font-size: 30px;
+    line-height: 40px;
+    margin-bottom: 15px;
+  }
+  .faq-head-content {
+    margin: 0 auto;
+    text-align: center;
+    max-width: 500px;
+  }
+  .faq-head-bg,
+  .faq-dropdown-bg {
+    padding: 50px 60px;
+  }
+  .faq-questions { font-size: 18px; }
+  .faq-answer { font-size: 16px; }
+  .faq-subheading { margin-bottom: 30px; }
+}
+
+@media (max-width: 500px) {
+  .faq-head-bg,
+  .faq-dropdown-bg {
+    padding: 50px 30px;
+  }
+  .faq-answer {
+    padding-left: 0;
+    line-height: 22px;
+    font-size: 16px;
+  }
+  .faq-questions { font-size: 18px; }
+  .faq-heading1 { font-size: 26px; }
+  .faq-subheading {
+    font-size: 17px;
+    line-height: 24px;
+  }
+}
+
+.text-blk {
+  text-align: left;
+}
+
+</style>
 </body>
 </html>
