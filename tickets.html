@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="CHEF+DUO .png" type="image/png">
+    <title>BURGUER LINGO</title>
+    <link rel="stylesheet" href="Main-burguer.css">
+    <link rel="stylesheet" href="burguer lingo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    
+    <div id="sidebar" class="menu-lateral">
+        <button id="close-btn" class="close-btn">&times;</button> <h2>MENU BURGUER LINGO</h2>
+        <a href="login.html"><i class="fas fa-user-circle"></i> Login</a>
+        <a href="cardapio.html"><i class="fas fa-burger"></i> Cardápio</a>
+        <a href="licao.html"><i class="fas fa-book-open"></i> Lingo Lessons (Lições)</a>
+        <a href="reservas.html"><i class="fas fa-table"></i> Reservas</a>
+        <a href="fale conosco.html"><i class="fas fa-headset"></i> Fale Conosco</a>
+        <a href="tickets.html"><i class="fas fa-ticket-alt"></i> Tickets e Descontos</a>
+        <a href="ajudajeff.html"><i class="fas fa-question-circle"></i> Perguntas Frequentes</a>
+    </div>
+
+    <header class="main-header">
+        <button id="menu-btn" class="menu-hamburguer"><i class="fas fa-bars"></i></button>
+
+        <a href="index.html" class="logo-link">
+            <img src="LogoBurguerDuo.png" alt="Logo Burguer Lingo">
+        </a>
+        
+        <nav class="main-nav">
+            <a href="cardapio.html">CARDÁPIO</a>
+            <a href="licao.html">LINGO LESSONS</a>
+            <a href="reservas.html">RESERVAS</a>
+        </nav>
+
+        <div class="user-actions">
+            <a href="login.html" title="Login / Minha Conta" class="nav-icon"><i class="fas fa-user"></i></a>
+            <a href="carrinho.html" title="Carrinho de Compras" class="nav-icon"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </header>
+    <footer>
+        <div class="footer-links">
+            <a href="ajudajeff.html" class="strong-link">Perguntas Frequentes</a>
+            <a href="sobre nos.html" class="strong-link">Sobre Nós</a>
+            <a href="fale conosco.html">Fale Conosco</a>
+            <a href="politica.html">Política de Privacidade</a>
+        </div>
+        <p>© 2025 BURGUER LINGO. Todos os direitos reservados.</p>
+    </footer>
+</body>
+   <script>
+    // JS para o Menu Lateral (Sidebar)
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar');
+
+    // Toggle a classe 'active' para mostrar/esconder o menu lateral
+    menuBtn.addEventListener('click', () => {
+        sidebar.classList.add('active');
+    });
+    closeBtn.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+    });
+    </script>
+</html>
