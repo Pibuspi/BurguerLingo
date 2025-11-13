@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="CHEF+DUO .png" type="image/png">
+    <title>Carrinho de Compras - BURGUER LINGO</title>
+    
+    <link rel="stylesheet" href="Main-burguer.css"> 
+    <link rel="stylesheet" href="burguer lingo.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Variáveis para uso local */
+        :root {
+            --spacing-default: 20px;
+            --color-primary: #08c958; /* Verde Principal */
+            --color-secondary: #ffc107; /* Amarelo Destaque */
+        }
+        
+        /* --- Estilos da Página de Carrinho --- */
+        .cart-container {
+            /* Garante que o container tenha uma largura máxima confortável */
+             max-width: 1000px; /* Aumentado de 900px para 1000px, se necessário */
+            width: 95%; /* Ocupa a maior parte da tela */
+            margin: 40px auto;
+            /* ... (outras regras existentes) ... */
+        }
+
+        .cart-container h2 {
+            text-align: center;
+            padding: 20px 0;
+            color: var(--color-primary);
+            border-bottom: 2px solid #eee;
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+
+        /* Tabela do Carrinho */
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        /* Define a largura da primeira coluna (Produto) */
+        .cart-table th:first-child, 
+        .cart-table td:first-child {
+        width: 45%; /* Aumenta a largura da primeira coluna para 45% do total da tabela */
+        }
+
+        .item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .item-info {
+         display: flex;
+         align-items: center;
+         /* Garante que o texto tenha espaço e não fique quebrado */
+         word-break: normal; 
+         white-space: normal;
+        }
+
+        .quantity-controls button {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        .quantity-controls span {
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #ff4444;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        .remove-btn:hover {
+            color: #cc0000;
+        }
+
+        /* Resumo do Carrinho */
+        .cart-summary {
+            padding: 20px 0;
+            border-top: 2px solid #eee;
+            text-align: right;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .summary-line strong {
+            font-size: 1.4em;
+            color: var(--color-primary);
+        }
+
+        .checkout-btn {
+            background-color: var(--color-secondary);
+            color: #333;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+            width: 100%;
+            text-transform: uppercase;
+        }
+        .checkout-btn:hover {
+            background-color: #ffda6a;
+        }
+
+        .empty-cart-message {
+            text-align: center;
+            padding: 50px 0;
+            font-size: 1.2em;
+            color: #888;
+        }
+        
+        /* Responsividade Tabela */
+        @media (max-width: 600px) {
+            .cart-table thead {
+                display: none;
+            }
+            .cart-table, .cart-table tbody, .cart-table tr, .cart-table td {
+                display: block;
+            }
+            .cart-table tr {
+                margin-bottom: 15px;
+                border: 1px solid #eee;
+                border-radius: 5px;
+                padding: 10px;
+            }
+            .cart-table td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+                border-bottom: 1px solid #eee;
+                display: block;
+            }
+            .cart-table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 50%;
+                padding-left: 15px;
+                font-weight: bold;
+                text-align: left;
+                color: var(--color-primary);
+            }
+            .item-info {
+                justify-content: flex-end;
+            }
+            .item-info span {
+            /* Garante que o nome do produto use o espaço disponível sem ser espremido */
+            display: block; 
+            min-width: 100px; /* Evita que o texto fique ridiculamente pequeno */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sidebar" class="menu-lateral">
+        <button id="close-btn" class="close-btn">&times;</button> 
+        <h2>MENU BURGUER LINGO</h2>
+        <a href="login.html"><i class="fas fa-user-circle"></i> Login</a>
+        <a href="cardapio.html"><i class="fas fa-burger"></i> Cardápio</a>
+        <a href="licao.html"><i class="fas fa-book-open"></i> Lingo Lessons (Lições)</a>
+        <a href="reservas.html"><i class="fas fa-table"></i> Reservas</a>
+        <a href="fale conosco.html"><i class="fas fa-headset"></i> Fale Conosco</a>
+        <a href="tickets.html"><i class="fas fa-ticket-alt"></i> Tickets e Descontos</a>
+        <a href="ajudajeff.html"><i class="fas fa-question-circle"></i> Perguntas Frequentes</a>
+    </div>
+
+    <header class="main-header">
+        <button id="menu-btn" class="menu-hamburguer"><i class="fas fa-bars"></i></button>
+
+        <a href="index.html" class="logo-link">
+            <img src="LogoBurguerDuo.png" alt="Logo Burguer Lingo">
+        </a>
+        
+        <nav class="main-nav">
+            <a href="cardapio.html">CARDÁPIO</a>
+            <a href="licao.html">LINGO LESSONS</a>
+            <a href="reservas.html">RESERVAS</a>
+        </nav>
+
+        <div class="user-actions">
+            <a href="login.html" title="Login / Minha Conta" class="nav-icon"><i class="fas fa-user"></i></a>
+            <a href="carrinho.html" title="Carrinho de Compras" class="nav-icon"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </header>
+
+    <main class="cart-container">
+        <h2><i class="fas fa-shopping-cart"></i> Seu Carrinho de Compras</h2>
+        <div id="cart-content">
+            </div>
+        <div id="cart-summary">
+            </div>
+    </main>
+    
+    <script>
+        // --- JS BASE PARA SIDEBAR ---
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const sidebar = document.getElementById('sidebar');
+
+        menuBtn.addEventListener('click', function() {
+            sidebar.classList.add('active');
+        });
+        closeBtn.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+        });
+        // -----------------------------
+
+        // --- DADOS MOCK (Usados para garantir que o nome e preço estejam corretos) ---
+        const mockMenuItems = [
+            { id: 1, name: "Vai Brasil!", price: 35.00, img: "img/VAI BRASIL.jpeg" },
+            { id: 2, name: "Il Panino Italiano", price: 42.50, img: "img/italiano.jpeg" },
+            { id: 3, name: "The All-American", price: 45.00, img: "img/estilo americano.jpeg" },
+            { id: 4, name: "Hamburger de Hamburgo", price: 38.00, img: "img/alemaoburguer.jpeg" },
+            { id: 5, name: "Le Classique", price: 40.00, img: "img/frances.jpeg" },
+            { id: 6, name: "El Ranchero", price: 39.50, img: "img/mexicano.jpeg" },
+            { id: 7, name: "Hanbao (汉堡)", price: 37.00, img: "img/chines.jpeg" },
+            { id: 8, name: "O Sushi Burguer", price: 48.00, img: "img/japones.jpeg" },
+        ];
+
+        function formatCurrency(value) {
+            return "R$ " + value.toFixed(2).replace('.', ',');
+        }
+
+        const cartContentDiv = document.getElementById('cart-content');
+        const cartSummaryDiv = document.getElementById('cart-summary');
+
+        // Função principal para renderizar o carrinho a partir do LocalStorage
+        function renderCart() {
+            let cart = JSON.parse(localStorage.getItem('burguerLingoCart')) || [];
+            let total = 0;
+            
+            if (cart.length === 0) {
+                cartContentDiv.innerHTML = '<p class="empty-cart-message">Seu carrinho está vazio. Adicione itens do <a href="cardapio.html">Cardápio</a>!</p>';
+                cartSummaryDiv.innerHTML = '';
+                return;
+            }
+
+            let cartTableHTML = '<table class="cart-table"><thead><tr><th>Produto</th><th>Preço Unitário</th><th>Quantidade</th><th>Subtotal</th><th>Ações</th></tr></thead><tbody>';
+
+            cart.forEach(item => {
+                const itemSubtotal = item.price * item.quantity;
+                total += itemSubtotal;
+                
+                const mockItem = mockMenuItems.find(m => m.id === item.id);
+                const itemImg = item.img ? item.img : (mockItem ? mockItem.img : 'img/default.jpeg'); 
+
+                cartTableHTML += `
+                    <tr>
+                        <td data-label="Produto">
+                            <div class="item-info">
+                                <img src="${itemImg}" alt="${item.name}" class="item-image">
+                                <span>${item.name}</span>
+                            </div>
+                        </td>
+                        <td data-label="Preço Unitário">${formatCurrency(item.price)}</td>
+                        <td data-label="Quantidade">
+                            <div class="quantity-controls">
+                                <button onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="updateQuantity(${item.id}, 1)">+</button>
+                            </div>
+                        </td>
+                        <td data-label="Subtotal">${formatCurrency(itemSubtotal)}</td>
+                        <td data-label="Ações">
+                            <button class="remove-btn" onclick="removeItem(${item.id})" title="Remover Item"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+            cartTableHTML += '</tbody></table>';
+            cartContentDiv.innerHTML = cartTableHTML;
+
+
+            // Renderiza o Resumo do Carrinho
+            const summaryHTML = `
+                <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <span>${formatCurrency(total)}</span>
+                </div>
+                <div class="summary-line">
+                    <strong>Total:</strong>
+                    <strong>${formatCurrency(total)}</strong>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">
+                    Finalizar Pedido <i class="fas fa-arrow-right"></i>
+                </button>
+            `;
+            cartSummaryDiv.innerHTML = summaryHTML;
+        }
+
+        // ----------------------------------------------------
+        // LÓGICA DE MANIPULAÇÃO DO CARRINHO (Funções globais)
+        // ----------------------------------------------------
+
+        // Atualiza a quantidade de um item
+        window.updateQuantity = function(itemId, change) {
+            let cart = JSON.parse(localStorage.getItem('burguerLingoCart')) || [];
+            const itemIndex = cart.findIndex(item => item.id === itemId);
+
+            if (itemIndex > -1) {
+                cart[itemIndex].quantity += change;
+
+                if (cart[itemIndex].quantity <= 0) {
+                    // Remove o item se a quantidade chegar a zero
+                    cart.splice(itemIndex, 1);
+                }
+
+                localStorage.setItem('burguerLingoCart', JSON.stringify(cart));
+                renderCart();
+            }
+        }
+
+        // Remove um item completamente
+        window.removeItem = function(itemId) {
+            let cart = JSON.parse(localStorage.getItem('burguerLingoCart')) || [];
+            const initialLength = cart.length;
+
+            cart = cart.filter(item => item.id !== itemId);
+            
+            if (cart.length < initialLength) {
+                localStorage.setItem('burguerLingoCart', JSON.stringify(cart));
+                renderCart();
+            }
+        }
+
+        // Simula a finalização do pedido
+        window.checkout = function() {
+            const cart = JSON.parse(localStorage.getItem('burguerLingoCart')) || [];
+            if (cart.length === 0) {
+                alert("Seu carrinho está vazio!");
+                return;
+            }
+
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            alert(`Seu pedido de ${formatCurrency(totalAmount)} foi finalizado com sucesso!`);
+            
+            // Limpa o carrinho
+            localStorage.removeItem('burguerLingoCart');
+            renderCart();
+        }
+
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
+    <footer>
+        <div class="footer-links">
+            <a href="ajudajeff.html" class="strong-link">Perguntas Frequentes</a>
+            <a href="sobre nos.html" class="strong-link">Sobre Nós</a>
+            <a href="fale conosco.html">Fale Conosco</a>
+            <a href="politica.html">Política de Privacidade</a>
+        </div>
+        <p>© 2025 BURGUER LINGO. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
