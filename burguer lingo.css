@@ -16,6 +16,16 @@ body {
     padding: 0;
     background-color: #f5f5f5 !important; 
     color: var(--color-text-dark);
+    
+    /* REGRAS ESSENCIAIS PARA O FOOTER FICAR NO FIM: */
+    display: flex;        /* 1. Transforma o body em container flex */
+    flex-direction: column; /* 2. Organiza os filhos verticalmente */
+    min-height: 100vh;      /* 3. Ocupa toda a altura da viewport */
+}
+
+/* Regra que empurra o footer para baixo */
+main {
+    flex-grow: 1; /* Faz o conteúdo principal usar todo o espaço restante */
 }
 
 a {
@@ -271,7 +281,6 @@ footer {
     padding: 30px var(--spacing-default) !important;
     text-align: center !important;
     margin-top: 50px !important; 
-    bottom: 0;
 }
 
 .footer-links a {
