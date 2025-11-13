@@ -1,0 +1,111 @@
+ /* Estilo dos links da barra de navegação principal */
+    nav a {
+        font-size: 20px;
+        color: white;
+        text-decoration: none;
+        margin-left: 100px;
+    }
+
+    /* Área principal do hambúrguer: duas colunas (imagem e texto) */
+    .burger-main-section {
+        display: flex; /* Usa flexbox para alinhar os itens lado a lado */
+        justify-content: flex-start; /* Conteúdo começa na esquerda */
+        align-items: flex-start; /* Alinha os topos dos elementos */
+        padding: 30px;
+        max-width: 1200px;
+        margin: 0 auto; /* Centraliza no meio da página */
+        text-align: left;
+    }
+
+    /* Coluna da imagem */
+    .burger-image-area {
+        max-width: 600px;
+        flex-shrink: 0; /* Impede que diminua de tamanho */
+        margin-right: 100px; /* Espaço entre imagem e texto */
+    }
+
+    /* Coluna da descrição e detalhes */
+    .burger-details-area {
+        flex-grow: 1; /* Ocupa o espaço restante */
+        display: flex;
+        flex-direction: column; /* Conteúdo em coluna (de cima para baixo) */
+        align-items: flex-start;
+    }
+
+    /* Moldura e aparência da imagem */
+    .burger-image-container {
+        width: 100%;
+        border-radius: 40px;
+        overflow: hidden;
+        border: 8px solid white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    }
+
+    .burger-image-container img {
+        width: 100%; /* Imagem ocupa toda a largura do contêiner */
+        display: block;
+    }
+
+    /* Caixas de "Origem" e "Ingredientes" */
+    .origin-box,
+    .ingredients-box {
+        background-color: #FFFDEE; /* Fundo amarelo claro */
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .origin-box {
+        margin-top: 30px; /* Mais espaço acima da caixa de origem */
+    }
+    
+    /* Estilo dos textos */
+    .main-title {
+        color: #4CAF50; /* Verde */
+        font-size: 4.5em; /* Título bem grande */
+        margin-bottom: 15px;
+    }
+
+    .description {
+        font-size: 1.4em;
+    }
+
+    .ingredients-box ul {
+        list-style: none; /* Remove marcadores da lista */
+        padding-left: 0;
+        margin-top: 10px;
+    }
+
+    .ingredients-box li {
+        padding: 5px 0;
+        font-size: 1.4em;
+    }
+
+    /* Botão de "Peça Já" */
+    .order-button {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 2em;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 40px;
+        font-weight: bold;
+        text-transform: uppercase; /* Deixa o texto em maiúsculas */
+        text-align: right;
+    }
+
+    /* Ajustes para telas pequenas (celulares) */
+    @media (max-width: 768px) {
+        .burger-main-section {
+            flex-direction: column; /* Empilha a imagem e o texto */
+            padding: 20px;
+        }
+        
+        .order-button {
+            width: 100%; /* Botão ocupa toda a largura */
+            text-align: center;
+        }
+    }
