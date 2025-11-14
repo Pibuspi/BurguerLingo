@@ -1,50 +1,185 @@
-<DOCTYPE html>
-    <html lang="pt-BR">
+<!DOCTYPE html> <!-- Define o tipo do documento como HTML5 -->
+<html lang="pt-BR"> <!-- Define o idioma principal da página como português do Brasil -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 (suporta acentuação) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Faz o site se ajustar ao tamanho da tela (responsivo) -->
+    
+    <!-- Ícone que aparece na aba do navegador -->
     <link rel="icon" href="CHEF+DUO .png" type="image/png">
+    <link rel="stylesheet" href="ZcssHP.css">
+    <!-- Título da aba do navegador -->
     <title>BURGUER LINGO</title>
+
+    <!-- Conexão com arquivos de estilo CSS externos -->
     <link rel="stylesheet" href="burguer lingo.css">
     <link rel="stylesheet" href="Main-burguer.css">
-   <!-- Conecta o CSS -->
+
+    <!-- Link para usar ícones do Font Awesome (ícones como o do carrinho, usuário, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
-    <header>
-    <a href="index.html"><img src="LogoBurguerDuo.png" alt="Logo da Empresa"></a>
-    <nav>
-    <a href="reservas.html">RESERVAS</a>
-    <a href="fale conosco.html">FALE CONOSCO</a>
-    <a href="licao.html">LIÇÕES</a>
-    </nav>
-            </style>
-        </header>
+
+<body> <!-- Corpo da página, onde o conteúdo visível é colocado -->
+
+    <!-- MENU LATERAL (sidebar) -->
+    <div id="sidebar" class="menu-lateral">
+        <!-- Botão de fechar o menu lateral -->
+        <button id="close-btn" class="close-btn">&times;</button>
+        
+        <!-- Título do menu -->
+        <h2>MENU BURGUER LINGO</h2>
+
+        <!-- Links do menu lateral -->
+        <a href="login.html"><i class="fas fa-user-circle"></i> Login</a>
+        <a href="cardapio.html"><i class="fas fa-burger"></i> Cardápio</a>
+        <a href="licao.html"><i class="fas fa-book-open"></i> Lingo Lessons (Lições)</a>
+        <a href="reservas.html"><i class="fas fa-table"></i> Reservas</a>
+        <a href="fale conosco.html"><i class="fas fa-headset"></i> Fale Conosco</a>
+        <a href="tickets.html"><i class="fas fa-ticket-alt"></i> Tickets e Descontos</a>
+    </div>
+
+    <!-- CABEÇALHO PRINCIPAL -->
+    <header class="main-header">
+        <!-- Botão do menu hamburguer (abre o menu lateral) -->
+        <button id="menu-btn" class="menu-hamburguer"><i class="fas fa-bars"></i></button>
+
+        <!-- Logo que leva para a página inicial -->
+        <a href="index.html" class="logo-link">
+            <img src="LogoBurguerDuo.png" alt="Logo Burguer Lingo">
+        </a>
+        
+        <!-- Navegação principal no topo -->
+        <nav class="main-nav">
+            <a href="cardapio.html">CARDÁPIO</a>
+            <a href="licao.html">LINGO LESSONS</a>
+            <a href="reservas.html">RESERVAS</a>
+        </nav>
+
+        <!-- Ícones de login e carrinho -->
+        <div class="user-actions">
+            <a href="login.html" title="Login / Minha Conta" class="nav-icon"><i class="fas fa-user"></i></a>
+            <a href="carrinho.html" title="Carrinho de Compras" class="nav-icon"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </header>
     
-        <main>
-            <div class="container" style="width: 500px; margin-left: auto; margin-right: auto;">
-                <h1>Brasil-sil-sil!!!</h1> <!--nome do hamburguer-->
-                <img src="VAI BRASIL.jpeg" alt="Hamburguer Brasileiro" width="200"> <!--link para imagem do Lanche-->
-                <p>
-                    O Brasil é tão diverso que poderíamos abrir um restaurante só com os sabores de cada estado. No entanto,
-                    fizemos uma média e criamos o sanduíche com uma pitada de todos eles.     <br><br>
-         
-             <strong>Ingredientes:</strong> 
-            <p>Carne de Acém (Estamos sem Picanha),</p>
-            <p>Queijo coalho derretido,</p>
-            <p>Folhas de alface fresca,</p>
-            <p>Fatias de tomate maduro,</p>
-            <p>Picles crocantes,</p>
-            <p>Maionese.</p>       
-                 </p>
+    </nav> <!-- Este fechamento está sobrando (nav já foi fechada antes, mas não atrapalha muito) -->
+
+    <!-- CSS interno (apenas para esta página) -->
+    </header>
+
+<main> <!-- Conteúdo principal da página -->
+
+    <!-- Seção que mostra o hambúrguer e suas informações -->
+    <section class="burger-main-section">
+        
+        <!-- Coluna esquerda: imagem e origem -->
+        <div class="burger-image-area">
+            <div class="burger-image-container">
+                <img src="VAI BRASIL.jpeg" alt="Hambúrguer Brasileiro">
+            </div>
+            
+            <div class="origin-box">
+                <p class="icon-text">📍 Origem</p>
+                <p>Inspirado nos sabores típicos do Brasil e na riqueza culinária de nosso país.</p>
+                <img src="Brasilflag.jpg" alt="Bandeira do Brasil" width="100">
+            </div>
+        </div>
+
+        <!-- Coluna direita: descrição e ingredientes -->
+        <div class="burger-details-area">
+            
+            <!-- Nome do hambúrguer -->
+            <h1 class="main-title">Vai Brasil!</h1>
+
+            <!-- Descrição -->
+            <p class="description">
+                O Brasil é tão diverso que poderíamos abrir um restaurante só com os sabores de cada estado. 
+                Fizemos uma média e criamos um sanduíche com uma pitada de cada canto do país!
+            </p>
+            
+            <!-- Ingredientes -->
+            <div class="ingredients-box">
+                <p class="icon-text">🌱 <strong>Ingredientes</strong></p>
+                <ul>
+                    <li>Carne de Acém (suculenta e temperada)</li>
+                    <li>Queijo coalho derretido</li>
+                    <li>Folhas de alface fresca</li>
+                    <li>Fatias de tomate maduro</li>
+                    <li>Maionese artesanal</li>
+                    <li>Toque de pimenta biquinho</li>
+                </ul>
+           <div class="product-box">
+                <button class="order-button" 
+                        onclick="addToCart(
+                         1   , 
+                          'Vai Brasil!', 
+                          35.00, 
+                            'img/VAI BRASIL.jpeg'
+                        )">
+                     Peça Já
+                </button>
+            </div>
+
+    </section>
+
+  </main>
+
+  <!-- Rodapé da página -->
+  <footer>
+     
+        <p>© 2025 BURGUER LINGO. Todos os direitos reservados.</p>
+  </footer>
+
+    <!-- SCRIPT JAVASCRIPT -->
+    <script>
+    // ... (Seu código JavaScript existente para a Sidebar) ...
+
+    function addToCart(id, name, price, img) {
+        // 1. Tenta carregar o carrinho do localStorage. Se não existir, inicia um array vazio.
+        let cart = JSON.parse(localStorage.getItem('burguerLingoCart')) || [];
+
+        // 2. Procura se o item já está no carrinho
+        const existingItem = cart.find(item => item.id === id);
+
+        if (existingItem) {
+            // 3a. Se o item existir, apenas incrementa a quantidade.
+            existingItem.quantity += 1;
+        } else {
+            // 3b. Se o item for novo, adiciona-o ao array com quantidade 1.
+            cart.push({
+                id: id,
+                name: name,
+                price: price,
+                img: img,
+                quantity: 1
+            });
+        }
+
+        // 4. Salva o array atualizado de volta no localStorage.
+        localStorage.setItem('burguerLingoCart', JSON.stringify(cart));
+
+        // 5. Feedback para o usuário
+        alert(`"${name}" foi adicionado ao carrinho! Quantidade atual: ${existingItem ? existingItem.quantity : 1}`);
+        
+        // Opcional: Redirecionar para o carrinho após a adição (descomente se quiser)
+        // window.location.href = 'carrinho.html'; 
+    }
     
-            <h3>Origem</h3>
-            <img src="Brasilflag.jpg" alt="Bandeira do Brasil" width="60"> <!--Link para imagem da bandeira-->
-    
-            <p><a href="cardapio.html"> Voltar ao cardápio</a></p>
-        </main>
-    
-        <footer>
-            © 2025 Todos os direitos reservados
-          </footer>
-    </body>
+    // ... (Seu código JavaScript existente continua aqui) ...
+    // Captura os elementos HTML do menu
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar');
+
+    // Quando o usuário clica no botão do menu, o menu lateral aparece
+    menuBtn.addEventListener('click', () => {
+        sidebar.classList.add('active'); // Adiciona a classe que mostra o menu
+    });
+
+    // Quando o usuário clica no "X", o menu lateral some
+    closeBtn.addEventListener('click', () => {
+        sidebar.classList.remove('active'); // Remove a classe e esconde o menu
+    });
+    </script>
+   
+</body>
 </html>
