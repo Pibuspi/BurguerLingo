@@ -42,9 +42,10 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.55);
+            background: rgba(0, 0, 0, 0.6); /* mais contraste */
             z-index: 0;
         }
+
         
         /* HEADER FIXO: Sobrescreve Main-burguer.css */
         .main-header {
@@ -57,8 +58,8 @@
         
         /* CONTAINER (Conteúdo principal): Compensação do Header Fixo */
         .container {
-            margin-top: 80px !important; /* Compensa o header fixo */
-            margin-bottom: 40px; 
+            margin-top: 150px !important; /* Compensa o header fixo */
+            margin-bottom: 70px; 
             
             /* Centralização e Estilo do Formulário */
             margin-left: auto;
@@ -85,64 +86,60 @@
 
         /* --- ESTILOS CRÍTICOS DO MENU LATERAL (SIDEBAR) --- */
         .menu-lateral {
-            position: fixed;
-            top: 0;
-            left: -300px; /* Esconde o menu para a esquerda */
-            width: 280px;
             height: 100%;
-            background-color: var(--color-footer-bg, #333); /* Cor escura */
-            color: var(--color-text-light, #fff);
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-            transition: left 0.4s ease;
-            z-index: 6000; /* Z-INDEX alto para cobrir o header e o conteúdo */
-            display: flex;
-            flex-direction: column;
+            width: 50px /* largura real */
+            position fixed;
+            z-index: 6000;
+            top: 0;
+            left: -350px; /* começa fora da tela */
+            background-color: var(--color-footer-bg);
+            overflow-x: hidden;
+            transition: left 0.5s ease;
+            padding-top: 60px;
+            padding-block: 80px;
+            padding-right: 10px;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5);
         }
-        
+
         .menu-lateral.active {
-            left: 0; /* Move para a tela quando ativo */
+            left: 0; /* entra suavemente */
+            width: 290px;
         }
 
         .menu-lateral h2 {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 1.4rem;
+            color: var(--color-primary);
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #555;
         }
 
         .menu-lateral a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 0;
+            padding: 15px 5px;
+            color: var(--color-text-light);
             display: block;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background-color 0.2s;
-            margin: 0; /* Remove a margin herdada de `a` */
-            font-size: 1rem;
-        }
-
-        .menu-lateral a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .close-btn {
             position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 30px;
+            top: -2px;
+            right: 30px;
+            font-size: 35px;
             background: none;
+            padding-block: -5px;
             border: none;
-            color: white;
+            color: var(--color-text-light);
             cursor: pointer;
         }
+
         
         /* --- ESTILOS DO FORMULÁRIO (Originais) --- */
         .container p {
             font-size: 14px;
-            line-height: 20px;
+            line-height: 1.5;
             letter-spacing: 0.3px;
-            margin: 20px 0;
+            margin: 10px 0;
+            text-align: center; /* Centraliza corretamente */
+            color: #ffffff;
         }
 
         .container span {
@@ -331,6 +328,7 @@
         <a href="reservas.html"><i class="fas fa-table"></i> Reservas</a>
         <a href="fale conosco.html"><i class="fas fa-headset"></i> Fale Conosco</a>
         <a href="tickets.html"><i class="fas fa-ticket-alt"></i> Tickets e Descontos</a>
+        <a href="ajudajeff.html"><i class="fas fa-question-circle"></i> Perguntas Frequentes</a>
     </div>
 
     <header class="main-header">
@@ -358,7 +356,7 @@
             <form>
                 <h1> Crie uma conta</h1>
                 <div class="social-icons">
-                    <a href="#" class="icon"> <i
+                    <a href="#" id="btnGoogle" class="icon"> <i
                        class="fa-brands 
                        fa-google-plus-g"></i></a>
                       <a href="#" class="icon"> <i
@@ -375,17 +373,20 @@
                 <input type="text"
                 placeholder="name">
                 <input type="email"
+                id="emailCadastro"
                 placeholder="Email">
                 <input type="senha"
+                id="senhaCadastro"
                 placeholder="senha">
-                <button type="submit"> Criar conta</button>
+                <button id="btnCadastrar" type="submit"> Criar conta</button>
             </form>
         </div>
         <div class="form-container sign-in">
             <form>
                 <h1> Login</h1>
                 <div class="social-icons">
-                    <a href="#" class="icon"> <i
+                    <a href="#" id="btnGoogle"
+                     class="icon"> <i
                        class="fa-brands 
                        fa-google-plus-g"></i></a>
                       <a href="#" class="icon"> <i
@@ -401,24 +402,26 @@
                 <span> Ou use o Email para entrar na sua conta</span>
 
                 <input type="email"
+                id="emailLogin"
                 placeholder="Email">
                 <input type="senha"
+                id="senhaLogin"
                 placeholder="senha">
                 <a href="#"> Esqueceu sua senha?</a>
-                <button> Login</button>
+                <button id="btnLogin"> Login</button>
             </form>
         </div>
       <div class="toggle-container">
         <div class="toggle">
             <div class="toggle-panel toggle-left">
                 <h1>Bem vindo de volta</h1>
-                <p>Entre com as suas credenciais pessoais e comece todos os sites futurísticos</p>
+                <p>Entre com as suas credenciais pessoais e desfute do BurguerLingo</p>
                 <button class="hidden" id="login">Login</button>
             </div>
 
             <div class="toggle-panel toggle-right">
                 <h1>Olá, Amigo</h1>
-                <p>Registre-se com as suas credenciais pessoais e comece todos os sites futurísticos</p>
+                <p>Registre-se com as suas credenciais pessoais e desfrute do BurguerLingo</p>
                 <button class="hidden" id="registre-se">Cadastre-se</button>
             </div>
         </div>
@@ -428,6 +431,7 @@
 
     <footer>
         <div class="footer-links">
+            <a href="ajudajeff.html" class="strong-link">Perguntas Frequentes</a>
             <a href="sobre nos.html" class="strong-link">Sobre Nós</a>
             <a href="fale conosco.html">Fale Conosco</a>
             <a href="politica.html">Política de Privacidade</a>
@@ -462,7 +466,78 @@
         loginBtn.addEventListener('click', () => {
             container.classList.remove("active");
         });
+        </script>
+
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyBtHw7TqCac0SWil2T-7qvfUckDps_uDWI",
+        authDomain: "burguer-lingo-402c0.firebaseapp.com",
+        projectId: "burguer-lingo-402c0",
+        storageBucket: "burguer-lingo-402c0.firebasestorage.app",
+        messagingSenderId: "1057314729279",
+        appId: "1:1057314729279:web:82f3ae4a2447001f80f78a",
+        measurementId: "G-C2T4FRDYQ4"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    import { 
+    getAuth, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    GoogleAuthProvider, 
+    signInWithPopup 
+    } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+
+    const auth = getAuth(app);
+
+    // ✅ Cadastro com e-mail/senha
+    document.querySelector("#btnCadastrar")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    const email = document.querySelector("#emailCadastro").value;
+    const senha = document.querySelector("#senhaCadastro").value;
+    createUserWithEmailAndPassword(auth, email, senha)
+        .then(() => alert("Conta criada com sucesso!"))
+        .catch((error) => alert("Erro: " + error.message));
+    });
+
+    // ✅ Login com e-mail/senha
+    document.querySelector("#btnLogin")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    const email = document.querySelector("#emailLogin").value;
+    const senha = document.querySelector("#senhaLogin").value;
+    signInWithEmailAndPassword(auth, email, senha)
+        .then(() => {
+        alert("Login realizado!");
+        window.location.href = "home.html";
+        })
+        .catch((error) => alert("Erro: " + error.message));
+    });
+
+    // ✅ Login com Google
+    const provider = new GoogleAuthProvider();
+    document.querySelector("#btnGoogle")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    signInWithPopup(auth, provider)
+        .then((result) => {
+        const user = result.user;
+        alert(`Bem-vindo, ${user.displayName}!`);
+        window.location.href = "home.html";
+        })
+        .catch((error) => alert("Erro: " + error.message));
+    });
+
+    const analytics = getAnalytics(app);
     </script>
+
 </body>
 </html>
-
