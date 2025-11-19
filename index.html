@@ -100,8 +100,6 @@
 
   </style>
 
-
-<!-- POP-UP DE VÍDEO: "Nosso Comercial" -->
 <div id="video-popup" class="video-popup-overlay">
   <div class="video-popup-content">
     <button class="close-video-btn" id="closeVideoBtn">&times;</button>
@@ -298,9 +296,9 @@ window.addEventListener("load", () => {
         </div>
     </section>
 
-    <section class="sobre-nos-section">
-    <div class="sobre-nos-texto">Sobre Nós</div>
-  </section>
+<section id="sobre-nos" class="sobre-nos-section">
+  <div class="sobre-nos-texto">Sobre Nós</div>
+</section>
 
   <section id="fundadores" class="fundadores-section">
     <h2>Nossos Fundadores</h2>
@@ -423,7 +421,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
     <footer>
         <div class="footer-links">
-            <a href="sobre nos.html" class="strong-link">Sobre Nós</a>
+            <a href="#sobre-nos" aria-label="Ir para Sobre Nós">Sobre Nós</a>
             <a href="fale conosco.html">Fale Conosco</a>
             <a href="politica.html">Política de Privacidade</a>
         </div>
@@ -715,5 +713,3 @@ body {
 </style>
 </body>
 </html>
-
-
