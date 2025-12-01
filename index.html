@@ -231,10 +231,18 @@ window.addEventListener("load", () => {
             <a href="reservas.html">RESERVAS</a>
         </nav>
 
-        <div class="user-actions">
-            <a href="Login.html" title="Login / Minha Conta" class="nav-icon"><i class="fas fa-user"></i></a>
-            <a href="carrinho.html" title="Carrinho de Compras" class="nav-icon"><i class="fas fa-shopping-cart"></i></a>
-        </div>
+       <div class="user-actions">
+          <span id="userGreeting" style="color: white; margin-right: 15px; font-weight: 600;"></span>
+
+          <a href="Login.html" id="loginIcon" title="Login / Minha Conta" class="nav-icon">
+              <i class="fas fa-user"></i>
+          </a>
+
+          <a href="carrinho.html" title="Carrinho de Compras" class="nav-icon">
+              <i class="fas fa-shopping-cart"></i>
+          </a>
+      </div>
+
     </header>
 
     <section class="hero-carousel">
@@ -343,6 +351,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+<!-- Duplicate Firebase initialization removed — Firebase is initialized in the earlier <script type="module"> block to avoid redeclaring firebaseConfig. -->
+
 
 <section class="perguntas_frequentes" id="perguntas-frequentes">
   <div class="responsive-container-block">
@@ -429,6 +439,41 @@ document.addEventListener("DOMContentLoaded", function() {
         <p>© 2025 BURGUER LINGO. Todos os direitos reservados.</p>
     </footer>
    
+    <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBtHw7TqCac0SWil2T-7qvfUckDps_uDWI",
+    authDomain: "burguer-lingo-402c0.firebaseapp.com",
+    projectId: "burguer-lingo-402c0",
+    storageBucket: "burguer-lingo-402c0.firebasestorage.app",
+    messagingSenderId: "1057314729279",
+    appId: "1:1057314729279:web:82f3ae4a2447001f80f78a",
+    measurementId: "G-C2T4FRDYQ4"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// 🟢 Verifica se o usuário está logado
+onAuthStateChanged(auth, (user) => {
+    const greeting = document.getElementById("userGreeting");
+    const loginIcon = document.getElementById("loginIcon");
+
+    if (user) {
+        // Se tiver displayName usa, senão usa só o email
+        const nome = user.displayName || user.email.split("@")[0];
+
+        greeting.textContent = `Olá, ${nome}!`;
+        loginIcon.style.display = "none"; // Esconde o ícone de login
+    } else {
+        greeting.textContent = ""; // Não mostra nada
+        loginIcon.style.display = "inline-block"; // Mostra o ícone de login
+    }
+});
+</script>
+
    <script>
     // JS para o Menu Lateral (Sidebar)
     const menuBtn = document.getElementById('menu-btn');
@@ -549,6 +594,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 section.classList.add('visible');
             }
         });
+
+  
 </script> 
     
 <style>
