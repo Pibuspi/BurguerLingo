@@ -517,7 +517,7 @@
     signInWithEmailAndPassword(auth, email, senha)
         .then(() => {
         alert("Login realizado!");
-        window.location.href = "home.html";
+        window.location.href = "index.html";
         })
         .catch((error) => alert("Erro: " + error.message));
     });
@@ -530,7 +530,7 @@
         .then((result) => {
         const user = result.user;
         alert(`Bem-vindo, ${user.displayName}!`);
-        window.location.href = "home.html";
+        window.location.href = "index.html";
         })
         .catch((error) => alert("Erro: " + error.message));
     });
@@ -540,6 +540,7 @@
 
 </body>
 </html>
+
 
 
 
