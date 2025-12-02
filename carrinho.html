@@ -365,7 +365,7 @@
                 return;
             }
 
-            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity - desconto), 0);
             
             alert(`Seu pedido de ${formatCurrency(totalAmount)} foi finalizado com sucesso!`);
             
@@ -389,6 +389,3 @@
 </body>
 
 </html>
-
-
-
