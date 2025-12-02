@@ -68,5 +68,20 @@
     closeBtn.addEventListener('click', () => {
         sidebar.classList.remove('active');
     });
+
+    const cuponsUsuario = JSON.parse(localStorage.getItem("cuponsUsuario")) || [];
+
+
+function renderizarCupons() {
+const area = document.getElementById("listaCupons");
+area.innerHTML = "";
+
+
+if (cuponsUsuario.length === 0) {
+area.innerHTML = "<p>Você ainda não possui cupons.</p>";
+return;
+}
+}
+;
     </script>
 </html>
