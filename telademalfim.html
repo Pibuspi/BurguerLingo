@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Parabéns!</title>
+   <link rel="icon" href="CHEF+DUO .png" type="image/png">
+  <link rel="stylesheet" href="stylefinalruim.css">
+
+  <script>
+    const somFinalRuim = new Audio('somtriste.mp3'); 
+  </script>
+</head>
+<body class="parabens">
+  <main>
+    <h1>😢 NÃÃÃÃÃÃÃÃOOOOOOO 😢</h1>
+
+<div id="celebration" style="display:none; text-align:center;">
+    <img src="duo triste sem fundo.gif" alt="Comemoração Duolingo" width="300" height="250">
+</div>
+    <p>Não foi dessa vez!</p>
+<div class="acoes">
+  <button class="voltar" onclick="voltarLicoes()">⟵ Voltar às lições</button>
+</div>
+
+<script>
+  function voltarLicoes() {
+    window.location.href = "pagina das lições.html";
+  }
+
+  // Lógica de carregamento principal (som e gif)
+  window.onload = function() {
+    // Toca o som de falha
+    if (typeof somFinalRuim !== 'undefined') {
+        somFinalRuim.play().catch(e => console.error("Erro ao tocar som:", e));
+    } else {
+        console.error("Variável somFinalRuim não definida.");
+    }
+
+    // Lógica do GIF de tristeza
+    const anim = document.getElementById("celebration");
+    anim.style.display = "block";
+    setTimeout(() => {
+        anim.style.display = "none";
+    }, 3000);
+  };
+</script>
+</body>
+</html>
