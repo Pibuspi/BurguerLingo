@@ -1,0 +1,30 @@
+.opcao {
+  background: #f2f2f2;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 10px 20px;
+  margin: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.opcao:hover {
+  background: #e6e6e6;
+}
+
+.opcao.selecionado {
+  border-color: #0099ff;
+  background: #d6ecff;
+}
+
+.opcao.correto {
+  background: #a5f0a0 !important;
+  border-color: #31b304 !important;
+  color: #0a3d00;
+}
+
+.opcao.errado {
+  background: #ffb3b3 !important;
+  border-color: #cc0000 !important;
+  color: #660000;
+}
