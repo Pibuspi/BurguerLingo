@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Parabéns!</title>
+   <link rel="icon" href="CHEF+DUO.jpeg" type="image/png">
+  <link rel="stylesheet" href="stylefinal.css">
+  
+  <script>
+    const somFinalBom = new Audio('duolingo-lesson-finished.mp3'); 
+  </script>
+</head>
+<body class="parabens">
+  <main>
+    <h1>🎉 Parabéns! 🎉</h1>
+
+<div id="celebration" style="display:none; text-align:center;">
+    <img src="duo feliz sem fundo.gif" alt="Comemoração Duolingo" width="200" height="200">
+</div>
+    <p>Você concluiu a lição!</p>
+<div class="acoes">
+  <button class="voltar" onclick="voltarLicoes()">⟵ Voltar às lições</button>
+  <button class="proxima" id="btnProximaLicao">⟶ Próxima lição</button>
+</div>
+
+<script>
+  function voltarLicoes() {
+    // Limpa o status e o próximo nível ao voltar
+    localStorage.removeItem("proximoNivel"); 
+    window.location.href = "pagina das lições.html";
+  }
+
+  // Lógica de carregamento principal (som, gif e botão)
+  window.onload = function() {
+    // Toca o som de sucesso
+    if (typeof somFinalBom !== 'undefined') {
+        somFinalBom.play().catch(e => console.error("Erro ao tocar som:", e));
+    } else {
+        // Se a variável não for encontrada (ex: arquivo sons.js não foi importado)
+        console.error("Variável somFinalBom não definida.");
+    }
+
+    // Lógica do GIF de celebração
+    const anim = document.getElementById("celebration");
+    anim.style.display = "block";
+    setTimeout(() => {
+        anim.style.display = "none";
+    }, 3000);
+
+    // Lógica para o botão Próxima Lição
+    const proximoNivel = localStorage.getItem("proximoNivel");
+    const btnProxima = document.getElementById("btnProximaLicao");
+
+    if (proximoNivel && proximoNivel !== "concluido") {
+        // Se houver próximo nível, configura a ação do botão
+        btnProxima.onclick = function() {
+            localStorage.setItem("idiomaAtual", proximoNivel);
+            localStorage.setItem("indiceEtapa", 0); // Começa do zero
+            localStorage.setItem("vidas", 5); 
+            localStorage.removeItem("proximoNivel");
+            window.location.href = "licao.html";
+        }
+    } else {
+        // Se o curso estiver concluído, oculta o botão ou muda o texto
+        btnProxima.style.display = 'none'; 
+    }
+
+    // Se você tiver a lógica de confete, ela deve vir aqui também
+  };
+</script>
+</body>
+</html>
