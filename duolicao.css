@@ -1,0 +1,178 @@
+/* GERAL E FUNDO */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7; /* Fundo cinza claro */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 1. BARRA SUPERIOR (Progresso e Vidas) */
+.header-licao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%; /* Alinha com o conteúdo */
+    max-width: 800px;
+    margin: 20px auto 0;
+}
+
+/* Barra de Progresso (O container) */
+.header-licao > div:first-child { 
+    flex-grow: 1; /* Ocupa o máximo de espaço */
+    height: 15px;
+    background-color: #e5e5e5;
+    border-radius: 8px;
+    margin-right: 20px;
+    overflow: hidden;
+}
+
+/* Barra de Progresso (O preenchimento verde, atualizado pelo JS) */
+#barraProgresso {
+    height: 100%;
+    background-color: #58cc02; /* Verde Duolingo */
+    transition: width 0.3s ease-in-out;
+}
+
+/* Display de Vidas */
+#vidas {
+    font-size: 20px;
+    /* Certifica-se de que o ID '#vidas' está estilizado */
+}
+
+/* 2. CONTEÚDO PRINCIPAL (Central) */
+.conteudo-licao {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+/* Título e Pergunta (Ajuste para o ID existente) */
+#perguntaAtual {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3c3c3c;
+    margin-bottom: 30px;
+    text-align: center; /* Centraliza a pergunta */
+}
+
+/* Imagem do Personagem */
+#personagem {
+    width: 100px; 
+    margin: 0 auto 15px auto;
+    display: block;
+}
+
+/* --- ESTILOS REMOVIDOS/AJUSTADOS --- 
+    Os estilos de .pergunta-principal, .caixa-frase, e &::before foram removidos/ajustados
+    porque sua estrutura HTML não continha essas classes aninhadas.
+    O texto da pergunta agora está diretamente em #perguntaAtual.
+*/
+
+/* Linha de Resposta (Container) */
+.linha-resposta-container {
+    width: 100%;
+    border-bottom: 2px solid #e5e5e5;
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+}
+
+.linha-resposta { /* Onde as palavras selecionadas aparecem */
+    font-size: 20px;
+    font-weight: bold;
+    color: #3c3c3c;
+    min-width: 100px;
+    display: inline-block;
+    /* Estilo para as palavras na linha de resposta (se implementado via JS) */
+    margin: 0 5px; 
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+
+/* 3. BOTÕES DE OPÇÕES (Palavras) */
+.opcoes-container { /* Corrigido de .opcoes para .opcoes-container */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.opcao {
+    background-color: white;
+    color: #4b4b4b;
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+/* Uso da sintaxe CSS padrão para hover */
+.opcao:hover {
+    background-color: #f0f0f0;
+    border-color: #b8b8b8;
+}
+
+/* Estado SELECIONADO (para o JS) */
+.opcao.selecionado {
+    background-color: #d7e4ff; /* Azul claro */
+    border-color: #1899ff; /* Azul forte */
+    color: #1899ff;
+}
+
+/* 4. RODAPÉ (Botões de Ação) */
+.rodape {
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid #e5e5e5;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto; /* Empurra para baixo */
+}
+
+.rodape button {
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 10px;
+    cursor: pointer; /* Garante que o cursor de clique apareça */
+    transition: opacity 0.2s;
+}
+
+/* Pular (mudei para .btn-pular como no HTML) */
+.btn-pular {
+    background-color: white;
+    color: #a7a7a7;
+    border: 2px solid #e5e5e5;
+}
+
+/* Confirmar (mudei para .btn-verificar como no HTML) */
+.btn-verificar {
+    background-color: #58cc02; /* Verde Duolingo */
+    color: white;
+    border: none;
+    opacity: 0.5; /* Desabilitado por padrão */
+}
+
+/* Uso da sintaxe CSS padrão para hover */
+.btn-verificar:not([disabled]) {
+    opacity: 1; 
+}
+.btn-verificar:not([disabled]):hover {
+    background-color: #4fb300;
+}
