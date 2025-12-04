@@ -1,0 +1,36 @@
+/* --- Estilos Comuns --- */
+#telalicao {
+    padding: 20px;
+    margin: 0 auto;
+    transition: max-width 0.5s ease; /* Anima a mudança de largura */
+}
+
+/* --- ESTILOS PARA ETAPAS 1-3 (LAYOUT RÁPIDO) --- */
+.layout-rapido {
+    max-width: 600px; /* Largura menor, mais focado */
+    /* Garante que elementos de reforço estejam escondidos */
+}
+
+.layout-rapido .titulo-explicativo {
+    font-size: 2em; /* Pergunta maior para foco */
+}
+
+/* --- ESTILOS PARA ETAPAS 4-6 (LAYOUT DETALHADO) --- */
+.layout-detalhado {
+    max-width: 850px; /* Largura maior para acomodar mais texto/painéis */
+}
+
+.layout-detalhado .titulo-explicativo {
+    font-size: 1.5em; /* Pergunta um pouco menor, dando espaço ao reforço */
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ddd; /* Adiciona um separador visual */
+}
+
+/* Exemplo: Se você tiver um painel de "dicas" que só aparece depois */
+.layout-detalhado #painel-explicacao {
+    /* Mostra o painel (você deve gerar o conteúdo deste painel com JS) */
+    background-color: #f0f8ff; 
+    border-left: 5px solid #007bff;
+    padding: 15px;
+    margin-top: 20px;
+}
