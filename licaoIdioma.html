@@ -1,27 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Lição</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Lição Burguer Lingo</title>
+    <link rel="icon" href="CHEF+DUO.jpeg" type="image/png">
+    <link rel="stylesheet" href="duolicao.css"> 
 </head>
 <body>
-  <header>
-    <button id="sair" title="Sair">❌</button>
-    <h1 id="titulo-licao">Lição</h1>
-    <div id="coracoes-container"></div>
-  </header>
-  
-  <div id="barra-progresso">
-    <div id="progresso"></div>
-  </div>
-  
-  <main>
-    <div id="container"></div>
-    <button id="confirmar">Confirmar</button>
-    <button id="pular">Pular</button>
-  </main>
-  
-  <script src="script.js"></script>
+    
+    <div id="telaCarregamento" style="
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+        background-color: white; display: flex; justify-content: center; align-items: center; 
+        z-index: 1000; flex-direction: column;">
+        
+        <img src="carregando.jpeg" alt="Carregando Lição" style="width: 100px; height: 100px; margin-bottom: 20px;">
+        <h2>Carregando Lição...</h2>
+    </div>
+
+    <header class="header-licao"> 
+        <button id="sair" title="Sair">❌</button>
+        
+        <div class="progresso">
+            <div class="progresso-inner" id="progresso"></div> 
+        </div>
+        
+        <div class="vidas" id="coracoes-container"></div>
+    </header>
+
+    <main id="telaLicao" class="conteudo-licao"> 
+        
+        <img src="Henrique.jpeg" alt="personagem" id="personagem">
+        
+        <div id="container"> 
+            </div>
+        
+    </main>
+    
+    <div id="telaFinal" style="display: none; margin-top: 50px; text-align: center;">
+        <h1>Lição Concluída!</h1>
+        <button class="btn btn-verificar" onclick="window.location.href='index.html'">Voltar</button>
+    </div>
+
+    <div class="rodape">
+        <button class="btn btn-pular" id="pular">Pular</button>
+        <button id="confirmar" class="btn btn-verificar">Confirmar</button>
+    </div>
+    
+    <script src="etapas.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
