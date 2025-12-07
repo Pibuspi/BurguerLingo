@@ -1,187 +1,277 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- ícone da página -->
     <link rel="icon" href="CHEF+DUO .png" type="image/png">
     <title>Carrinho de Compras - BURGUER LINGO</title>
-    
-    <link rel="stylesheet" href="Main-burguer.css"> 
-    <link rel="stylesheet" href="burguer lingo.css"> 
+
+    <!-- links para folhas de estilo externas e ícones -->
+    <link rel="stylesheet" href="Main-burguer.css">
+    <link rel="stylesheet" href="burguer lingo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+
     <style>
-        /* Variáveis para uso local */
-        :root {
+        /* ================= VARIÁVEIS E RESET RÁPIDO ================= */
+        :root{
             --spacing-default: 20px;
-            --color-primary: #08c958; /* Verde Principal */
-            --color-secondary: #ffc107; /* Amarelo Destaque */
-        }
-        
-        /* --- Estilos da Página de Carrinho --- */
-        .cart-container {
-            /* Garante que o container tenha uma largura máxima confortável */
-             max-width: 1000px; /* Aumentado de 900px para 1000px, se necessário */
-            width: 95%; /* Ocupa a maior parte da tela */
-            margin: 40px auto;
-            /* ... (outras regras existentes) ... */
+            --color-primary: orange; /* cor primária do site */
+            --color-secondary: #ffc107; /* cor do botão finalizar */
+            --muted:#888; /* cor para textos secundários */
+            --bg:#fafafa; /* cor de fundo da página */
         }
 
+        /* estilo base do body: fonte, cor de fundo e margem zero */
+        body {
+            background: var(--bg);
+            font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin:0;
+            color:#333;
+        }
+
+        /* ============ CONTAINER DO CARRINHO ============ */
+        .cart-container {
+            max-width: 1000px; /* limite de largura para legibilidade */
+            width: 95%;
+            margin: 40px auto; /* centraliza horizontalmente */
+            background: #fff;
+            padding: 26px;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+        }
+
+        /* título com borda inferior */
         .cart-container h2 {
             text-align: center;
-            padding: 20px 0;
+            padding: 10px 0 18px 0;
             color: var(--color-primary);
-            border-bottom: 2px solid #eee;
+            border-bottom: 1px solid #eee;
             margin-top: 0;
             font-size: 1.8em;
         }
 
-        /* Tabela do Carrinho */
+        /* tabela do carrinho: ajustes de espaçamento e alinhamento */
         .cart-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             text-align: left;
         }
 
-        /* Define a largura da primeira coluna (Produto) */
-        .cart-table th:first-child, 
-        .cart-table td:first-child {
-        width: 45%; /* Aumenta a largura da primeira coluna para 45% do total da tabela */
+        .cart-table thead th {
+            padding: 10px 8px;
+            color: #444;
+            font-weight: 700;
+            font-size: 0.95rem;
         }
 
+        .cart-table td {
+            padding: 12px 8px;
+            vertical-align: middle;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        /* primeira coluna maior para imagem + nome */
+        .cart-table th:first-child, .cart-table td:first-child {
+            width: 45%;
+        }
+
+        /* imagem do produto */
         .item-image {
             width: 60px;
             height: 60px;
             object-fit: cover;
-            border-radius: 5px;
-            margin-right: 10px;
+            border-radius: 8px;
+            margin-right: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
         }
 
-        .item-info {
-         display: flex;
-         align-items: center;
-         /* Garante que o texto tenha espaço e não fique quebrado */
-         word-break: normal; 
-         white-space: normal;
-        }
+        .item-info { display:flex; align-items:center; }
 
+        /* botões de quantidade: aparência */
         .quantity-controls button {
-            background: #f0f0f0;
+            background: #fff;
             border: 1px solid #ddd;
-            padding: 5px 10px;
+            padding: 6px 12px;
             cursor: pointer;
-            font-weight: bold;
-            border-radius: 3px;
-        }
-        .quantity-controls span {
-            margin: 0 10px;
-            font-weight: bold;
+            font-weight: 700;
+            border-radius: 6px;
+            min-width: 34px;
         }
 
-        .remove-btn {
-            background: none;
-            border: none;
-            color: #ff4444;
-            cursor: pointer;
-            font-size: 1.2em;
-            transition: color 0.3s;
-        }
-        .remove-btn:hover {
-            color: #cc0000;
-        }
+        .quantity-controls span { margin: 0 10px; font-weight:700; }
 
-        /* Resumo do Carrinho */
+        .remove-btn { background:none; border:none; color:#ff4444; cursor:pointer; font-size:1.1rem; }
+
+        /* resumo e botão finalizar */
         .cart-summary {
-            padding: 20px 0;
-            border-top: 2px solid #eee;
+            padding: 10px 0;
+            border-top: 1px solid #eee;
             text-align: right;
         }
 
-        .summary-line {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-
-        .summary-line strong {
-            font-size: 1.4em;
-            color: var(--color-primary);
-        }
+        .summary-line { display:flex; justify-content:flex-end; gap:20px; margin-bottom:8px; align-items:center; }
+        .summary-line strong { font-size:1.4em; color:var(--color-primary); }
 
         .checkout-btn {
             background-color: var(--color-secondary);
-            color: #333;
+            color: #222;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            font-weight: bold;
-            border-radius: 8px;
+            padding: 16px;
+            font-size: 1.05em;
+            font-weight: 800;
+            border-radius: 10px;
             cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s;
             width: 100%;
             text-transform: uppercase;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
         }
-        .checkout-btn:hover {
-            background-color: #ffda6a;
+        .checkout-btn:hover { filter:brightness(1.03); transform:translateY(-1px); }
+
+        .empty-cart-message { text-align:center; padding:36px 0; color:var(--muted); }
+
+        footer { margin-top: 18px; text-align:center; color:var(--muted); font-size:0.95rem; padding:18px 0; }
+
+        /* ============ MODAL DE PAGAMENTO (estilos principais) ============ */
+        /* O modal é posicionado fixo sobre a tela; inicialmente escondido (display:none) */
+        .payment-modal {
+            display: none;
+            position: fixed;
+            z-index: 99999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.65); /* máscara escura atrás do modal */
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(3px);
         }
 
-        .empty-cart-message {
+        /* caixa branca central do modal */
+        .payment-content {
+            background: #fff;
+            width: 95%;
+            max-width: 520px;
+            padding: 26px;
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+            animation: fadeInUp 0.35s ease;
             text-align: center;
-            padding: 50px 0;
-            font-size: 1.2em;
-            color: #888;
+            position: relative;
         }
-        
-        /* Responsividade Tabela */
-        @media (max-width: 600px) {
-            .cart-table thead {
-                display: none;
-            }
-            .cart-table, .cart-table tbody, .cart-table tr, .cart-table td {
-                display: block;
-            }
-            .cart-table tr {
-                margin-bottom: 15px;
-                border: 1px solid #eee;
-                border-radius: 5px;
-                padding: 10px;
-            }
-            .cart-table td {
-                text-align: right;
-                padding-left: 50%;
-                position: relative;
-                border-bottom: 1px solid #eee;
-                display: block;
-            }
-            .cart-table td::before {
-                content: attr(data-label);
-                position: absolute;
-                left: 0;
-                width: 50%;
-                padding-left: 15px;
-                font-weight: bold;
-                text-align: left;
-                color: var(--color-primary);
-            }
-            .item-info {
-                justify-content: flex-end;
-            }
-            .item-info span {
-            /* Garante que o nome do produto use o espaço disponível sem ser espremido */
-            display: block; 
-            min-width: 100px; /* Evita que o texto fique ridiculamente pequeno */
-            }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px);} to { opacity:1; transform:translateY(0);} }
+
+        .close-payment {
+            position:absolute;
+            right:16px;
+            top:12px;
+            font-size:26px;
+            cursor:pointer;
+            color:#666;
+        }
+
+        .payment-content h2 {
+            margin: 6px 0 18px;
+            font-size: 1.5rem;
+            color: var(--color-primary);
+        }
+
+        /* botões das opções de pagamento (PIX / Cartão / Dinheiro) */
+        .payment-options {
+            display:flex;
+            justify-content:space-between;
+            gap:12px;
+            margin: 10px 0 18px;
+            flex-wrap:wrap;
+        }
+
+        .payment-btn {
+            padding: 12px 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            color:white;
+            flex:1;
+            min-width:120px;
+            transition: transform .18s ease, filter .18s ease;
+        }
+        .payment-btn:not(:last-child) { margin-right:6px; }
+
+        /* cores dos botões (padrão) */
+        .payment-btn.pix { background: linear-gradient(180deg,#08c958,#08c958); }   /* N funcionou o gradiente :( */
+        .payment-btn.card { background: linear-gradient(180deg,#08c958,#08c958); }
+        .payment-btn.money { background: linear-gradient(180deg,#08c958,#08c958); }
+
+        /* área onde o conteúdo específico do método é inserido dinamicamente */
+        #paymentMethodArea { margin-top: 6px; text-align:left; }
+
+        .qrcode-box {
+            margin-top: 12px;
+            background:#fafafa;
+            padding:14px;
+            border-radius:10px;
+            display:flex;
+            gap:12px;
+            align-items:center;
+            justify-content:space-between;
+        }
+
+        .small-input { width:100%; padding:10px; border-radius:8px; border:1px solid #e2e2e2; font-size:0.98rem; }
+
+        .confirm-payment-btn {
+            margin-top:18px;
+            padding:12px 18px;
+            width:100%;
+            background:var(--color-primary);
+            border:none;
+            color:white;
+            font-size:1.05rem;
+            border-radius:10px;
+            cursor:pointer;
+            font-weight:700;
+        }
+        .confirm-payment-btn:active { transform:translateY(1px); }
+
+        .muted { color:var(--muted); font-size:0.95rem; }
+
+        .row { display:flex; gap:12px; align-items:center; }
+
+        .copy-btn {
+            background:#fff;
+            border:1px solid #ddd;
+            padding:8px 10px;
+            border-radius:8px;
+            cursor:pointer;
+            font-weight:700;
+            margin-left:8px;
+        }
+
+        /* Responsividade: ajustes para telas menores */
+        @media (max-width: 720px) {
+            .payment-options { gap:8px; }
+            .payment-btn { padding:12px; font-size:0.96rem; min-width:100px; }
+            .cart-container { padding:18px; }
+            .cart-table td { padding: 10px 6px; }
+        }
+
+        @media (max-width: 420px) {
+            .payment-content { padding:18px; border-radius:12px; }
+            .payment-btn { font-size:0.92rem; }
         }
     </style>
 </head>
 
 <body>
+    <!-- ================= SIDEBAR (menu lateral) ================= -->
     <div id="sidebar" class="menu-lateral">
-        <button id="close-btn" class="close-btn">&times;</button> 
+        <button id="close-btn" class="close-btn">&times;</button>
         <h2>MENU BURGUER LINGO</h2>
+        <!-- links do menu; ícones via Font Awesome -->
         <a href="login.html"><i class="fas fa-user-circle"></i> Login</a>
         <a href="cardapio.html"><i class="fas fa-burger"></i> Cardápio</a>
         <a href="licaoIdioma.html"><i class="fas fa-book-open"></i> Lingo Lessons (Lições)</a>
@@ -190,47 +280,69 @@
         <a href="tickets.html"><i class="fas fa-ticket-alt"></i> Tickets e Descontos</a>
     </div>
 
+    <!-- ================= HEADER ================= -->
     <header class="main-header">
         <button id="menu-btn" class="menu-hamburguer"><i class="fas fa-bars"></i></button>
-
-        <a href="index.html" class="logo-link">
-            <img src="LogoBurguerDuo.png" alt="Logo Burguer Lingo">
-        </a>
-        
+        <a href="index.html" class="logo-link"><img src="LogoBurguerDuo.png" alt="Logo Burguer Lingo" style="height:44px;"></a>
         <nav class="main-nav">
             <a href="cardapio.html">CARDÁPIO</a>
             <a href="licaoIdioma.html">LINGO LESSONS</a>
             <a href="reservas.html">RESERVAS</a>
         </nav>
-
         <div class="user-actions">
             <a href="carrinho.html" title="Carrinho de Compras" class="nav-icon"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </header>
 
+    <!-- ================= CONTEÚDO PRINCIPAL (CARRINHO) ================= -->
     <main class="cart-container">
         <h2><i class="fas fa-shopping-cart"></i> Seu Carrinho de Compras</h2>
-        <div id="cart-content">
-            </div>
-        <div id="cart-summary">
-            </div>
+
+        <!-- onde o JS irá injetar a tabela de itens -->
+        <div id="cart-content"></div>
+        <!-- onde o JS irá injetar o resumo e botão de checkout -->
+        <div id="cart-summary"></div>
     </main>
-    
+
+    <!-- ================= MODAL DE PAGAMENTO ================= -->
+    <!-- role / aria para acessibilidade -->
+    <div id="PagamentoModal" class="payment-modal" role="dialog" aria-modal="true" aria-labelledby="paymentTitle">
+        <div class="payment-content" role="document">
+            <!-- botão fechar -->
+            <button class="close-payment" aria-label="Fechar" onclick="closePagamentoModal()">&times;</button>
+
+            <h2 id="paymentTitle">ESCOLHA A FORMA DE PAGAMENTO</h2>
+
+            <!-- botões para escolher o método -->
+            <div class="payment-options">
+                <button onclick="selectPayment('pix')" class="payment-btn pix"> PIX</button>
+                <button onclick="selectPayment('cartao')" class="payment-btn card"> Cartão</button>
+                <button onclick="selectPayment('dinheiro')" class="payment-btn money">Dinheiro</button>
+            </div>
+
+            <!-- área que muda conforme a opção (PIX/Cartão/Dinheiro) -->
+            <div id="paymentMethodArea"></div>
+
+            <!-- confirma (simulado) -->
+            <button class="confirm-payment-btn" onclick="confirmPayment()">Confirmar Pagamento</button>
+        </div>
+    </div>
+
+
     <script>
-        // --- JS BASE PARA SIDEBAR ---
-        const menuBtn = document.getElementById('menu-btn');
-        const closeBtn = document.getElementById('close-btn');
-        const sidebar = document.getElementById('sidebar');
+        /* ================== SIDEBAR: controlar abrir/fechar ================== */
+        const menuBtn = document.getElementById('menu-btn');     // botão que abre o menu
+        const closeBtn = document.getElementById('close-btn');   // botão que fecha o menu
+        const sidebar = document.getElementById('sidebar');      // elemento do menu lateral
+        if (menuBtn && closeBtn && sidebar) {
+            // adiciona listeners para abrir e fechar a classe 'active' no sidebar
+            menuBtn.addEventListener('click', () => sidebar.classList.add('active'));
+            closeBtn.addEventListener('click', () => sidebar.classList.remove('active'));
+        }
 
-        menuBtn.addEventListener('click', function() {
-            sidebar.classList.add('active');
-        });
-        closeBtn.addEventListener('click', function() {
-            sidebar.classList.remove('active');
-        });
-        // -----------------------------
-
-        // --- DADOS MOCK (Usados para garantir que o nome e preço estejam corretos) ---
+        /* ================ DADOS DE EXEMPLO (mock) ================ 
+           - Usados para preencher o carrinho quando tiver itens.
+           - Em um projeto real, os dados viriam de uma API / backend. */
         const mockMenuItems = [
             { id: 1, name: "Vai Brasil!", price: 7.01, img: "VAI BRASIL.jpeg" },
             { id: 2, name: "Il Panino Italiano", price: 20.17, img: "italiano.jpeg" },
@@ -247,146 +359,303 @@
             { id: 13, name: "Japão Japanīzubāgā", price: 19.45, img: "Japones.jpeg" },
             { id: 14, name: "Egito Lanche do Faraó", price: 13.23, img: "Egito.jpg" },
             { id: 15, name: "EUA Abraham Burger", price: 90.81, img: "estilo americano.jpeg" },
-            { id: 16, name: "Australian Burger", price: 42.80, img: "Australiano.jpg" },
+            { id: 16, name: "Australian Burger", price: 42.80, img: "Australiano.jpg" }
         ];
 
+        /* função utilitária para formatar valores em Reais (R$) */
         function formatCurrency(value) {
             return "R$ " + value.toFixed(2).replace('.', ',');
         }
 
+        /* referências aos contêineres onde o JS injeta conteúdo */
         const cartContentDiv = document.getElementById('cart-content');
         const cartSummaryDiv = document.getElementById('cart-summary');
 
-        // Função principal para renderizar o carrinho a partir do LocalStorage
+        /* ================== Função principal: renderCart ==================
+           - Lê o carrinho do localStorage (chave 'burguerLingoCart')
+           - Calcula totais
+           - Monta o HTML da tabela e do resumo dinamicamente
+           - Atualiza a página com innerHTML */
         function renderCart() {
+            // pega o carrinho salvo; se não existir, usa array vazio
             let cart = JSON.parse(localStorage.getItem('burguerLingoCart')) || [];
             let total = 0;
-            
+
+            // se não houver itens, mostra mensagem e limpa resumo
             if (cart.length === 0) {
                 cartContentDiv.innerHTML = '<p class="empty-cart-message">Seu carrinho está vazio. Adicione itens do <a href="cardapio.html">Cardápio</a>!</p>';
                 cartSummaryDiv.innerHTML = '';
                 return;
             }
 
+            // monta o cabeçalho da tabela
             let cartTableHTML = '<table class="cart-table"><thead><tr><th>Produto</th><th>Preço Unitário</th><th>Quantidade</th><th>Subtotal</th><th>Ações</th></tr></thead><tbody>';
 
+            // para cada item no carrinho, calcula subtotal e adiciona linhas
             cart.forEach(item => {
-                const itemSubtotal = item.price * item.quantity;
-                total += itemSubtotal;
-                
-                const mockItem = mockMenuItems.find(m => m.id === item.id);
-                const itemImg = item.img ? item.img : (mockItem ? mockItem.img : 'img/default.jpeg'); 
+                const itemSubtotal = item.price * item.quantity; // subtotal do item
+                total += itemSubtotal; // soma ao total
 
+                // tenta encontrar dados adicionais (imagem) no mockMenuItems
+                const mockItem = mockMenuItems.find(m => m.id === item.id);
+                const itemImg = item.img ? item.img : (mockItem ? mockItem.img : 'img/default.jpeg');
+
+                // adiciona a linha com nome, preço, controles e subtotal
                 cartTableHTML += `
                     <tr>
-                        <td data-label="Produto">
+                        <td>
                             <div class="item-info">
                                 <img src="${itemImg}" alt="${item.name}" class="item-image">
-                                <span>${item.name}</span>
+                                <div>
+                                    <div style="font-weight:700">${item.name}</div>
+                                    <div class="muted" style="font-size:0.9rem;">ID: ${item.id}</div>
+                                </div>
                             </div>
                         </td>
-                        <td data-label="Preço Unitário">${formatCurrency(item.price)}</td>
-                        <td data-label="Quantidade">
+                        <td>${formatCurrency(item.price)}</td>
+                        <td>
                             <div class="quantity-controls">
+                                <!-- updateQuantity é chamada com +1 / -1 -->
                                 <button onclick="updateQuantity(${item.id}, -1)">-</button>
                                 <span>${item.quantity}</span>
                                 <button onclick="updateQuantity(${item.id}, 1)">+</button>
                             </div>
                         </td>
-                        <td data-label="Subtotal">${formatCurrency(itemSubtotal)}</td>
-                        <td data-label="Ações">
-                            <button class="remove-btn" onclick="removeItem(${item.id})" title="Remover Item"><i class="fas fa-trash"></i></button>
-                        </td>
+                        <td>${formatCurrency(itemSubtotal)}</td>
+                        <td><button class="remove-btn" onclick="removeItem(${item.id})" title="Remover Item"><i class="fas fa-trash"></i></button></td>
                     </tr>
                 `;
             });
+
             cartTableHTML += '</tbody></table>';
             cartContentDiv.innerHTML = cartTableHTML;
 
-
-            // Renderiza o Resumo do Carrinho
+            /* resumo com botão finalizar que abre o modal */
             const summaryHTML = `
-                <div class="summary-line">
-                    <span>Subtotal:</span>
-                    <span>${formatCurrency(total)}</span>
+                <div class="cart-summary">
+                    <div class="summary-line"><span class="muted">Subtotal:</span><strong>${formatCurrency(total)}</strong></div>
+                    <div style="margin-top:6px;">
+                        <button class="checkout-btn" onclick="openPagamentoModal()">
+                            FINALIZAR PEDIDO <i class="fas fa-arrow-right" style="margin-left:8px"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="summary-line">
-                    <strong>Total:</strong>
-                    <strong>${formatCurrency(total)}</strong>
-                </div>
-                <button class="checkout-btn" onclick="checkout()">
-                    Finalizar Pedido <i class="fas fa-arrow-right"></i>
-                </button>
             `;
             cartSummaryDiv.innerHTML = summaryHTML;
         }
 
-        // ----------------------------------------------------
-        // LÓGICA DE MANIPULAÇÃO DO CARRINHO (Funções globais)
-        // ----------------------------------------------------
+        /* ================== Funções de manipulação do carrinho ================== */
 
-        // Atualiza a quantidade de um item
+        // atualiza quantidade do item no localStorage e re-renderiza
         window.updateQuantity = function(itemId, change) {
             let cart = JSON.parse(localStorage.getItem('burguerLingoCart')) || [];
-            const itemIndex = cart.findIndex(item => item.id === itemId);
-
-            if (itemIndex > -1) {
-                cart[itemIndex].quantity += change;
-
-                if (cart[itemIndex].quantity <= 0) {
-                    // Remove o item se a quantidade chegar a zero
-                    cart.splice(itemIndex, 1);
-                }
-
-                localStorage.setItem('burguerLingoCart', JSON.stringify(cart));
+            const idx = cart.findIndex(it => it.id === itemId);
+            if (idx > -1) {
+                cart[idx].quantity += change;
+                // se quantidade <= 0, remove o item
+                if (cart[idx].quantity <= 0) cart.splice(idx, 1);
+                localStorage.setItem('burguerLingoCart', JSON.stringify(cart)); // salva de volta
                 renderCart();
             }
         }
 
-        // Remove um item completamente
+        // remove completamente um item do carrinho
         window.removeItem = function(itemId) {
             let cart = JSON.parse(localStorage.getItem('burguerLingoCart')) || [];
-            const initialLength = cart.length;
-
-            cart = cart.filter(item => item.id !== itemId);
-            
-            if (cart.length < initialLength) {
-                localStorage.setItem('burguerLingoCart', JSON.stringify(cart));
-                renderCart();
-            }
-        }
-
-        // Simula a finalização do pedido
-        window.checkout = function() {
-            const cart = JSON.parse(localStorage.getItem('burguerLingoCart')) || [];
-            if (cart.length === 0) {
-                alert("Seu carrinho está vazio!");
-                return;
-            }
-
-            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity - desconto), 0);
-            
-            alert(`Seu pedido de ${formatCurrency(totalAmount)} foi finalizado com sucesso!`);
-            
-            // Limpa o carrinho
-            localStorage.removeItem('burguerLingoCart');
+            cart = cart.filter(it => it.id !== itemId); // filtra o item
+            localStorage.setItem('burguerLingoCart', JSON.stringify(cart)); // salva
             renderCart();
         }
 
+        /* ================== MODAL / FLUXO DE PAGAMENTO ================== */
+
+        // abre o modal: verifica se há itens e prepara a área de método
+        function openPagamentoModal() {
+            const cart = JSON.parse(localStorage.getItem('burguerLingoCart')) || [];
+            if (cart.length === 0) { alert("Seu carrinho está vazio!"); return; }
+            document.getElementById('PagamentoModal').style.display = 'flex'; // mostra modal
+            selectedPayment = null; // limpa seleção anterior
+            document.getElementById('paymentMethodArea').innerHTML = `<p class="muted">Escolha uma forma de pagamento acima.</p>`;
+        }
+
+        // fecha o modal e limpa a área
+        function closePagamentoModal() {
+            document.getElementById('PagamentoModal').style.display = 'none';
+            document.getElementById('paymentMethodArea').innerHTML = '';
+            selectedPayment = null;
+        }
+
+        /* variável que guarda o método selecionado (pix/cartao/dinheiro) */
+        let selectedPayment = null;
+        const PIX_KEY = "vagnerricardo2024@gmail.com"; // chave PIX do usuário (informada por você)
+
+        // Gera URL de QR Code usando API pública (api.qrserver.com)
+        // Observação: essa URL retorna uma imagem PNG do QR
+        function geracaoPix(key) {
+            return `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(key)}`;   /* usando este site para gerar 1 qr code */
+        }
+
+        /* selectPayment: monta o HTML da área dependendo do tipo escolhido.
+           - Para PIX: mostra imagem do QR, botão copiar chave e link do QR
+           - Para cartão: gera inputs para dados do cartão (simulado)
+           - Para dinheiro: pede informação de troco (opcional) */
+        function selectPayment(type) {
+            selectedPayment = type;
+            const area = document.getElementById('paymentMethodArea');
+
+            if (type === 'pix') {
+                const qrUrl = geracaoPix(PIX_KEY);
+                area.innerHTML = `
+                    <div class="qrcode-box" style="flex-direction:column; align-items:center;">
+                        <div style="display:flex; gap:12px; align-items:center; width:100%; justify-content:space-between;">
+                            <div style="text-align:left;">
+                                <div style="font-weight:700; font-size:1.02rem;">PIX - ${PIX_KEY}</div>
+                                <div class="muted" style="margin-top:6px;">Escaneie o QR ou copie a chave abaixo.</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <!-- copia a chave PIX para a área de transferência -->
+                                <button class="copy-btn" onclick="copyToClipboard('${PIX_KEY}')"><i class="fas fa-copy"></i> Copiar chave</button>
+                            </div>
+                        </div>
+
+                        <div style="display:flex; gap:14px; align-items:center; margin-top:12px; width:100%; justify-content:center;">
+                            <img src="${qrUrl}" width="180" alt="QR PIX" />
+                        </div>
+
+                        <div style="margin-top:10px; width:100%; display:flex; gap:8px; justify-content:center;">
+                            <!-- link para abrir a imagem do QR em nova aba -->
+                            <a class="copy-btn" href="${qrUrl}" target="_blank" rel="noopener">Abrir QR</a>
+                            <!-- copia a URL da imagem do QR -->
+                            <button class="copy-btn" onclick="copyToClipboard('${qrUrl}')">Copiar link do QR</button>
+                        </div>
+
+                        <div style="margin-top:12px; width:100%; text-align:center;" class="muted">
+                            Depois do pagamento no app do banco, clique em <strong>"Confirmar Pagamento"</strong>.
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (type === 'cartao') {
+                // aqui não processamos cartão de verdade — apenas simulamos os campos
+                area.innerHTML = `
+                    <div style="display:flex; flex-direction:column; gap:10px;">
+                        <div style="font-weight:700; font-size:1.02rem;">Pagamento com Cartão</div>
+                        <input id="cardNumber" class="small-input" type="text" inputmode="numeric" maxlength="19" placeholder="Número do Cartão (apenas visual)">
+                        <input id="cardName" class="small-input" type="text" placeholder="Nome no Cartão">
+                        <div style="display:flex; gap:10px;">
+                            <input id="cardDate" class="small-input" style="flex:1" maxlength="5" placeholder="MM/AA">
+                            <input id="cardCVV" class="small-input" style="width:100px" maxlength="4" placeholder="CVV">
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (type === 'dinheiro') {
+                area.innerHTML = `
+                    <div style="display:flex; flex-direction:column; gap:10px;">
+                        <div style="font-weight:700; font-size:1.02rem;">Pagamento em Dinheiro (na entrega)</div>
+                        <input id="troco" class="small-input" type="number" placeholder="Precisa de troco para quanto? (opcional)">
+                        <div class="muted">O entregador confirmará o troco ao receber o pedido.</div>
+                    </div>
+                `;
+            }
+        }
+
+        /* copia texto para a área de transferência
+           - usa Clipboard API moderna com fallback para execCommand */
+        function copyToClipboard(text) {
+            if (!navigator.clipboard) {
+                // fallback (compatibilidade com navegadores antigos)
+                const tmp = document.createElement('textarea');
+                tmp.value = text;
+                document.body.appendChild(tmp);
+                tmp.select();
+                try { document.execCommand('copy'); alert('Copiado para a área de transferência'); }
+                catch(e) { alert('Não foi possível copiar'); }
+                tmp.remove();
+                return;
+            }
+            // método moderno (promessa)
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copiado para a área de transferência');
+            }).catch(() => {
+                alert('Não foi possível copiar');
+            });
+        }
+
+        /* ========== Validação simples dos campos do cartão ==========
+           - Em um sistema real, a validação e o processamento seriam feitos por um gateway.*/
+        function validateCardFields() {
+            const number = (document.getElementById('cardNumber') || {}).value || '';
+            const name = (document.getElementById('cardName') || {}).value || '';
+            const date = (document.getElementById('cardDate') || {}).value || '';
+            const cvv = (document.getElementById('cardCVV') || {}).value || '';
+
+            // remove qualquer caractere não numérico do número do cartão
+            const digits = number.replace(/\D/g,'');
+            if (digits.length < 13) { alert('Número do cartão inválido.'); return false; }
+            if (name.trim().length < 3) { alert('Informe o nome no cartão.'); return false; }
+            // espera formato MM/AA (ex: 05/24)
+            if (!/^\d{2}\/\d{2}$/.test(date)) { alert('Validade inválida (use MM/AA).'); return false; }
+            if (cvv.trim().length < 3) { alert('CVV inválido.'); return false; }
+            return true;
+        }
+
+        /* ========== Confirmar pagamento (SIMULADO) ==========
+           - Dependendo do método, mostramos mensagem e limpamos o carrinho.
+           - Em produção, aqui seria feita comunicação com backend/gateway. */
+        function confirmPayment() {
+            if (!selectedPayment) { alert('Selecione uma forma de pagamento!'); return; }
+
+            // PIX: consideramos que o usuário já pagou no app do banco
+            if (selectedPayment === 'pix') {
+                const area = document.getElementById('paymentMethodArea');
+                area.innerHTML = `<div style="text-align:center; padding:18px;">
+                    <h2 style="color:var(--color-primary); margin:0 0 8px;">Pagamento realizado! ✔</h2>
+                    <p>PIX recebido. Obrigado por comprar no Burguer Lingo! 🍔</p>
+                </div>`;
+                // fecha o modal e limpa o carrinho após 1.4s para dar feedback visual
+                setTimeout(() => { closePagamentoModal(); localStorage.removeItem('burguerLingoCart'); renderCart(); }, 1400);
+                return;
+            }
+
+            // CARTÃO: valida os campos e mostra sucesso (simulado)
+            if (selectedPayment === 'cartao') {
+                if (!validateCardFields()) return; // se inválido, aborta
+                const area = document.getElementById('paymentMethodArea');
+                area.innerHTML = `<div style="text-align:center; padding:18px;">
+                    <h2 style="color:var(--color-primary); margin:0 0 8px;">Pagamento com cartão aprovado! ✔</h2>
+                    <p>Transação simulada concluída. Obrigado!</p>
+                </div>`;
+                setTimeout(() => { closePagamentoModal(); localStorage.removeItem('burguerLingoCart'); renderCart(); }, 1400);
+                return;
+            }
+
+            // DINHEIRO: confirma o pedido com pagamento na entrega
+            if (selectedPayment === 'dinheiro') {
+                const area = document.getElementById('paymentMethodArea');
+                area.innerHTML = `<div style="text-align:center; padding:18px;">
+                    <h2 style="color:var(--color-primary); margin:0 0 8px;">Pedido confirmado - Pagamento em dinheiro</h2>
+                    <p>O pagamento será feito ao entregador. Obrigado!</p>
+                </div>`;
+                setTimeout(() => { closePagamentoModal(); localStorage.removeItem('burguerLingoCart'); renderCart(); }, 1400);
+                return;
+            }
+        }
+
+        // quando o documento carrega, renderiza o carrinho
         document.addEventListener('DOMContentLoaded', renderCart);
     </script>
+
     <footer>
         <div class="footer-links">
-            <a href="index.html#perguntas-frequentes" aria-label="Ir para Perguntas Frequentes">Perguntas Frequentes</a>
-            <a href="index.html#sobre-nos" aria-label="Ir para Sobre Nós">Sobre Nós</a>
-            <a href="fale conosco.html">Fale Conosco</a>
+            <a href="index.html#perguntas-frequentes" aria-label="Ir para Perguntas Frequentes">Perguntas Frequentes</a> |
+            <a href="index.html#sobre-nos" aria-label="Ir para Sobre Nós">Sobre Nós</a> |
+            <a href="fale conosco.html">Fale Conosco</a> |
             <a href="politica.html">Política de Privacidade</a>
         </div>
         <p>© 2025 BURGUER LINGO. Todos os direitos reservados.</p>
     </footer>
-
 </body>
-
-
 </html>
-
