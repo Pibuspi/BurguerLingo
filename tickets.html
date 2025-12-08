@@ -68,6 +68,18 @@
         function listarCupons() {
             const div = document.getElementById("listaCupons");
             const cupons = JSON.parse(localStorage.getItem("burguerLingoCoupons")) || [];
+            const userCoupons = [
+  { id: 1, code: "BRASIL10", discount: 10, used: false },
+  { id: 2, code: "FRANCA25", discount: 25, used: false },
+  { id: 3, code: "ITALIA25", discount: 25, used: false },
+  { id: 4, code: "CHINA25", discount: 25, used: false },
+  { id: 5, code: "JAPAO25", discount: 25, used: false },
+  { id: 6, code: "ALEMANHA25", discount: 25, used: false },
+  { id: 7, code: "EUA25", discount: 25, used: false },
+  { id: 8, code: "ESPANHA25", discount: 25, used: false }
+];
+
+localStorage.setItem("burguerLingoCoupons", JSON.stringify(userCoupons));
 
             if (cupons.length === 0) {
                 div.innerHTML = "<p style='text-align:center;color:#777;'>Você não possui cupons ainda.</p>";
