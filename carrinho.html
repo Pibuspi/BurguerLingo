@@ -447,15 +447,15 @@
             /* resumo com botão finalizar que abre o modal */
             const summaryHTML = `
                 ${descontoCupom > 0 ? `
-                    <div class="summary-line">
-                        <span class="muted">Cupom (${cupomSelecionado}):</span>
-                        <strong>- ${descontoCupom}%</strong>
-                    </div>
+                <div class="summary-line">
+                    <span class="muted">Cupom (${cupomSelecionado}):</span>
+                    <strong>- ${descontoCupom}%</strong>
+                </div>
                 ` : ""}
-                    <div class="summary-line">
-                        <span class="muted">Total Final:</span>
-                        <strong>${formatCurrency(totalComDesconto)}</strong>
-                    </div>
+                <div class="summary-line">
+                    <span class="muted">Total Final:</span>
+                    <strong>${formatCurrency(totalComDesconto)}</strong>
+                </div>         
                 <div class="cart-summary">
                     <div class="summary-line"><span class="muted">Subtotal:</span><strong>${formatCurrency(total)}</strong></div>
                     <div style="margin-top:6px;">
@@ -666,8 +666,15 @@
                 setTimeout(() => { closePagamentoModal(); localStorage.removeItem('burguerLingoCart'); renderCart(); }, 1400);
                 return;
             }
+            let cupomSel = localStorage.getItem("cupomSelecionado");
+            if (cupomSel) {
+                let cupons = JSON.parse(localStorage.getItem("burguerLingoCoupons")) || [];
+                const idx = cupons.findIndex(c => c.code === cupomSel);
+                if (idx > -1) cupons[idx].used = true;
+                    localStorage.setItem("burguerLingoCoupons", JSON.stringify(cupons));
+                    localStorage.removeItem("cupomSelecionado");
+            }
         }
-
         // quando o documento carrega, renderiza o carrinho
         document.addEventListener('DOMContentLoaded', renderCart);
     </script>
