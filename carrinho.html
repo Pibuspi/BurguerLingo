@@ -455,16 +455,6 @@
                     </div>
                 </div>
             `;
-            ${descontoCupom > 0 ? `
-                <div class="summary-line">
-                    <span class="muted">Cupom (${cupomSelecionado}):</span>
-                    <strong>- ${descontoCupom}%</strong>
-                </div>
-            ` : ""}
-                <div class="summary-line">
-                    <span class="muted">Total Final:</span>
-                    <strong>${formatCurrency(totalComDesconto)}</strong>
-                </div>
             cartSummaryDiv.innerHTML = summaryHTML;
         }
 
