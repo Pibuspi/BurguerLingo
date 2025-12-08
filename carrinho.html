@@ -395,28 +395,12 @@
             cart.forEach(item => {
                 const itemSubtotal = item.price * item.quantity; // subtotal do item
                 total += itemSubtotal; // soma ao total
-                let totalComDesconto = total;
-
-                if (descontoCupom > 0) {
-                    totalComDesconto = total - (total * (descontoCupom / 100));
-                }
-
+                
                 // tenta encontrar dados adicionais (imagem) no mockMenuItems
                 const mockItem = mockMenuItems.find(m => m.id === item.id);
                 const itemImg = item.img ? item.img : (mockItem ? mockItem.img : 'img/default.jpeg');
 
                 // adiciona a linha com nome, preço, controles e subtotal
-                //teste para a função dos cupons
-                let cupomSelecionado = localStorage.getItem("cupomSelecionado");
-                let descontoCupom = 0;
-
-                if (cupomSelecionado) {
-                    const cupons = JSON.parse(localStorage.getItem("burguerLingoCoupons")) || [];
-                    const cupom = cupons.find(c => c.code === cupomSelecionado && !c.used);
-                if (cupom) {
-                    descontoCupom = cupom.discount;
-                }
-}
                 cartTableHTML += `
                     <tr>
                         <td>
@@ -645,15 +629,7 @@
                 setTimeout(() => { closePagamentoModal(); localStorage.removeItem('burguerLingoCart'); renderCart(); }, 1400);
                 return;
             }
-            let cupomSel = localStorage.getItem("cupomSelecionado");
-            if (cupomSel) {
-                let cupons = JSON.parse(localStorage.getItem("burguerLingoCoupons")) || [];
-                const idx = cupons.findIndex(c => c.code === cupomSel);
-            if (idx > -1) cupons[idx].used = true;
-                localStorage.setItem("burguerLingoCoupons", JSON.stringify(cupons));
-                localStorage.removeItem("cupomSelecionado");
-            }
-
+            
             // CARTÃO: valida os campos e mostra sucesso (simulado)
             if (selectedPayment === 'cartao') {
                 if (!validateCardFields()) return; // se inválido, aborta
