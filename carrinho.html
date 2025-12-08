@@ -392,10 +392,24 @@
             let cartTableHTML = '<table class="cart-table"><thead><tr><th>Produto</th><th>Preço Unitário</th><th>Quantidade</th><th>Subtotal</th><th>Ações</th></tr></thead><tbody>';
 
             // para cada item no carrinho, calcula subtotal e adiciona linhas
+            let cupomSelecionado = localStorage.getItem("cupomSelecionado");
+            let descontoCupom = 0;
+
+            if (cupomSelecionado) {
+                const cupons = JSON.parse(localStorage.getItem("burguerLingoCoupons")) || [];
+                const cupom = cupons.find(c => c.code === cupomSelecionado && !c.used);
+                if (cupom) {
+                    descontoCupom = cupom.discount;
+                }
+            }
             cart.forEach(item => {
                 const itemSubtotal = item.price * item.quantity; // subtotal do item
                 total += itemSubtotal; // soma ao total
-                
+                let totalComDesconto = total;
+
+                if (descontoCupom > 0) {
+                    totalComDesconto = total - (total * (descontoCupom / 100));
+                }
                 // tenta encontrar dados adicionais (imagem) no mockMenuItems
                 const mockItem = mockMenuItems.find(m => m.id === item.id);
                 const itemImg = item.img ? item.img : (mockItem ? mockItem.img : 'img/default.jpeg');
