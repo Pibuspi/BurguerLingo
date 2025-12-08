@@ -70,13 +70,14 @@
             const cupons = JSON.parse(localStorage.getItem("burguerLingoCoupons")) || [];
             const userCoupons = [
   { id: 1, code: "BRASIL10", discount: 10, used: false },
-  { id: 2, code: "FRANCA25", discount: 25, used: false },
-  { id: 3, code: "ITALIA25", discount: 25, used: false },
-  { id: 4, code: "CHINA25", discount: 25, used: false },
-  { id: 5, code: "JAPAO25", discount: 25, used: false },
-  { id: 6, code: "ALEMANHA25", discount: 25, used: false },
-  { id: 7, code: "EUA25", discount: 25, used: false },
-  { id: 8, code: "ESPANHA25", discount: 25, used: false }
+  { id: 2, code: "FRANCA10", discount: 10, used: false },
+  { id: 3, code: "EUA10", discount: 10, used: false },
+  { id: 4, code: "ESPANHA10", discount: 10, used: false },
+  { id: 5, code: "JAPAO10", discount: 10, used: false },
+  { id: 6, code: "ITALIA10", discount: 10, used: false },
+  { id: 7, code: "CHINA10", discount: 10, used: false },
+  { id: 8, code: "COREIA10", discount: 10, used: false },
+  { id: 9, code: "ALEMANHA10", discount: 10, used: false }
 ];
 
 localStorage.setItem("burguerLingoCoupons", JSON.stringify(userCoupons));
@@ -102,7 +103,7 @@ localStorage.setItem("burguerLingoCoupons", JSON.stringify(userCoupons));
         }
 
         function usarCupom(codigo){
-            localStorage.setItem("cupomSelecionado", codigo);
+            localStorage.setItem("cupomSelecionado", code);
             alert("Cupom aplicado! Agora finalize sua compra no carrinho.");
             window.location.href = "carrinho.html";
         }
