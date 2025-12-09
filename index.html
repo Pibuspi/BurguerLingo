@@ -430,10 +430,10 @@ document.addEventListener("DOMContentLoaded", function() {
           </span>
           <div class="answer-box">
             <p class="text-blk faq-answer">Insire o seu email e sua pergunta abaixo:</p>
-            <label for id="emailInput" text-color="#08c958"> Email:</label>
+            <label for id="emailInput" class="instruction"> Email:</label>
             <input class="email" type="text" id="emailInput" name="userEmail" placeholder="Seu Email">
             <br>
-            <label for id="questionInput" text-color="#08c958"> Pergunta:</label>
+            <label for id="questionInput" class="instruction"> Pergunta:</label>
             <textarea class="question" id="questionInput" name="userQuestion" rows="10" cols="50" placeholder="Sua Pergunta"></textarea>
             <br>
             <button class="confirm" id="confirmButton"> Confirmar </button>
@@ -472,6 +472,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     color: white;
                     display: block;
                     margin-left: 0;
+                }
+                .instruction {
+                    text-color: #08c958;
+                    text-align: left;
                 }
               </style>
           </div>
@@ -817,6 +821,7 @@ body {
 </style>
 </body>
 </html>
+
 
 
 
