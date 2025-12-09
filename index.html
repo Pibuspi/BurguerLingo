@@ -430,11 +430,14 @@ document.addEventListener("DOMContentLoaded", function() {
           </span>
           <div class="answer-box">
             <p class="text-blk faq-answer">Insire o seu email e sua pergunta abaixo:</p>
+            <p class="instruction"> Email:</p>
             <input class="email" type="text" id="emailInput" name="userEmail" placeholder="Seu Email">
             <br>
+            <p class="instruction"> Pergunga:</p>
             <input class="question" type="text" id="questionInput" name="userQuestion" placeholder="Sua Pergunta">
             <br>
             <button class="confirm" id="confirmButton"> Confirmar </button>
+            <br>
               <script>
                   document.addEventListener('DOMContentLoaded', function() {
                       const emailInput = document.getElementById('emailInput');
@@ -454,13 +457,13 @@ document.addEventListener("DOMContentLoaded", function() {
               </script>
               <style>
                 .email {
-                    width: 300px;
+                    width: 400px;
                     float: left;
                 }
                     
                 .question {
-                    width: 300px;
-                    height: 100px;
+                    width: 400px;
+                    height: 150px;
                     float: left;
                 }
                     
@@ -468,6 +471,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     background-color: #08c958;
                     color: white;
                     float: left;
+                }
+                .instruction {
+                    text-align: left;
+                    color: #08c958;
                 }
               </style>
           </div>
@@ -813,6 +820,7 @@ body {
 </style>
 </body>
 </html>
+
 
 
 
