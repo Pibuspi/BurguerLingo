@@ -312,12 +312,12 @@ footer {
 }
 
 .email {
-    width: 100px;
+    width: 300px;
 }
 
 .question {
-    width: 100px;
-    height: 60px;
+    width: 300px;
+    height: 100px;
 }
 
 .confirm {
