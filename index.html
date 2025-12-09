@@ -392,10 +392,10 @@ document.addEventListener("DOMContentLoaded", function() {
             <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
           </span>
           <div class="answer-box">
-            <p class="text-blk faq-answer">Dinheiro vivo, cartão de crédito, débito, vale-refeição e pix.</p>
+            <p class="text-blk faq-answer">Dinheiro vivo, cartão de crédito, débito e pix.</p>
           </div>
         </div>
-<div class="faq">
+        <div class="faq">
           <span class="faq-question-container">
             <p class="text-blk faq-questions">Posso ter algum tipo de desconto se eu tiver uma conta no Duolingo?</p>
             <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
@@ -404,7 +404,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <p class="text-blk faq-answer">Infelizmente não.</p>
           </div>
         </div>
-<div class="faq">
+        <div class="faq">
           <span class="faq-question-container">
             <p class="text-blk faq-questions">Posso retirar algum ingrediente do hambúrguer?</p>
             <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
@@ -423,6 +423,35 @@ document.addEventListener("DOMContentLoaded", function() {
             <p class="text-blk faq-answer">O pagamento fiado é apenas permitido para maiores de 75 anos acompanhados dos avós.</p>
           </div>
         </div>
+        <div class="faq">
+          <span class="faq-question-container">
+            <p class="text-blk faq-questions">Não encontrou sua pergunta?</p>
+            <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
+          </span>
+          <div class="answer-box">
+            <p class="text-blk faq-answer">Insire o seu email e sua pergunta abaixo:</p>
+            <input type="text" id="emailInput" name="userEmail" placeholder="Seu Email">
+            <input type="text" id="questionInput" name="userQuestion" placeholder="Sua Pergunta">
+            <button id="confirmButton"> Confirmar </button>
+              <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      const emailInput = document.getElementById('emailInput');
+                      const questionInput = document.getElementById('questionInput');
+                      const confirmButton = document.getElementById('confirmButton');
+                    
+                      confirmButton.addEventListener('click', function() {
+                        const inputValue = emailInput.value + questionInput.value;
+                        if (inputValue) {
+                          alert('Sua pergunta foi enviada!');
+                        } 
+                        else {
+                          alert('Por favor insira seu email e sua pergunta.');
+                        }
+                      });
+                    });
+              </script>   
+          </div>
+        </div>
 
       </div>
     </div>
@@ -436,6 +465,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <a href="fale conosco.html">Fale Conosco</a>
             <a href="politica.html">Política de Privacidade</a>
             <img href="placeholder" class="invert" src="instagram.jpeg" alt="Instagram page" width="15" height="15">
+            <a></a>
             <img href="placeholder" class="invert" src="facebook.jpeg" alt="Facebook page" width="15" height="15">
         </div>
         <p>© 2025 BURGUER LINGO. Todos os direitos reservados.</p>
@@ -763,6 +793,7 @@ body {
 </style>
 </body>
 </html>
+
 
 
 
