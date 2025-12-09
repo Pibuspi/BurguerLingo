@@ -369,7 +369,7 @@
                 <input type="email"
                 id="emailCadastro"
                 placeholder="Email">
-                <input type="senha"
+                <input type="password"
                 id="senhaCadastro"
                 placeholder="senha">
                 <button id="btnCadastrar" type="submit"> Criar conta</button>
@@ -392,10 +392,9 @@
                 <input type="email"
                 id="emailLogin"
                 placeholder="Email">
-                <input type="senha"
-                id="senhaLogin"
+                <input type="password"
+                id="senhaCadastro"
                 placeholder="senha">
-                <a href="#"> Esqueceu sua senha?</a>
                 <button id="btnLogin"> Login</button>
             </form>
         </div>
@@ -489,27 +488,37 @@
     const auth = getAuth(app);
 
     // ✅ Cadastro com e-mail/senha
+    // Cadastro com e-mail/senha
     document.querySelector("#btnCadastrar")?.addEventListener("click", (e) => {
-    e.preventDefault();
-    const email = document.querySelector("#emailCadastro").value;
-    const senha = document.querySelector("#senhaCadastro").value;
-    createUserWithEmailAndPassword(auth, email, senha)
-        .then(() => alert("Conta criada com sucesso!"))
-        .catch((error) => alert("Erro: " + error.message));
+        e.preventDefault();
+        const email = document.querySelector("#emailCadastro").value;
+        const senha = document.querySelector("#senhaCadastro").value;
+
+        createUserWithEmailAndPassword(auth, email, senha)
+            .then(() => alert("Conta criada com sucesso!") => {
+            href = "index.html"
+            });
+            .catch((error) => alert("Conta já criada com esse email"));
+
+
     });
 
+
     // ✅ Login com e-mail/senha
-    document.querySelector("#btnLogin")?.addEventListener("click", (e) => {
-    e.preventDefault();
-    const email = document.querySelector("#emailLogin").value;
-    const senha = document.querySelector("#senhaLogin").value;
-    signInWithEmailAndPassword(auth, email, senha)
-        .then(() => {
-        alert("Login realizado!");
-        window.location.href = "index.html";
-        })
-        .catch((error) => alert("Erro: " + error.message));
-    });
+        // Login com e-mail/senha
+        document.querySelector("#senhaCadastro")?.addEventListener("click", (e) => {
+            e.preventDefault();
+            const email = document.querySelector("#emailLogin").value;
+            const senha = document.querySelector("#senhaLogin").value;
+
+            signInWithEmailAndPassword(auth, email, senha)
+                .then(() => {
+                    alert("Login realizado!");
+                    window.location.href = "index.html";
+                })
+                .catch((error) => alert("Erro: " + error.message));
+        });
+
 
     // ✅ Login com Google
     const provider = new GoogleAuthProvider();
