@@ -310,3 +310,17 @@ footer {
 .invert {
     filter: invert(100%);
 }
+
+.email {
+    width: 100px;
+}
+
+.question {
+    width: 100px;
+    height: 60px;
+}
+
+.confirm {
+    background-color: #08c958;
+    color: white;
+}
