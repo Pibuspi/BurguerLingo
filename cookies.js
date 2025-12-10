@@ -1,14 +1,12 @@
-// em construção
-
-var msgCookies = document.getElementById('cookies-msg');
+var msgCookies = document.getElementById('cookies-msg')
 
 function aceito() {
-    localStorage.lgpd = "sim";
-    msgCookies.classList.remove('mostrar');
+    localStorage.lgpd = "sim"
+    msgCookies.classList.remove('mostrar')
 }
 
 if (localStorage.lgpd == 'sim') {
-    msgCookies.classList.remove('mostrar');
+    msgCookies.classList.remove('mostrar')
 } else {
-    msgCookies.classList.add('mostrar');
+    msgCookies.classList.add('mostrar')
 }
