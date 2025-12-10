@@ -309,6 +309,4 @@ footer {
 
 .invert {
     filter: invert(100%);
-    padding: 5px;
-    cursor: pointer;
 }
