@@ -2,102 +2,267 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="CHEF+DUO .png" type="image/png">
-    <title>BURGUER LINGO</title>
-    <link rel="stylesheet" href="Main-burguer.css">
-    <link rel="stylesheet" href="burguer lingo.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Lição Burguer Lingo</title>
+    <link rel="icon" href="CHEF+DUO.jpeg" type="image/png">
+    <link rel="stylesheet" href="duolicao.css"> 
 </head>
 <body>
-    <div id="sidebar" class="menu-lateral">
-        <button id="close-btn" class="close-btn">&times;</button> <h2>MENU BURGUER LINGO</h2>
-        <a href="Login.html"><i class="fas fa-user-circle"></i> Login</a>
-        <a href="cardapio.html"><i class="fas fa-burger"></i> Cardápio</a>
-        <a href="licaoIdioma.html"><i class="fas fa-book-open"></i> Lingo Lessons (Lições)</a>
-        <a href="reservas.html"><i class="fas fa-table"></i> Reservas</a>
-        <a href="fale conosco.html"><i class="fas fa-headset"></i> Fale Conosco</a>
-        <a href="tickets.html"><i class="fas fa-ticket-alt"></i> Tickets e Descontos</a>
-    </div>
+    <style>
+                /* licao-style.css
+        Estilo inspirado no Duolingo para licaoIdioma.html
+        Salve este arquivo como "licao-style.css"
+        */
 
-    <header class="main-header">
-        <button id="menu-btn" class="menu-hamburguer"><i class="fas fa-bars"></i></button>
+        :root{
+        --green: #58cc02;
+        --green-dark: #44a003;
+        --bg: linear-gradient(180deg,#f7fdf7 0%, #ecf9ee 100%);
+        --card: #ffffff;
+        --muted: #68707a;
+        --accent: #ffd24a;
+        --radius: 16px;
+        --shadow: 0 10px 30px rgba(15,23,42,0.08);
+        font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+        }
 
-        <a href="index.html" class="logo-link">
-            <img src="LogoBurguerDuo.png" alt="Logo Burguer Lingo">
-        </a>
+        /* reset simples */
+        *{box-sizing:border-box}
+        html,body{height:100%; margin:0; background:var(--bg); color:#0f1722; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+
+        /* --------------- HEADER / NAV --------------- */
+        .main-header{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:16px;
+        padding:14px 22px;
+        background: linear-gradient(90deg,var(--green),var(--green-dark));
+        border-bottom-left-radius:12px;
+        border-bottom-right-radius:12px;
+        position:sticky;
+        top:0;
+        z-index:1200;
+        box-shadow: var(--shadow);
+        }
+        .main-header .menu-hamburguer{ background:transparent; border:0; color:#fff; font-size:22px; cursor:pointer; }
+        .main-header .logo-link img{ height:46px; display:block; }
+        .main-header .main-nav{ display:flex; gap:10px; }
+        .main-header .main-nav a{ color:#fff; text-decoration:none; font-weight:700; font-size:14px; padding:6px 8px; border-radius:8px; }
+        .main-header .main-nav a:hover{ background: rgba(255,255,255,0.08); }
+        .user-actions{ display:flex; align-items:center; gap:12px; color:#fff; font-weight:600; }
+
+        /* --------------- SIDEBAR --------------- */
+        .menu-lateral{
+        width:0; height:100%; position:fixed; left:0; top:0; background:#0f1722; color:#fff; overflow:hidden; transition:width .28s ease; z-index:1500; padding-top:60px;
+        }
+        .menu-lateral.active{ width:260px; }
+        .menu-lateral h2{ color:var(--green); text-align:center; margin-bottom:8px; }
+        .menu-lateral a{ display:block; padding:12px 18px; color:#eee; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.03); }
+        .menu-lateral a i{ margin-right:10px; }
+        .menu-lateral a:hover{ background: rgba(255,255,255,0.03); }
+
+        /* close button */
+        .close-btn{ position:absolute; top:12px; right:14px; font-size:32px; background:none; border:none; color:#fff; cursor:pointer; }
+
+        /* --------------- LAYOUT LIÇÃO --------------- */
+        .conteudo-licao{
+        max-width:1100px;
+        margin: 26px auto;
+        padding: 18px;
+        display:flex;
+        flex-direction:column;
+        gap:18px;
+        }
+
+        /* header da lição (barra superior com progresso/vidas) */
+        .header-licao{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        justify-content:space-between;
+        background: rgba(255,255,255,0.85);
+        padding:12px 16px;
+        border-radius:12px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(15,23,42,0.04);
+        }
+
+        /* botão sair */
+        #sair{
         
-        <nav class="main-nav">
-            <a href="cardapio.html">CARDÁPIO</a>
-            <a href="licaoIdioma.html">LINGO LESSONS</a>
-            <a href="reservas.html">RESERVAS</a>
-        </nav>
+        font-size:20px;
+        cursor:pointer;
+        border-radius:10px;
+        padding:6px;
+        }
 
-       <div class="user-actions">
-          <span id="userGreeting" style="color: white; margin-right: 15px; font-weight: 600;"></span>
+        /* PROGRESSO */
+        .progresso{
+        flex:1;
+        margin: 0 18px;
+        height:14px;
+        padding:2px;
+        box-shadow: inset 0 -3px 8px rgba(0,0,0,0.03);
+        }
+        .progresso-inner{
+        height:100%;
+        width:0%;
+        background: linear-gradient(90deg,var(--green));
+        border-radius:999px;
+        transition: width .6s ease;
+        }
 
-          <a href="Login.html" id="loginIcon" title="Login / Minha Conta" class="nav-icon">
-              <i class="fas fa-user"></i>
-          </a>
+        /* VIDAS (corações) */
+        .vidas{
+        display:flex;
+        gap: 12px;
+        align-items:center;
+        }
+        .vidas .coracao{
+        width:46px;
+        height:46px;
+        display:inline-flex;
+        align-items:center;
+        background: linear-gradient(180deg,#5b2626 0%, #ffecec 100%);
+        border-radius:10px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        }
 
-          <a href="carrinho.html" title="Carrinho de Compras" class="nav-icon">
-              <i class="fas fa-shopping-cart"></i>
-          </a>
-      </div>
-    </header>
-      
-   
-    <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+        /* personagem e container central */
+        #personagem{
+        width:140px;
+        height:140px;
+        border-radius:18px;
+        box-shadow: 0 12px 30px rgba(15,23,42,0.08);
+        
+        }
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBtHw7TqCac0SWil2T-7qvfUckDps_uDWI",
-    authDomain: "burguer-lingo-402c0.firebaseapp.com",
-    projectId: "burguer-lingo-402c0",
-    storageBucket: "burguer-lingo-402c0.firebasestorage.app",
-    messagingSenderId: "1057314729279",
-    appId: "1:1057314729279:web:82f3ae4a2447001f80f78a",
-    measurementId: "G-C2T4FRDYQ4"
-};
+        /* container principal da pergunta / atividade */
+        #container{
+        background: var(--card);
+        border-radius:16px;
+        padding:20px;
+        box-shadow: var(--shadow);
+        border:1px solid rgba(15,23,42,0.04);
+        min-height:20px;
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+        align-items:center;
+        justify-content:center;
+        }
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+        /* exemplo: título da pergunta */
+        #container .pergunta {
+        font-size:20px;
+        color:#1d2226;
+        text-align:center;
+        }
 
-// 🟢 Verifica se o usuário está logado
-onAuthStateChanged(auth, (user) => {
-    const greeting = document.getElementById("userGreeting");
-    const loginIcon = document.getElementById("loginIcon");
+        /* opções / botões de resposta (estilo cartão) */
+        .opcoes {
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        width:100%;
+        max-width:720px;
+        }
+        .opcao {
+        background:#f6fffa;
+        border-radius:12px;
+        padding:12px 14px;
+        display:flex;
+        align-items:center;
+        cursor:pointer;
+        transition: transform .12s ease, box-shadow .12s ease;
+        border:1px solid rgba(15,23,42,0.03);
+        }
+        .opcao:hover{ transform: translateY(-4px); box-shadow: 0 12px 28px rgba(15,23,42,0.06); }
+        .opcao.selected{ background: linear-gradient(90deg,#e9fef0,#e0fde7); border:1px solid var(--green); }
 
-    if (user) {
-        // Se tiver displayName usa, senão usa só o email
-        const nome = user.displayName || user.email.split("@")[0];
+        /* texto da opção */
+        .opcao .texto { font-size:16px; font-weight:600; color:#083324; }
 
-        greeting.textContent = `Olá, ${nome}!`;
-        loginIcon.style.display = "none"; // Esconde o ícone de login
-    } else {
-        greeting.textContent = ""; // Não mostra nada
-        loginIcon.style.display = "inline-block"; // Mostra o ícone de login
-    }
-});
-</script>
+        /* se opção inválida/errada — classes adicionadas via JS */
+        .opcao.errada{ background: linear-gradient(90deg,#fff0f0,#ffecec); border:1px solid rgba(220,40,40,0.14); color:#9b1c1c; }
+        .opcao.correta{ background: linear-gradient(90deg,#e3fff0,#caf9d6); border:1px solid var(--green-dark); }
 
-   <script>
-    // JS para o Menu Lateral (Sidebar)
-    const menuBtn = document.getElementById('menu-btn');
-    const closeBtn = document.getElementById('close-btn');
-    const sidebar = document.getElementById('sidebar');
+        /* RODAPÉ com botões de ação */
+        .rodape{
+        display:flex;
+        gap:12px;
+        justify-content:center;
+        align-items:center;
+        margin-top:10px;
+        }
+        .btn{
+        border:0;
+        padding:10px 18px;
+        border-radius:12px;
+        font-weight:700;
+        cursor:pointer;
+        box-shadow: 0 8px 20px rgba(15,23,42,0.06);
+        }
+        .btn-pular{
+        background:transparent;
+        color:var(--green-dark);
+        border:2px solid rgba(30,120,30,0.08);
+        }
+        .btn-verificar{
+        background: linear-gradient(90deg,var(--green),var(--green-dark));
+        color:#fff;
+        }
 
-    // Toggle a classe 'active' para mostrar/esconder o menu lateral
-    menuBtn.addEventListener('click', () => {
-        sidebar.classList.add('active');
-    });
-    closeBtn.addEventListener('click', () => {
-        sidebar.classList.remove('active');
-    });
-    </script>
+        /* FOOTER */
+        footer{
+        text-align:center;
+        margin-top:20px;
+        color: var(--muted);
+        font-size:13px;
+        }
+        .footer-links{
+        display:flex;
+        gap:12px;
+        justify-content:center;
+        flex-wrap:wrap;
+        margin-bottom:8px;
+        }
+        .footer-links a{ color: var(--muted); text-decoration:none; font-weight:600; padding:6px; border-radius:8px; }
+        .footer-links a:hover{ color:var(--green-dark); }
+
+        /* TELA FINAL */
+        #telaFinal{
+        max-width:900px; margin:28px auto; background:var(--card); padding:24px; border-radius:12px; box-shadow:var(--shadow); text-align:center;
+        }
+        #telaFinal h1{ color:var(--green-dark); font-size:28px; margin-bottom:12px; }
+
+        /* pequenas animações */
+        .fade-in{ animation: fadeIn .35s ease both; }
+        @keyframes fadeIn { from { opacity:0; transform: translateY(6px) } to { opacity:1; transform:none } }
+
+        /* RESPONSIVE */
+        @media (max-width:900px){
+        .conteudo-licao{ padding:14px; margin:20px auto; }
+        #personagem{ width:120px; height:120px; }
+        .main-header .main-nav{ display:none; }
+        }
+        @media (max-width:520px){
+        #personagem{ width:100px; height:100px; }
+        .opcoes { gap:8px; }
+        .opcao { padding:10px; }
+        .header-licao{ flex-direction:column; align-items:flex-start; gap:8px; }
+        }
+
+    </style>
     
-
+    <div id="telaCarregamento" style="
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+        background-color: white; display: flex; justify-content: center; align-items: center; 
+        z-index: 1000; flex-direction: column;">
+        
+        <img class="rotate" src="carregando.jpeg" alt="Carregando Lição" style="width: 100px; height: 100px; margin-bottom: 20px;">
+        <h2>Carregando Lição...</h2>
+    </div>
 
     <header class="header-licao"> 
         <button id="sair" title="Sair">❌</button>
@@ -115,21 +280,7 @@ onAuthStateChanged(auth, (user) => {
         
         <div id="container"> 
             </div>
-    <div class="rodape">
-        <button class="btn btn-pular" id="pular">Pular</button>
-        <button id="confirmar" class="btn btn-verificar">Confirmar</button>
-    </div>
-        <footer>
-        <div class="footer-links">
-            <a href="#perguntas-frequentes" aria-label="Ir para Perguntas Frequentes">Perguntas Frequentes</a>
-            <a href="#sobre-nos" aria-label="Ir para Sobre Nós">Sobre Nós</a>
-            <a href="fale conosco.html">Fale Conosco</a>
-            <a href="politica.html">Política de Privacidade</a>
-            <a href="https://www.instagram.com/burguer_lingo/" target="_blank"><img class="invert" src="instagram.jpeg" alt="Instagram page" style=" width:20px; height:20px;"></a>
-            <a href="placeholder"><img class="invert" src="facebook.jpeg" alt="Facebook page" style=" width:20px; height:20px;"></a>
-        </div>
-        <p>© 2025 BURGUER LINGO. Todos os direitos reservados.</p>
-    </footer>
+        
     </main>
     
     <div id="telaFinal" style="display: none; margin-top: 50px; text-align: center;">
@@ -137,10 +288,25 @@ onAuthStateChanged(auth, (user) => {
         <button class="btn btn-verificar" onclick="window.location.href='index.html'">Voltar</button>
     </div>
 
-
+    <div class="rodape">
+        <button class="btn btn-pular" id="pular">Pular</button>
+        <button id="confirmar" class="btn btn-verificar">Confirmar</button>
+    </div>
     
     <script src="etapas.js"></script>
+    <script>
+    // Pega o idioma salvo ao clicar no país
+    const idioma = localStorage.getItem("idiomaEscolhido");
+
+    if (!idioma) {
+        alert("Nenhum idioma foi selecionado! Voltando para a página inicial.");
+        window.location.href = "pagina_das_licoes.html";
+    }
+
+    // Torna o idioma acessível ao script.js
+    window.idiomaAtual = idioma;
+</script>
+
     <script src="script.js" defer></script>
 </body>
 </html>
-
