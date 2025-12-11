@@ -122,7 +122,13 @@
 
       // Ler params e definir fallback seguros
       const urlParams = new URLSearchParams(window.location.search);
-      const idiomaParam = urlParams.get('idioma') || localStorage.getItem('idioma') || null;
+      // Primeiro tenta pegar da URL. Se não tiver, pega o salvo ao clicar no país.
+      const idiomaParam =
+      urlParams.get('idioma') ||
+      localStorage.getItem('idiomaEscolhido') ||
+      null;
+
+
       const licaoChaveParam = urlParams.get('chave') || 'licao1';
 
       const idioma = idiomaParam;
