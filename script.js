@@ -1,397 +1,364 @@
-// script.js — Versão corrigida e mais robusta
-// Requisitos: garantir que etapas.js seja incluído antes deste script (seu HTML faz isso).
-// Funcionalidades: mapa de lições (progresso.html) + quiz (licaoIdioma.html)
+// =============================================================================
+// I. GESTÃO DE ESTADO E VARIÁVEIS GLOBAIS
+// -----------------------------------------------------------------------------
 
-// Encapsula tudo para evitar poluir global
-(() => {
-  'use strict';
+// Assegura que o objeto 'licoes' (do seu etapa.js) esteja carregado.
+// Se você está incluindo o etapa.js antes deste script, essa verificação é ok.
+// ⚠️ ASSUMINDO que 'licoes' está disponível globalmente.
 
-  // --- Utilidades ---
-  const qs = (sel, root = document) => root.querySelector(sel);
-  const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-  const safeText = v => (v === null || v === undefined) ? '' : String(v);
-  const normalize = s => safeText(s).trim().toLowerCase();
+// =====================
+// Progresso Geral
+// =====================
+if (!localStorage.getItem("progresso")) {
+    localStorage.setItem("progresso", JSON.stringify({}));
+}
+let progresso = JSON.parse(localStorage.getItem("progresso"));
 
-  // --- Persistência de progresso ---
-  const loadProgresso = () => {
-    try {
-      const raw = localStorage.getItem('progresso');
-      return raw ? JSON.parse(raw) : {};
-    } catch (e) {
-      console.error('Erro lendo progresso do localStorage', e);
-      return {};
-    }
-  };
-  const saveProgresso = (obj) => {
-    try { localStorage.setItem('progresso', JSON.stringify(obj)); }
-    catch (e) { console.error('Erro salvando progresso', e); }
-  };
+// =====================
+// VARIÁVEIS GLOBAIS DO QUIZ
+// =====================
+let aguardandoConfirmacao = false; // Controla o fluxo de clique após resposta (Acerto/Erro).
+let maxCoracoes = 5;
+let coracoes = maxCoracoes;
+let etapaAtual = 0;
+let acertos = 0;
+let etapas = []; // Onde as perguntas da lição atual serão carregadas.
+let proximoNivelChave = ""; // Chave da próxima lição para desbloquear.
 
-  let progresso = loadProgresso();
+// =====================
+// CONFIGURAÇÃO DE SONS (Caminhos podem precisar de ajuste)
+// =====================
+const somAcerto = new Audio("duolingo-correct.mp3");
+const somErro = new Audio("duolingo-wrong.mp3");
+const somFim = new Audio("duolingo-lesson-finished.mp3");
 
-  // --- Áudios (opcional — falha silenciosa se não existir) ---
-  const tryAudio = (path) => {
-    try {
-      return new Audio(path);
-    } catch (e) {
-      console.warn('Audio não disponível:', path, e);
-      return null;
-    }
-  };
-  const somAcerto = tryAudio('duolingo-correct.mp3');
-  const somErro = tryAudio('duolingo-wrong.mp3');
-  const somFim = tryAudio('duolingo-lesson-finished.mp3');
+// =============================================================================
+// II. FUNÇÕES GLOBAIS DE NAVEGAÇÃO
+// -----------------------------------------------------------------------------
 
-  // --- Função comum para esconder loader (sempre chamar quando terminar) ---
-  function ocultarLoader() {
-    const loader = document.getElementById('telaCarregamento');
-    const mainContent = document.getElementById('telaLicao');
-    if (loader) loader.style.display = 'none';
-    if (mainContent) mainContent.style.display = getComputedStyle(mainContent).display === 'none' ? 'flex' : getComputedStyle(mainContent).display;
-  }
+/**
+ * Função de redirecionamento usada pela página principal de idiomas.
+ */
+function selecionarIdioma(idioma) {
+    window.location.href = `progresso.html?idioma=${encodeURIComponent(idioma)}`;
+}
 
-  // --- FUNÇÕES: Progresso / Mapa (progresso.html) ---
-  function initProgressoPage() {
+// =============================================================================
+// III. LÓGICA DO MAPA DE LIÇÕES (progresso.html)
+// -----------------------------------------------------------------------------
+
+if (window.location.pathname.includes("progresso.html")) {
     document.addEventListener('DOMContentLoaded', () => {
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const idioma = urlParams.get('idioma');
 
-        const titulo = document.getElementById('titulo-progresso');
-        const mapa = document.getElementById('mapa-licoes');
+        const urlParams = new URLSearchParams(window.location.search);
+        const idioma = urlParams.get("idioma");
+        const titulo = document.getElementById("titulo-progresso");
 
         if (!idioma) {
-          if (titulo) titulo.textContent = 'Idioma não especificado.';
-          if (mapa) mapa.innerHTML = '<p>Escolha um idioma no menu.</p>';
-          return;
+            if (titulo) titulo.textContent = "Idioma não especificado.";
+            return;
         }
 
         if (titulo) titulo.textContent = `Progresso em ${idioma}`;
 
-        // Inicializa estrutura de progresso para o idioma se precisar
+        // Inicializa o progresso para o novo idioma ou carrega o existente.
         if (!progresso[idioma]) {
-          progresso[idioma] = {};
-          if (typeof licoes !== 'undefined' && licoes[idioma]) {
-            Object.keys(licoes[idioma]).forEach((key, i) => {
-              progresso[idioma][key] = (i === 0) ? 'desbloqueada' : 'bloqueada';
-            });
-          } else {
-            // fallback simples
-            progresso[idioma] = { 'licao1': 'desbloqueada' };
-          }
-          saveProgresso(progresso);
-        }
-
-        if (!mapa) return;
-        mapa.innerHTML = '';
-
-        Object.keys(progresso[idioma]).forEach((licaoChave, i) => {
-          const div = document.createElement('div');
-          div.className = `licao ${progresso[idioma][licaoChave]}`;
-          div.textContent = i + 1;
-          if (progresso[idioma][licaoChave] !== 'bloqueada') {
-            div.style.cursor = 'pointer';
-            div.addEventListener('click', () => {
-              window.location.href = `licaoIdioma.html?idioma=${encodeURIComponent(idioma)}&chave=${encodeURIComponent(licaoChave)}`;
-            });
-          } else {
-            div.title = 'Bloqueada';
-          }
-          mapa.appendChild(div);
-        });
-
-      } catch (err) {
-        console.error('Erro initProgressoPage:', err);
-      }
-    });
-  }
-
-  // --- FUNÇÕES: Lição / Quiz (licaoIdioma.html) ---
-  function initLicaoPage() {
-    if (!document.getElementById) return; // proteção
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // Elementos chave
-      const container = document.getElementById('container');
-      const confirmarBtn = document.getElementById('confirmar');
-      const pularBtn = document.getElementById('pular');
-      const sairBtn = document.getElementById('sair');
-      const barraProgresso = document.getElementById('progresso');
-      const coracoesContainer = document.getElementById('coracoes-container');
-      const telaFinal = document.getElementById('telaFinal');
-
-      // Ler params e definir fallback seguros
-      const urlParams = new URLSearchParams(window.location.search);
-      const idiomaParam = urlParams.get('idioma') || localStorage.getItem('idioma') || null;
-      const licaoChaveParam = urlParams.get('chave') || 'licao1';
-
-      const idioma = idiomaParam;
-      const licaoChave = licaoChaveParam;
-
-      // Se licoes (dados) não existir, mostra mensagem e retorna (mas sempre esconde loader)
-      if (typeof licoes === 'undefined') {
-        if (container) container.innerHTML = '<p>Dados das lições (etapas.js) não carregados.</p>';
-        ocultarLoader();
-        return;
-      }
-
-      if (!idioma || !licoes[idioma] || !licoes[idioma][licaoChave]) {
-        if (container) {
-          container.innerHTML = `<p>Idioma ou lição não encontrada. (idioma="${idioma}", chave="${licaoChave}")</p>
-            <p><a href="pagina_das_licoes.html">Voltar ao menu de idiomas</a></p>`;
-        }
-        if (confirmarBtn) confirmarBtn.style.display = "none";
-        if (pularBtn) pularBtn.style.display = "none";
-        ocultarLoader();
-        return;
-      }
-
-      // Carregar etapas
-      let etapas = Array.isArray(licoes[idioma][licaoChave].etapas) ? licoes[idioma][licaoChave].etapas : [];
-      const proximoNivelChave = licoes[idioma][licaoChave].proximoNivel || null;
-
-      // Estado do quiz
-      let etapaAtual = 0;
-      let acertos = 0;
-      let aguardandoConfirmacao = false;
-      const maxCoracoes = 5;
-      let coracoes = maxCoracoes;
-
-      // Inicial UI
-      function atualizarCoracoes() {
-        if (!coracoesContainer) return;
-        coracoesContainer.innerHTML = '';
-        for (let i = 0; i < coracoes; i++) {
-          const s = document.createElement('span');
-          s.textContent = '❤️';
-          s.style.marginRight = '4px';
-          coracoesContainer.appendChild(s);
-        }
-        for (let i = 0; i < (maxCoracoes - coracoes); i++) {
-          const s = document.createElement('span');
-          s.textContent = '🤍';
-          s.style.marginRight = '4px';
-          coracoesContainer.appendChild(s);
-        }
-      }
-
-      function perderCoracao() {
-        if (coracoes <= 0) return;
-        if (somErro) somErro.play().catch(()=>{});
-        coracoes--;
-        atualizarCoracoes();
-        if (coracoes <= 0) {
-          // marca bloqueada e volta pro mapa
-          if (!progresso[idioma]) progresso[idioma] = {};
-          progresso[idioma][licaoChave] = 'bloqueada';
-          saveProgresso(progresso);
-          alert('Você perdeu todos os corações. Voltando ao mapa.');
-          window.location.href = `progresso.html?idioma=${encodeURIComponent(idioma)}`;
-        } else {
-          // recupera 1 coração depois de 20s
-          setTimeout(() => {
-            if (coracoes < maxCoracoes) { coracoes++; atualizarCoracoes(); }
-          }, 20000);
-        }
-      }
-
-      function atualizarBarra() {
-        if (!barraProgresso) return;
-        const pct = Math.round((etapaAtual / Math.max(1, etapas.length)) * 100);
-        barraProgresso.style.width = `${pct}%`;
-      }
-
-      function limparContainer() {
-        if (!container) return;
-        container.innerHTML = '';
-      }
-
-      function renderEtapa() {
-        if (!container) return;
-        limparContainer();
-
-        if (etapaAtual >= etapas.length) {
-          // finalizou
-          if (somFim) somFim.play().catch(()=>{});
-          if (!progresso[idioma]) progresso[idioma] = {};
-          progresso[idioma][licaoChave] = 'concluida';
-          // desbloqueia próxima
-          if (proximoNivelChave && proximoNivelChave !== 'concluido') {
-            if (!progresso[idioma]) progresso[idioma] = {};
-            progresso[idioma][proximoNivelChave] = 'desbloqueada';
-          }
-          saveProgresso(progresso);
-
-          const total = etapas.length;
-          const percentual = total === 0 ? 0 : Math.round((acertos / total) * 100);
-          if (barraProgresso) barraProgresso.style.width = '100%';
-          container.innerHTML = `
-            <h2>Você concluiu a Lição!</h2>
-            <p>Acertos: ${acertos} de ${total} (${percentual}%)</p>
-            <p><button id="voltarMapa">Voltar ao Progresso</button></p>
-          `;
-          const voltarBtn = qs('#voltarMapa', container);
-          if (voltarBtn) voltarBtn.addEventListener('click', () => {
-            window.location.href = `progresso.html?idioma=${encodeURIComponent(idioma)}`;
-          });
-          if (confirmarBtn) {
-            confirmarBtn.textContent = 'Voltar ao Progresso';
-            confirmarBtn.onclick = () => window.location.href = `progresso.html?idioma=${encodeURIComponent(idioma)}`;
-          }
-          if (pularBtn) pularBtn.style.display = 'none';
-          if (telaFinal) telaFinal.style.display = 'block';
-          return;
-        }
-
-        // Render passo atual
-        const etapa = etapas[etapaAtual];
-        const pergunta = document.createElement('h2');
-        pergunta.textContent = etapa && etapa.frase ? etapa.frase : 'Pergunta indisponível';
-        container.appendChild(pergunta);
-
-        // Opções
-        const opcoesWrap = document.createElement('div');
-        opcoesWrap.className = 'opcoes-wrap';
-        if (Array.isArray(etapa.opcoes) && etapa.opcoes.length) {
-          etapa.opcoes.forEach((op) => {
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'opcao';
-            btn.textContent = op;
-            btn.style.display = 'block';
-            btn.style.margin = '6px 0';
-            btn.addEventListener('click', () => {
-              // desmarca todas
-              qsa('.opcao', container).forEach(b => {
-                b.classList.remove('selecionada');
-                b.style.background = '';
-              });
-              btn.classList.add('selecionada');
-              btn.style.background = 'lightblue';
-              // habilita confirmar
-              if (confirmarBtn) confirmarBtn.disabled = false;
-            });
-            opcoesWrap.appendChild(btn);
-          });
-        } else {
-          const info = document.createElement('p');
-          info.textContent = 'Esta etapa não possui opções.';
-          opcoesWrap.appendChild(info);
-        }
-        container.appendChild(opcoesWrap);
-
-        atualizarBarra();
-        // reset estado de confirmação
-        aguardandoConfirmacao = false;
-        if (confirmarBtn) confirmarBtn.disabled = true;
-      }
-
-      // Handlers botões
-      if (confirmarBtn) {
-        confirmarBtn.addEventListener('click', () => {
-          try {
-            if (aguardandoConfirmacao) {
-              etapaAtual++;
-              renderEtapa();
-              return;
-            }
-
-            const selecionado = qs('.opcao.selecionada', container);
-            const etapa = etapas[etapaAtual] || {};
-            const respostaCorreta = etapa.resposta;
-
-            // Se nada selecionado: tratar como pular
-            if (!selecionado) {
-              qsa('.opcao', container).forEach(b => {
-                if (b.textContent === respostaCorreta) b.style.background = 'gold';
-              });
-              alert(`Você pulou. A resposta correta era: "${respostaCorreta}"`);
-              perderCoracao();
-              aguardandoConfirmacao = true;
-              return;
-            }
-
-            // comparar normalizado
-            const escolhido = normalize(selecionado.textContent);
-            const correto = normalize(respostaCorreta);
-
-            if (escolhido === correto) {
-              if (somAcerto) somAcerto.play().catch(()=>{});
-              selecionado.style.background = 'lightgreen';
-              acertos++;
-              aguardandoConfirmacao = true;
-              return;
+            // Usa as chaves do seu arquivo etapa.js para inicializar: licao1, licao2, etc.
+            progresso[idioma] = {};
+            
+            // Cria a lista inicial de lições (ex: licao1, licao2, licao3)
+            if (typeof licoes !== 'undefined' && licoes[idioma]) {
+                 Object.keys(licoes[idioma]).forEach((key, i) => {
+                     // Define a primeira lição como desbloqueada, as demais como bloqueadas.
+                     progresso[idioma][key] = (i === 0) ? "desbloqueada" : "bloqueada";
+                 });
             } else {
-              // incorreto
-              selecionado.style.background = 'red';
-              qsa('.opcao', container).forEach(b => {
-                if (normalize(b.textContent) === correto) {
-                  b.style.outline = '3px solid gold';
-                }
-              });
-              alert(`Você errou. A resposta correta era: "${respostaCorreta}"`);
-              perderCoracao();
-              aguardandoConfirmacao = true;
-              return;
+                 // Fallback se o licoes.js falhar, garante que o mapa pelo menos inicie.
+                 progresso[idioma]["licao1"] = "desbloqueada";
+                 progresso[idioma]["licao2"] = "bloqueada";
+                 progresso[idioma]["licao3"] = "bloqueada";
             }
-          } catch (err) {
-            console.error('Erro no confirmarBtn click:', err);
-          }
+            
+            localStorage.setItem("progresso", JSON.stringify(progresso));
+        }
+
+        const mapa = document.getElementById("mapa-licoes");
+        if (!mapa) return;
+
+        mapa.innerHTML = "";
+        
+        // Desenha as bolinhas de lição no mapa.
+        // A chave aqui é o nome da lição (ex: "licao1", "licao2").
+        Object.keys(progresso[idioma]).forEach((licaoChave, i) => {
+            const div = document.createElement("div");
+            div.className = `licao ${progresso[idioma][licaoChave]}`;
+            // Usa o índice + 1 como número da lição no display.
+            div.textContent = i + 1; 
+
+            // Se a lição não estiver bloqueada, torna-a clicável.
+            if (progresso[idioma][licaoChave] !== "bloqueada") {
+                div.onclick = () => {
+                    // Redireciona para o quiz, passando o nome da lição no parâmetro 'chave'.
+                    window.location.href = `licaoIdioma.html?idioma=${encodeURIComponent(idioma)}&chave=${licaoChave}`;
+                };
+            }
+
+            mapa.appendChild(div);
         });
-      }
-
-      if (pularBtn) {
-        pularBtn.addEventListener('click', () => {
-          if (aguardandoConfirmacao) {
-            aguardandoConfirmacao = false;
-            etapaAtual++;
-            renderEtapa();
-            return;
-          }
-          // mostra correta e perde coracao
-          const etapa = etapas[etapaAtual] || {};
-          qsa('.opcao', container).forEach(b => {
-            if (b.textContent === etapa.resposta) b.style.background = 'gold';
-          });
-          alert(`Você pulou. A resposta correta era: "${etapa.resposta}"`);
-          perderCoracao();
-          aguardandoConfirmacao = true;
-        });
-      }
-
-      if (sairBtn) {
-        sairBtn.addEventListener('click', () => {
-          const ok = confirm('Tem certeza que deseja sair? Seu progresso nesta lição será perdido.');
-          if (ok) window.location.href = `progresso.html?idioma=${encodeURIComponent(idioma)}`;
-        });
-      }
-
-      // Inicial
-      atualizarCoracoes();
-      renderEtapa();
-
-      // Garantir que loader suma mesmo se algo deu errado acima
-      ocultarLoader();
     });
-  }
+}
 
-  // --- Roteamento simples baseado no pathname (funciona com file:// e http) ---
-  const path = (window.location.pathname || '').toLowerCase();
-  if (path.includes('progresso.html') || window.location.href.toLowerCase().includes('progresso.html')) {
-    initProgressoPage();
-  }
-  if (path.includes('licaoi') || path.includes('licaoidioma.html') || window.location.href.toLowerCase().includes('licaoidioma.html')) {
-    // aceita variações
-    initLicaoPage();
-  } else {
-    // Também inicializa licao se for exatamente licaoIdioma.html sem path
-    if (window.location.href.toLowerCase().includes('licaoidioma.html')) initLicaoPage();
-  }
+// =============================================================================
+// IV. LÓGICA DO QUIZ (licaoIdioma.html)
+// -----------------------------------------------------------------------------
 
-  // fallback: se a página é licaoIdioma mas a checagem acima falhar por algum motivo,
-  // ainda tenta inicializar (segurança)
-  if (window.location.href.toLowerCase().includes('licaoidioma.html') && typeof initLicaoPage === 'function') {
-    initLicaoPage();
-  }
+if (window.location.pathname.includes("licaoIdioma.html")) {
+    document.addEventListener('DOMContentLoaded', () => {
 
-})(); // fim IIFE
+        function ocultarLoader() {
+            const loader = document.getElementById('telaCarregamento');
+            const mainContent = document.getElementById('telaLicao');
+
+            if (loader) {
+                // Oculta a tela de carregamento
+                loader.style.display = 'none'; 
+            }
+            if (mainContent) {
+                // Garante que o conteúdo principal (quiz) seja exibido.
+                // Se ele estiver oculto no duolicao.css, isso o mostra.
+                mainContent.style.display = 'flex'; // Use 'flex' ou 'block' dependendo do seu layout
+            }
+        }
+        // -----------------------------------------------------------
+        
+        // 1. OBTENÇÃO DE PARÂMETROS E DADOS
+        const urlParams = new URLSearchParams(window.location.search);
+        const idioma = urlParams.get("idioma");
+        // OBTÉM A CHAVE COMPLETA DA LIÇÃO (ex: "licao1", "licao2")
+        const licaoChave = urlParams.get("chave"); 
+        
+        // Extrai o número da lição para exibição (ex: "licao1" -> "1")
+        const numeroLicaoDisplay = licaoChave ? licaoChave.replace('licao', '') : 'Erro'; 
+
+        const titulo = document.getElementById("titulo-licao");
+        const container = document.getElementById("container");
+        const confirmarBtn = document.getElementById("confirmar");
+        const pularBtn = document.getElementById("pular");
+        const sairBtn = document.getElementById("sair");
+        const barraProgresso = document.getElementById("progresso");
+        const coracoesContainer = document.getElementById("coracoes-container");
+
+        if (titulo) titulo.textContent = `Lição ${numeroLicaoDisplay} de ${idioma}`;
+
+        // 2. CARREGAMENTO DE ETAPAS (Ajustado para o seu etapa.js)
+        if (typeof licoes === 'undefined' || !licoes[idioma] || !licoes[idioma][licaoChave]) {
+            if (container) container.innerHTML = "<p>Idioma ou lição não encontrado.</p>";
+            if (confirmarBtn) confirmarBtn.style.display = "none";
+            if (pularBtn) pularBtn.style.display = "none";
+            return;
+        }
+
+        // 🎯 CORREÇÃO CRUCIAL: Acessa o array de etapas aninhado.
+        etapas = licoes[idioma][licaoChave].etapas;
+        proximoNivelChave = licoes[idioma][licaoChave].proximoNivel;
+
+
+        // 3. FUNÇÕES ESSENCIAIS DE ESTADO
+        function atualizarCoracoes() {
+            if (coracoesContainer) {
+                coracoesContainer.innerHTML = "❤️".repeat(coracoes) + "🤍".repeat(maxCoracoes - coracoes);
+            }
+        }
+
+        function perderCoracao() {
+            if (coracoes > 0) {
+                somErro.play().catch(e => console.error("Som Erro Falhou:", e));
+                coracoes--;
+                atualizarCoracoes();
+
+                // === LÓGICA DE FALHA CRÍTICA ===
+                if (coracoes === 0) {
+                    alert("💡 É errando que se aprende! Você perdeu todos os corações e voltará ao mapa.");
+
+                    // Marca a lição como BLOQUEADA no progresso e salva.
+                    if (!progresso[idioma]) progresso[idioma] = {};
+                    progresso[idioma][licaoChave] = "bloqueada";
+                    localStorage.setItem("progresso", JSON.stringify(progresso));
+
+                    // Redireciona para a tela de progresso (Mapa).
+                    window.location.href = `progresso.html?idioma=${encodeURIComponent(idioma)}`;
+                    return;
+                }
+
+                // Regenera um coração após 20 segundos
+                setTimeout(() => {
+                    if (coracoes < maxCoracoes) {
+                        coracoes++;
+                        atualizarCoracoes();
+                    }
+                }, 20000);
+            }
+        }
+
+        // Inicializa visualmente.
+        atualizarCoracoes();
+
+        // 4. CARREGAMENTO DE ETAPA E RENDERIZAÇÃO
+
+        function carregarEtapa() {
+
+            // === LÓGICA DE FINALIZAÇÃO (SUCESSO) ===
+            if (etapaAtual >= etapas.length) {
+                somFim.play().catch(e => console.error("Som Final Falhou:", e));
+
+                // 1. Marca lição atual como CONCLUÍDA
+                if (!progresso[idioma]) progresso[idioma] = {};
+                progresso[idioma][licaoChave] = "concluida";
+
+                // 2. Desbloqueia a PRÓXIMA lição usando a chave `proximoNivel`
+                if (proximoNivelChave !== "concluido" && progresso[idioma][proximoNivelChave]) {
+                    progresso[idioma][proximoNivelChave] = "desbloqueada";
+                }
+                localStorage.setItem("progresso", JSON.stringify(progresso));
+
+                // Display final
+                const total = etapas.length;
+                const percentual = Math.round((acertos / total) * 100);
+
+                if (barraProgresso) barraProgresso.style.width = "100%";
+
+                container.innerHTML = `
+                    <h2>Você concluiu a Lição ${numeroLicaoDisplay}! ✅</h2>
+                    <p>Acertos: ${acertos} de ${total} (${percentual}%)</p>
+                    `;
+
+                if (confirmarBtn) confirmarBtn.textContent = "Voltar ao Progresso";
+                if (pularBtn) pularBtn.style.display = "none";
+
+                // Redireciona de volta ao mapa ao clicar no botão final
+                if (confirmarBtn) confirmarBtn.onclick = () => window.location.href = `progresso.html?idioma=${encodeURIComponent(idioma)}`;
+                return;
+            }
+
+            // Lógica de Carregamento da Etapa Atual
+            const progressoPercent = Math.round((etapaAtual / etapas.length) * 100);
+            if (barraProgresso) barraProgresso.style.width = `${progressoPercent}%`;
+
+            container.innerHTML = "";
+            const etapa = etapas[etapaAtual];
+
+            // Renderiza a Pergunta (usando a propriedade 'frase' da sua nova estrutura)
+            const pergunta = document.createElement("h2");
+            pergunta.textContent = etapa.frase;
+            container.appendChild(pergunta);
+
+            // Renderiza os botões de Opções
+            etapa.opcoes.forEach(opcao => {
+                const btn = document.createElement("button");
+                btn.textContent = opcao;
+                btn.onclick = (e) => {
+                    // Lógica de seleção (desmarca o anterior e marca o atual).
+                    document.querySelectorAll("#container button").forEach(b => {
+                        b.style.background = "";
+                        b.style.border = "";
+                        b.removeAttribute("data-selecionado");
+                    });
+                    e.target.style.background = "lightblue";
+                    e.target.dataset.selecionado = "true";
+                };
+                container.appendChild(btn);
+
+
+            });
+        }
+
+        // 5. LÓGICA DE INTERAÇÃO (Botão Confirmar/Pular)
+
+        if (confirmarBtn) confirmarBtn.onclick = () => {
+            if (aguardandoConfirmacao) {
+                // Se já respondido, o próximo clique avança a etapa.
+                aguardandoConfirmacao = false;
+                etapaAtual++;
+                carregarEtapa();
+                return;
+            }
+
+            const selecionado = document.querySelector("#container button[data-selecionado='true']");
+            const etapa = etapas[etapaAtual];
+            const botoes = document.querySelectorAll("#container button");
+
+            // Se nada selecionado, trata como PULAR (com perda de vida).
+            if (!selecionado) {
+                // Destaca resposta correta
+                botoes.forEach(btn => { 
+                    if (btn.textContent === etapa.resposta) { // Usa 'resposta' do seu JSON
+                        btn.style.background = "gold"; 
+                    } 
+                });
+                alert(`Você pulou. A resposta correta era: "${etapa.resposta}"`);
+                perderCoracao();
+                aguardandoConfirmacao = true;
+                return;
+            }
+
+            // Resposta correta
+            if (selecionado.textContent === etapa.resposta) { // Usa 'resposta' do seu JSON
+                somAcerto.play().catch(e => console.error("Som Acerto Falhou:", e));
+                selecionado.style.background = "lightgreen";
+                acertos++;
+                aguardandoConfirmacao = true;
+                return;
+            }
+
+            // Resposta incorreta
+            selecionado.style.background = "red";
+
+            // Destaca a resposta correta
+            botoes.forEach(btn => {
+                if (btn.textContent === etapa.resposta) { // Usa 'resposta' do seu JSON
+                    btn.style.border = "2px solid gold";
+                }
+            });
+
+            alert(`Você errou. A resposta correta era: "${etapa.resposta}"`);
+
+            perderCoracao();
+            aguardandoConfirmacao = true;
+        };
+
+        // Lógica do botão Pular (com perda de vida).
+        if (pularBtn) pularBtn.onclick = () => {
+            if (aguardandoConfirmacao) {
+                // Se já houver um feedback, o clique avança.
+                aguardandoConfirmacao = false;
+                etapaAtual++;
+                carregarEtapa();
+                return;
+            }
+            // Simula um erro/pulo.
+            const etapa = etapas[etapaAtual];
+            const botoes = document.querySelectorAll("#container button");
+
+            botoes.forEach(btn => {
+                if (btn.textContent === etapa.resposta) { 
+                    btn.style.background = "gold"; 
+                } 
+            });
+            alert(`Você pulou. A resposta correta era: "${etapa.resposta}"`);
+            perderCoracao();
+            aguardandoConfirmacao = true;
+        };
+
+        // Lógica do botão Sair (volta para o mapa).
+        if (sairBtn) sairBtn.onclick = () => {
+            if (confirm("Tem certeza que deseja sair? Seu progresso nesta lição será perdido.")) {
+                window.location.href = `progresso.html?idioma=${encodeURIComponent(idioma)}`;
+            }
+        };
+
+        // Inicia o Quiz.
+        carregarEtapa();
+
+        ocultarLoader();
+    });
+}
