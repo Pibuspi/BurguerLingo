@@ -1,0 +1,225 @@
+/* ================================
+    BASE
+=================================== */
+:root {
+    --primary: #08c958;
+    --secondary: #ffc107;
+    --dark: #222;
+    --light: #fff;
+    --bg: #f4f4f4;
+    --shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--dark);
+}
+
+
+/* ================================
+    HEADER
+=================================== */
+.main-header {
+    width: 100%;
+    background: var(--primary);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    /* CORRIGIDO → sticky sem quebrar layout */
+    position: sticky;
+    top: 0;
+    left: 0;
+
+    z-index: 1000;
+}
+
+/* Garante que o conteúdo não fique escondido */
+body > *:not(.main-header) {
+    margin-top: 80px; /* ajuste conforme altura real do header */
+}
+
+.menu-hamburguer {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--light);
+    cursor: pointer;
+}
+
+.logo-link img {
+    height: 50px;
+}
+
+.main-nav a {
+    color: var(--light);
+    font-weight: 700;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+.main-nav a:hover {
+    color: var(--secondary);
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.nav-icon {
+    margin-left: 15px;
+    font-size: 20px;
+    color: var(--light);
+}
+
+.nav-icon:hover {
+    color: var(--secondary);
+}
+
+
+/* ================================
+    MENU LATERAL
+=================================== */
+.menu-lateral {
+    width: 0;
+    height: 100%;
+    background: #222;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    padding-top: 60px;
+    transition: .3s ease;
+    z-index: 1200; /* acima do header */
+}
+
+.menu-lateral.active {
+    width: 250px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 32px;
+    color: var(--light);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-lateral h2 {
+    color: var(--primary);
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #444;
+}
+
+.menu-lateral a {
+    color: var(--light);
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-bottom: 1px solid #333;
+}
+
+.menu-lateral a:hover {
+    background: #333;
+}
+
+
+/* ================================
+    CONTEÚDO PRINCIPAL
+=================================== */
+.container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.intro h1 {
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.intro p {
+    margin-top: 5px;
+    color: #555;
+}
+
+
+/* ================================
+    GRID DE CARDS
+=================================== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: var(--light);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.card .flag {
+    width: 90px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.card .lang {
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.card .sub {
+    font-size: 14px;
+    color: #555;
+}
+
+
+/* ================================
+    RESPONSIVIDADE
+=================================== */
+@media (max-width: 800px) {
+    .main-nav {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .intro h1 {
+        font-size: 26px;
+    }
+
+    .card .flag {
+        width: 75px;
+    }
+}
