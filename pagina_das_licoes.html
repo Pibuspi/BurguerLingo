@@ -111,5 +111,49 @@
     </section>
   </main>
 
+
+  <script>
+    // Seleciona todos os cards
+    const cards = document.querySelectorAll(".card");
+
+    // Para cada card, adiciona um clique
+    cards.forEach(card => {
+        card.addEventListener("click", () => {
+
+            // Pega o nome do idioma (ex: Francês > frances)
+            const lang = card.querySelector(".lang").textContent.trim().toLowerCase();
+
+            // Converte para o padrão do seu etapas.js
+            const mapa = {
+                "francês": "frances",
+                "inglês": "ingles",
+                "espanhol": "espanhol",
+                "japonês": "japones",
+                "italiano": "italiano",
+                "mandarim": "mandarim",
+                "coreano": "coreano",
+                "alemão": "alemao",
+                "português": "portugues"
+            };
+
+            const idiomaConvertido = mapa[lang];
+
+            if (!idiomaConvertido) {
+                alert("Idioma não encontrado no sistema.");
+                return;
+            }
+
+            // Salva o idioma escolhido
+            localStorage.setItem("idiomaEscolhido", idiomaConvertido);
+
+            // Vai para a página das etapas
+            window.location.href = "licaoIdioma.html";
+        });
+    });
+</script>
+
+<!-- Aqui você carrega o arquivo etapas.js -->
+<script src="etapas.js"></script>
+
 </body>
 </html>
