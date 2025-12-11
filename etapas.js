@@ -7,23 +7,23 @@ const licoes = {
         "licao1": { // Acessado por licoes["frances"]["licao1"]
             proximoNivel: "licao2",
             etapas: [
-                { etapa: 1, tipo: "frase", frase: "Je", resposta: "eu", opcoes: ["eu", "ele", "ela", "nós"] },
-                { etapa: 2, tipo: "frase", frase: "mange", resposta: "como", opcoes: ["como", "bebo", "corro", "durmo"] },
-                { etapa: 3, tipo: "frase", frase: "ici", resposta: "aqui", opcoes: ["aqui", "ali", "lá", "ontem"] },
-                { etapa: 4, tipo: "frase", frase: "Je mange ___", resposta: "ici", opcoes: ["ici", "hamburger", "je"] },
-                { etapa: 5, tipo: "frase", frase: "Le", resposta: "o", opcoes: ["o", "a", "os", "as"] },
-                { etapa: 6, tipo: "frase", frase: "Je mange le pain", resposta: "Eu como o pão", opcoes: ["Eu como o pão", "Eu bebo o suco", "Ela come aqui", "Nós comemos"] },
+                { etapa: 1, tipo: "frase", frase: " 'Je' é uma palavra muito conhecido na língua francesa que significa...", resposta: "eu", opcoes: ["eu", "ele", "ela", "nós"] },
+                { etapa: 2, tipo: "frase", frase: " O que significa a palavra 'mange'?", resposta: "como", opcoes: ["como", "bebo", "corro", "durmo"] },
+                { etapa: 3, tipo: "frase", frase: " Nós podemos fazer fazer muitas coisas 'ici' no Burguer Lingo. De acordo com o Texto, qual é a tradução da palavra 'ici'?", resposta: "aqui", opcoes: ["aqui", "ali", "lá", "ontem"] },
+                { etapa: 4, tipo: "frase", frase: " Complete a frase do Francês Je mange ___", resposta: "ici", opcoes: ["ici", "hamburger", "je"] },
+                { etapa: 5, tipo: "frase", frase: "'Le' hamburguer está delicioso!!!", resposta: "o", opcoes: ["o", "a", "os", "as"] },
+                { etapa: 6, tipo: "frase", frase: "Traduza: Je mange le pain", resposta: "Eu como o pão", opcoes: ["Eu como o pão", "Eu bebo o suco", "Ela come aqui", "Nós comemos"] },
             ]
         },
         "licao2": {
             proximoNivel: "licao3",
             etapas: [
-                { etapa: 1, tipo: "frase", frase: "Tu", resposta: "você", opcoes: ["você", "ele", "nós", "eles"] },
-                { etapa: 2, tipo: "frase", frase: "bois", resposta: "bebe", opcoes: ["bebe", "come", "corre", "dorme"] },
-                { etapa: 3, tipo: "frase", frase: "une eau", resposta: "uma água", opcoes: ["uma água", "o suco", "o café", "um leite"] },
-                { etapa: 4, tipo: "frase", frase: "Tu bois ___", resposta: "une eau", opcoes: ["une eau", "un café", "le pain"] },
-                { etapa: 5, tipo: "frase", frase: "Un", resposta: "um", opcoes: ["um", "uma", "os", "a"] },
-                { etapa: 6, tipo: "frase", frase: "Tu bois un café ici", resposta: "Você bebe um café aqui", opcoes: ["Você bebe um café aqui", "Eu como um pão", "Eles bebem água", "Nós comemos aqui"] },
+                { etapa: 1, tipo: "frase", frase: "'Tu'veux des hamburgers?. A palavra'Tu' significa o que?", resposta: "você", opcoes: ["você", "ele", "nós", "eles"] },
+                { etapa: 2, tipo: "frase", frase: "Tu bois du jus. A palavra 'bois' significa o que?", resposta: "bebe", opcoes: ["bebe", "come", "corre", "dorme"] },
+                { etapa: 3, tipo: "frase", frase: "'Você quer une eau?' A palavra 'une eau' significa o que?", resposta: "uma água", opcoes: ["uma água", "o suco", "o café", "um leite"] },
+                { etapa: 4, tipo: "frase", frase: "Complete: Tu bois ___", resposta: "une eau", opcoes: ["une eau", "un café", "le pain"] },
+                { etapa: 5, tipo: "frase", frase: "'Un' Hamburguer. 'Un' significa o que?", resposta: "um", opcoes: ["um", "uma", "os", "a"] },
+                { etapa: 6, tipo: "frase", frase: "Traduza: Tu bois un café ici", resposta: "Você bebe um café aqui", opcoes: ["Você bebe um café aqui", "Eu como um pão", "Eles bebem água", "Nós comemos aqui"] },
             ]
         },
         "licao3": {
@@ -46,19 +46,19 @@ const licoes = {
         "licao1": {
             proximoNivel: "licao2",
             etapas: [
-                { etapa: 1, tipo: "frase", frase: "I", resposta: "eu", opcoes: ["eu", "você", "ele", "ela"] },
-                { etapa: 2, tipo: "frase", frase: "eat", resposta: "como", opcoes: ["como", "bebo", "corro", "durmo"] },
-                { etapa: 3, tipo: "frase", frase: "here", resposta: "aqui", opcoes: ["aqui", "ali", "lá", "agora"] },
-                { etapa: 4, tipo: "frase", frase: "I eat ___ hamburger", resposta: "a", opcoes: ["a", "the", "an", "this"] },
-                { etapa: 5, tipo: "frase", frase: "The", resposta: "o/a", opcoes: ["o/a", "um/uma", "isto", "aquilo"] },
-                { etapa: 6, tipo: "frase", frase: "I eat the sandwich here", resposta: "Eu como o sanduíche aqui", opcoes: ["Eu como o sanduíche aqui", "Você bebe a água", "Eles correm lá", "Eu bebo café"] },
+                { etapa: 1, tipo: "frase", frase: " 'I' é uma palavra muito conhecida na língua inglesa que significa...", resposta: "eu", opcoes: ["eu", "você", "ele", "ela"] },
+                { etapa: 2, tipo: "frase", frase: " O que significa a palavra 'eat'?", resposta: "como", opcoes: ["como", "bebo", "corro", "durmo"] },
+                { etapa: 3, tipo: "frase", frase: " Nós podemos fazer fazer muitas coisas 'here' no Burguer Lingo. De acordo com o Texto, qual é a tradução da palavra 'here'?", resposta: "aqui", opcoes: ["aqui", "ali", "lá", "agora"] },
+                { etapa: 4, tipo: "frase", frase: " Complete a frase do Inglês I eat ___ hamburger", resposta: "a", opcoes: ["a", "the", "an", "this"] },
+                { etapa: 5, tipo: "frase", frase: "'The' hamburger está delicioso!!!", resposta: "o/a", opcoes: ["o/a", "um/uma", "isto", "aquilo"] },
+                { etapa: 6, tipo: "frase", frase: "Traduza: I eat the sandwich here", resposta: "Eu como o sanduíche aqui", opcoes: ["Eu como o sanduíche aqui", "Você bebe a água", "Eles correm lá", "Eu bebo café"] },
             ]
         },
         "licao2": {
             proximoNivel: "licao3",
             etapas: [
-                { etapa: 1, tipo: "frase", frase: "You", resposta: "você", opcoes: ["você", "eu", "nós", "eles"] },
-                { etapa: 2, tipo: "frase", frase: "drink", resposta: "bebe", opcoes: ["bebe", "come", "corre", "dorme"] },
+                { etapa: 1, tipo: "frase", frase: " O que a palavra 'You' Significa? ", resposta: "você", opcoes: ["você", "eu", "nós", "eles"] },
+                { etapa: 2, tipo: "frase", frase: "He's drink a refrigerator, that goes well with hamburgers. Apartir da Frase, podemos definir que 'drink' significa...", resposta: "bebe", opcoes: ["bebe", "come", "corre", "dorme"] },
                 { etapa: 3, tipo: "frase", frase: "juice", resposta: "suco", opcoes: ["suco", "água", "café", "leite"] },
                 { etapa: 4, tipo: "frase", frase: "You drink ___ water", resposta: "the", opcoes: ["the", "a", "an", "with"] },
                 { etapa: 5, tipo: "frase", frase: "An", resposta: "um/uma", opcoes: ["um/uma", "o/a", "isto", "aquilo"] },
@@ -163,7 +163,7 @@ const licoes = {
         "licao1": {
             proximoNivel: "licao2",
             etapas: [
-                { etapa: 1, tipo: "frase", frase: "Io", resposta: "eu", opcoes: ["eu", "você", "ele", "nós"] },
+                { etapa: 1, tipo: "frase", frase: "Qual a tradução de \"Io\"?", resposta: "eu", opcoes: ["eu", "você", "ele", "nós"] },
                 { etapa: 2, tipo: "frase", frase: "mangio", resposta: "como", opcoes: ["como", "bebo", "corro", "durmo"] },
                 { etapa: 3, tipo: "frase", frase: "qui", resposta: "aqui", opcoes: ["aqui", "ali", "lá", "ontem"] },
                 { etapa: 4, tipo: "frase", frase: "Io mangio ___", resposta: "qui", opcoes: ["qui", "pane", "io"] },
