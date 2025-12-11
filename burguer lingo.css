@@ -307,3 +307,6 @@ footer {
     }
 }
 
+.invert {
+    filter: invert(100%);
+}

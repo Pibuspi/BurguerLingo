@@ -13,8 +13,13 @@ body{
     position: fixed;
     bottom: 5%;
     left: 50%;
-    transform: translate(-50%);
+    transform: translateX(-50%);
     border-radius: 15px;
+    display: none;
+}
+
+.cookies-msg.mostrar{
+    display: block;
 }
 
 .cookies-msg .cookies-txt{
@@ -36,6 +41,8 @@ body{
     padding: 10px 40px;
     cursor: pointer;
     transition: .2s;
+    border: none;
+    outline: none;
 }
 
 .cookies-msg .cookies-btn button:hover{

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
     
-
+<body>
  <style>
 
     .sobre-nos-section {
@@ -206,7 +206,7 @@ window.addEventListener("load", () => {
 </script>
 
 
-<body>
+
     
     <div id="sidebar" class="menu-lateral">
         <button id="close-btn" class="close-btn">&times;</button> <h2>MENU BURGUER LINGO</h2>
@@ -392,10 +392,10 @@ document.addEventListener("DOMContentLoaded", function() {
             <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
           </span>
           <div class="answer-box">
-            <p class="text-blk faq-answer">Dinheiro vivo, cartão de crédito, débito, vale-refeição e pix.</p>
+            <p class="text-blk faq-answer">Dinheiro vivo, cartão de crédito, débito e pix.</p>
           </div>
         </div>
-<div class="faq">
+        <div class="faq">
           <span class="faq-question-container">
             <p class="text-blk faq-questions">Posso ter algum tipo de desconto se eu tiver uma conta no Duolingo?</p>
             <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
@@ -404,7 +404,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <p class="text-blk faq-answer">Infelizmente não.</p>
           </div>
         </div>
-<div class="faq">
+        <div class="faq">
           <span class="faq-question-container">
             <p class="text-blk faq-questions">Posso retirar algum ingrediente do hambúrguer?</p>
             <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
@@ -423,6 +423,63 @@ document.addEventListener("DOMContentLoaded", function() {
             <p class="text-blk faq-answer">O pagamento fiado é apenas permitido para maiores de 75 anos acompanhados dos avós.</p>
           </div>
         </div>
+        <div class="faq">
+          <span class="faq-question-container">
+            <p class="text-blk faq-questions">Não encontrou sua pergunta?</p>
+            <img class="openimg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/arrow.svg" alt="seta">
+          </span>
+          <div class="answer-box">
+            <p class="text-blk faq-answer">Insire o seu email e sua pergunta abaixo:</p>
+            <p for id="emailInput" class="instruction"> Email:
+            <input class="email" type="text" id="emailInput" name="userEmail" placeholder="Seu Email">
+            <br>
+            <p for id="questionInput" class="instruction"> Pergunta:
+            <textarea class="question" id="questionInput" name="userQuestion" rows="10" cols="50" placeholder="Sua Pergunta"></textarea>
+            <br>
+            <button class="confirm" id="confirmButton"> Confirmar </button>
+            <br>
+              <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      const emailInput = document.getElementById('emailInput');
+                      const questionInput = document.getElementById('questionInput');
+                      const confirmButton = document.getElementById('confirmButton');
+                    
+                      confirmButton.addEventListener('click', function() {
+                        const inputValue = emailInput.value + questionInput.value;
+                        if (inputValue) {
+                          alert('Sua pergunta foi enviada!');
+                        } 
+                        else {
+                          alert('Por favor insira seu email e sua pergunta.');
+                        }
+                      });
+                    });
+              </script>
+              <style>
+                .email {
+                    width: 400px;
+                    display: block;
+                    margin-left: 10;
+                }
+                    
+                .question {
+                    display: block;
+                    margin-left: 10;
+                }
+                    
+                .confirm {
+                    background-color: #08c958;
+                    color: white;
+                    display: block;
+                    margin-left: 10;
+                }
+                .instruction {
+                    color: #08c958;
+                    text-align: left;
+                }
+              </style>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -435,6 +492,8 @@ document.addEventListener("DOMContentLoaded", function() {
             <a href="#sobre-nos" aria-label="Ir para Sobre Nós">Sobre Nós</a>
             <a href="fale conosco.html">Fale Conosco</a>
             <a href="politica.html">Política de Privacidade</a>
+            <a href="https://www.instagram.com/burguer_lingo/" target="_blank"><img class="invert" src="instagram.jpeg" alt="Instagram page" style=" width:20px; height:20px;"></a>
+            <a href="placeholder"><img class="invert" src="facebook.jpeg" alt="Facebook page" style=" width:20px; height:20px;"></a>
         </div>
         <p>© 2025 BURGUER LINGO. Todos os direitos reservados.</p>
     </footer>
@@ -761,6 +820,38 @@ body {
 </style>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
