@@ -1,128 +1,156 @@
 /* ================================
-    PALETA ESTILO DUOLINGO
+    PALETA ESTILO DUOLINGO ORIGINAL + AJUSTES ESSENCIAIS
 =================================== */
 :root {
-    --green: #58cc02;
-    --green-dark: #58cc02;
-    --yellow: #ffc800;
-    --blue: #1cb0f6;
-    --bg: #f7fdf7;
-    --text: #333;
-    --white: #fff;
-    --shadow: 0 8px 20px rgba(0,0,0,0.08);
-    --radius: 18px;
+    /* --- CORES ORIGINAIS MANTIDAS --- */
+    --color-primary: #08c958; /* Verde Principal */
+    --color-secondary: #ffc107; /* Amarelo Destaque */
+    --color-header-bg: #08c958; 
+    --color-footer-bg: #333; 
+    
+    /* --- CORES DE TEXTO E BASE REVISADAS PARA HIERARQUIA --- */
+    --color-text-dark: #3C3C3C; /* Preto mais suave para corpo de texto */
+    --color-text-light: #fff;
+    --color-text-subtle: #7A7A7A; /* Cor para subtítulos e texto secundário */
+    --color-background: #F8F8F8; /* Fundo ligeiramente mais claro (Substituindo #f5f5f5) */
+    --color-white: #FFFFFF;
+    
+    /* --- NOVAS VARIÁVEIS PARA PROFISSIONALISMO --- */
+    --spacing-default: 20px;
+    --radius-default: 16px; /* Canto dos cards e elementos */
+    /* Sombra mais leve e moderna (Usada em .card) */
+    --shadow-subtle: 0 1px 3px rgba(0,0,0,0.05), 0 10px 20px rgba(0,0,0,0.05); 
 
-    font-family: "Poppins", sans-serif;
+    font-family: 'Nunito', 'Poppins', sans-serif;
 }
 
-* {
+/* --- Base e Sobrescrita Geral --- */
+body {
+    font-family: 'Nunito', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /* Usando a nova variável de fundo */
+    background-color: var(--color-background) !important; 
+    color: var(--color-text-dark);
+    
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh; 
 }
 
-body {
-    background: var(--bg);
-    color: var(--text);
+/* Regra que empurra o footer para baixo */
+main {
+    flex-grow: 1; 
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.3s;
+    margin-top: 0 !important; 
 }
 
 
-/* ================================
-    HEADER (Estilo Duolingo)
-=================================== */
+/* ---------------------------------------------------- */
+/* --- CABEÇALHO PRINCIPAL E ESTILOS DE ELEMENTOS --- */
+/* ---------------------------------------------------- */
 .main-header {
-    width: 100%;
-    padding: 14px 24px;
-    background: var(--green);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom-left-radius: 18px;
-    border-bottom-right-radius: 18px;
-    position: sticky;
+    background-color: var(--color-header-bg) !important; 
+    padding: 10px var(--spacing-default) !important; 
+    display: flex !important; 
+    justify-content: space-between !important; 
+    align-items: center !important;
+    flex-wrap: nowrap !important; 
+
+    position: sticky; 
     top: 0;
     z-index: 1000;
-    box-shadow: var(--shadow);
 }
 
 .main-header img {
     height: 48px;
 }
 
-.main-header .menu-hamburguer {
-    background: transparent;
-    border: none;
-    font-size: 32px;
-    color: white;
+.main-nav {
+    display: flex; 
+}
+
+.main-nav a {
+    color: var(--color-text-light); 
+    font-size: 18px; 
+    font-weight: bold; 
+    margin: 0 15px !important; 
+    text-decoration: none; 
+}
+
+.main-nav a:hover,
+.main-header a:hover {
+    color: var(--color-secondary); 
+}
+
+.user-actions .nav-icon {
+    color: var(--color-text-light); 
+    font-size: 24px; 
+    margin-left: var(--spacing-default);
+}
+
+.menu-hamburguer {
+    display: block !important; 
+    background: transparent; 
+    border: none; 
+    color: var(--color-text-light); 
+    font-size: 32px; 
     cursor: pointer;
 }
-
-.main-header a {
-    color: white;
-    font-weight: 700;
-    text-decoration: none;
-    font-size: 16px;
-    margin: 0 12px;
-}
-
-.main-header a:hover {
-    opacity: 0.8;
-}
-
 
 /* ================================
     MENU LATERAL
 =================================== */
 .menu-lateral {
-    width: 0;
     height: 100%;
-    background: #222;
+    width: 0; 
     position: fixed;
+    z-index: 2000;
     top: 0;
     left: 0;
-    overflow: hidden;
+    background-color: var(--color-footer-bg); 
+    overflow-x: hidden;
+    transition: 0.5s;
     padding-top: 60px;
-    transition: 0.3s;
-    z-index: 2000;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .menu-lateral.active {
-    width: 260px;
+    width: 250px; 
+    padding-left: var(--spacing-default);
 }
 
 .menu-lateral h2 {
+    color: var(--color-primary);
     text-align: center;
-    color: var(--green);
-    margin-bottom: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #555;
 }
 
 .menu-lateral a {
+    padding: 15px 5px;
+    color: var(--color-text-light);
     display: block;
-    padding: 14px 20px;
-    color: white;
-    text-decoration: none;
-    border-bottom: 1px solid #333;
-    transition: 0.2s;
-}
-
-.menu-lateral a:hover {
-    background: #333;
 }
 
 .close-btn {
     position: absolute;
-    top: 12px;
-    right: 20px;
-    font-size: 34px;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
     background: none;
     border: none;
-    color: white;
+    color: var(--color-text-light);
     cursor: pointer;
 }
 
-
 /* ================================
-    CONTEÚDO PRINCIPAL
+    CONTEÚDO PRINCIPAL (REFINAMENTO DA ESCRITA)
 =================================== */
 .container {
     max-width: 1100px;
@@ -132,44 +160,52 @@ body {
 
 .intro {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 40px; /* Mais espaço */
 }
 
 .intro h1 {
     font-size: 34px;
-    font-weight: 800;
-    color: var(--green-dark);
+    /* Reduzido para 700 para um visual mais profissional */
+    font-weight: 700; 
+    color: var(--color-text-dark); /* Usando a cor de texto escura padrão */
 }
 
 .intro p {
-    font-size: 16px;
-    color: #666;
+    font-size: 17px; /* Aumento sutil */
+    color: var(--color-text-subtle); /* Usando a cor sutil */
 }
 
 
 /* ================================
-    CARDS ESTILO DUOLINGO
+    CARDS ESTILO DUOLINGO (ESTILIZAÇÃO PROFISSIONAL)
 =================================== */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
+    gap: 30px; /* Mais espaçamento */
 }
 
 .card {
-    background: var(--white);
-    padding: 24px 18px;
-    border-radius: var(--radius);
+    background: var(--color-white);
+    padding: 30px 20px; /* Aumentado o padding vertical */
+    border-radius: var(--radius-default); /* Usando 16px */
     text-align: center;
     cursor: pointer;
-    transition: 0.2s ease;
-    box-shadow: var(--shadow);
-    border: 2px solid transparent;
+    /* Transição mais suave e "elástica" (efeito moderno) */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    
+    /* Sombra Dupla Sutil (mais profissional) */
+    box-shadow: var(--shadow-subtle);
+    border: 3px solid transparent; /* Borda mais grossa para o hover ser visível */
 }
 
 .card:hover {
-    transform: translateY(-6px);
-    border: 2px solid var(--green);
+    /* Movimento de elevação sutilmente maior e mais profissional */
+    transform: translateY(-8px) scale(1.01); 
+    /* Borda destacada com a cor primária */
+    border-color: var(--color-primary); 
+    /* Sombra mais intensa no hover */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); 
 }
 
 .card .flag {
@@ -177,56 +213,97 @@ body {
     height: 65px;
     object-fit: cover;
     border-radius: 12px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    margin-bottom: 20px; /* Mais espaçamento */
+    /* Sombra refinada para a bandeira */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15); 
 }
 
+/* Tipografia dos Cards */
 .card .lang {
-    color: var(--green-dark);
-    font-size: 22px;
-    font-weight: 800;
+    color: var(--color-text-dark); 
+    font-size: 24px; 
+    font-weight: 700; /* Usando 700 (negrito padrão) */
 }
 
 .card .sub {
     font-size: 15px;
-    color: #666;
-    margin-top: 6px;
+    color: var(--color-text-subtle); 
+    margin-top: 8px; 
+}
+
+.grid {
+    display: grid;
+    /* *** AJUSTE PARA GARANTIR EXATAMENTE 4 COLUNAS EM TELAS GRANDES *** */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px; 
 }
 
 
 /* Progress bar no estilo do Duolingo */
 .progress-bar {
     width: 100%;
-    height: 10px;
-    background: #e6f6e6;
+    height: 12px; /* Aumentar a altura */
+    background: #e6f6e6; 
     border-radius: 999px;
-    margin-top: 14px;
+    margin-top: 18px; 
     overflow: hidden;
 }
 
 .progress-bar .fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--green), var(--green-dark));
+    /* Usando apenas a cor primária (ou gradiente se quiser) */
+    background: var(--color-primary); 
     width: 0%;
     transition: width 0.5s;
 }
 
 
+/* --- FOOTER (Sobrescrita) --- */
+footer {
+    background-color: var(--color-footer-bg) !important; 
+    color: var(--color-text-light) !important;
+    padding: 30px var(--spacing-default) !important;
+    text-align: center !important;
+    margin-top: 50px !important; 
+}
+
+.footer-links a {
+    color: #ccc !important; 
+    margin: 0 15px !important;
+    font-size: 16px !important;
+    display: inline-block !important;
+}
+
 /* ================================
     RESPONSIVO
 =================================== */
-@media (max-width: 600px) {
-
+@media (max-width: 900px) {
+    /* Em telas menores que 900px, voltamos ao layout flexível */
+    .grid {
+        /* Permite que o grid se ajuste para 2 ou 1 coluna, dependendo do espaço */
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+    
+    /* Outras regras responsivas... */
+    .menu-lateral.active {
+        width: 100%; 
+    }
+    
     .main-header img {
         height: 42px;
     }
 
     .intro h1 {
-        font-size: 26px;
+        font-size: 28px; 
     }
 
     .card .flag {
         width: 75px;
         height: 55px;
+    }
+
+    .invert {
+        filter: invert(100%);
     }
 }
