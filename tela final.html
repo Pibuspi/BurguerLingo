@@ -67,6 +67,57 @@
 
     // Se você tiver a lógica de confete, ela deve vir aqui também
   };
+// =====================================================
+// ENTREGA AUTOMÁTICA DO CUPOM AO ABRIR TELA FINAL
+// =====================================================
+
+// Cupom por lição (mesmo mapa que você usa no script.js)
+const cupomPorLicao = {
+    licao1: "DESCONTO5",
+    licao2: "DESCONTO10",
+    licao3: "DESCONTO15"
+};
+
+// 1. Recupera idioma e lição atual salvos antes da tela final
+const idioma = localStorage.getItem("idiomaEscolhido");
+const licaoAtual = localStorage.getItem(`${idioma}_licaoAtual`);
+
+// 2. Se por algum motivo não encontrar, evita erro
+if (!idioma || !licaoAtual) {
+    console.warn("Não encontrei idioma ou lição — cupom não será entregue.");
+} else {
+    // 3. Descobre o cupom da lição atual
+    const cupom = cupomPorLicao[licaoAtual];
+
+    if (cupom) {
+        // 4. Resgata lista de cupons já obtidos
+        const cupons = JSON.parse(localStorage.getItem("cupons") || "[]");
+
+        // 5. Verifica se esse cupom já foi entregue (evita duplicar)
+        const jaTem = cupons.some(c =>
+            c.codigo === cupom &&
+            c.licao === licaoAtual &&
+            c.idioma === idioma
+        );
+
+        // 6. Se ainda não tem → entregar agora
+        if (!jaTem) {
+            cupons.push({
+                codigo: cupom,
+                licao: licaoAtual,
+                idioma: idioma,
+                data: new Date().toLocaleDateString("pt-BR")
+            });
+
+            localStorage.setItem("cupons", JSON.stringify(cupons));
+
+            // 7. Mostra ao usuário (opcional, use se existir elemento com id="cupomMensagem")
+            const msg = document.getElementById("cupomMensagem");
+            if (msg) msg.innerText = `🎉 Você ganhou um cupom: ${cupom}`;
+        }
+    }
+}
+
 </script>
 </body>
 </html>
