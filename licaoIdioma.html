@@ -1,312 +1,94 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Lição Burguer Lingo</title>
-    <link rel="icon" href="CHEF+DUO.jpeg" type="image/png">
-    <link rel="stylesheet" href="duolicao.css"> 
+  <meta charset="utf-8" />
+  <title>Lição - Burguer Lingo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="CHEF+DUO .png" type="image/png">
+  <link rel="stylesheet" href="duolicao.css"> <!-- seu CSS -->
+  <style>
+    /* Pequeno ajuste visual local (pode manter no CSS externo se preferir) */
+    body { font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial; background: #f6fff6; margin:0; }
+    .conteudo-licao{ max-width:1100px; margin:26px auto; padding:18px; display:flex; flex-direction:column; gap:18px; }
+    #boxPersonagem { display:flex; justify-content:center; margin-bottom:6px; }
+    #personagemImg { width:140px; height:140px; object-fit:cover; border-radius:12px; }
+    #personagemAnim { width:140px; border-radius:12px; display:none; }
+    #container { background:#fff; padding:20px; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,.06); text-align:center; }
+    #frase { font-weight:700; font-size:20px; margin-bottom:10px; color:#133A13; }
+    #linha { font-size:20px; font-weight:700; margin-bottom:14px; color:#0b4220; min-height:32px; }
+    .opcoes { display:flex; flex-direction:column; gap:10px; margin:0 auto; max-width:720px; }
+    .opcao { background:#f6fffa; padding:12px 14px; border-radius:12px; cursor:pointer; border:1px solid rgba(0,0,0,0.04); font-weight:600; }
+    .opcao.selecionada { box-shadow:0 8px 20px rgba(0,0,0,0.06); transform:translateY(-4px); }
+    .opcao.errada { background: linear-gradient(90deg,#fff0f0,#ffecec); color:#8a1e1e; }
+    .opcao.correta { background: linear-gradient(90deg,#e3fff0,#caf9d6); color:#0b5a28; }
+    .rodape{ display:flex; gap:12px; justify-content:center; margin-top:16px; }
+    .btn{ border:0; padding:10px 18px; border-radius:12px; cursor:pointer; font-weight:700; }
+    .btn-pular{ background:transparent; color:#2e8f2e; border:2px solid rgba(30,120,30,0.08); }
+    .btn-verificar{ background: linear-gradient(90deg,#58cc02,#44a003); color:#fff; }
+    #telaCarregamento{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:2000; background:white; flex-direction:column; }
+    #telaFinal, #telaMalfim { display:none; }
+    .progresso-outer{ width:100%; max-width:720px; margin:0 auto; height:12px; background:#eee; border-radius:999px; overflow:hidden; }
+    .progresso-inner{ height:100%; width:0%; background:linear-gradient(90deg,#58cc02,#89ff4f); transition:width .45s ease; }
+    #coracoes-container{ display:flex; gap:8px; align-items:center; justify-content:center; }
+  </style>
 </head>
-<body>
-    <style>
-                /* licao-style.css
-        Estilo inspirado no Duolingo para licaoIdioma.html
-        Salve este arquivo como "licao-style.css"
-        */
+<body id="licaoPage">
 
-        :root{
-        --green: #58cc02;
-        --green-dark: #44a003;
-        --bg: linear-gradient(180deg,#f7fdf7 0%, #ecf9ee 100%);
-        --card: #ffffff;
-        --muted: #68707a;
-        --accent: #ffd24a;
-        --radius: 16px;
-        --shadow: 0 10px 30px rgba(15,23,42,0.08);
-        font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-        }
+  <!-- LOADING -->
+  <div id="telaCarregamento">
+    <img src="carregando.jpeg" alt="Carregando" style="width:120px;height:120px;border-radius:12px;margin-bottom:10px;">
+    <h2>Carregando lição...</h2>
+  </div>
 
-        /* reset simples */
-        *{box-sizing:border-box}
-        html,body{height:100%; margin:0; background:var(--bg); color:#0f1722; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+  <!-- HEADER (progresso + vidas) -->
+  <header class="header-licao" style="margin:18px auto; max-width:1100px;">
+      <div class="progresso-outer">
+        <div id="progresso" class="progresso-inner"></div>
+      </div>
+      <div id="coracoes-container"></div>
+  </header>
 
-        /* --------------- HEADER / NAV --------------- */
-        .main-header{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap:16px;
-        padding:14px 22px;
-        background: linear-gradient(90deg,var(--green),var(--green-dark));
-        border-bottom-left-radius:12px;
-        border-bottom-right-radius:12px;
-        position:sticky;
-        top:0;
-        z-index:1200;
-        box-shadow: var(--shadow);
-        }
-        .main-header .menu-hamburguer{ background:transparent; border:0; color:#fff; font-size:22px; cursor:pointer; }
-        .main-header .logo-link img{ height:46px; display:block; }
-        .main-header .main-nav{ display:flex; gap:10px; }
-        .main-header .main-nav a{ color:#fff; text-decoration:none; font-weight:700; font-size:14px; padding:6px 8px; border-radius:8px; }
-        .main-header .main-nav a:hover{ background: rgba(255,255,255,0.08); }
-        .user-actions{ display:flex; align-items:center; gap:12px; color:#fff; font-weight:600; }
-
-        /* --------------- SIDEBAR --------------- */
-        .menu-lateral{
-        width:0; height:100%; position:fixed; left:0; top:0; background:#0f1722; color:#fff; overflow:hidden; transition:width .28s ease; z-index:1500; padding-top:60px;
-        }
-        .menu-lateral.active{ width:260px; }
-        .menu-lateral h2{ color:var(--green); text-align:center; margin-bottom:8px; }
-        .menu-lateral a{ display:block; padding:12px 18px; color:#eee; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.03); }
-        .menu-lateral a i{ margin-right:10px; }
-        .menu-lateral a:hover{ background: rgba(255,255,255,0.03); }
-
-        /* close button */
-        .close-btn{ position:absolute; top:12px; right:14px; font-size:32px; background:none; border:none; color:#fff; cursor:pointer; }
-
-        /* --------------- LAYOUT LIÇÃO --------------- */
-        .conteudo-licao{
-        max-width:1100px;
-        margin: 26px auto;
-        padding: 18px;
-        display:flex;
-        flex-direction:column;
-        gap:18px;
-        }
-
-        /* header da lição (barra superior com progresso/vidas) */
-        .header-licao{
-        display:flex;
-        align-items:center;
-        gap:12px;
-        justify-content:space-between;
-        background: rgba(255,255,255,0.85);
-        padding:12px 16px;
-        border-radius:12px;
-        box-shadow: var(--shadow);
-        border: 1px solid rgba(15,23,42,0.04);
-        }
-
-        /* botão sair */
-        #sair{
-        
-        font-size:20px;
-        cursor:pointer;
-        border-radius:10px;
-        padding:6px;
-        }
-
-        /* PROGRESSO */
-        .progresso{
-        flex:1;
-        margin: 0 18px;
-        height:14px;
-        padding:2px;
-        box-shadow: inset 0 -3px 8px rgba(0,0,0,0.03);
-        }
-        .progresso-inner{
-        height:100%;
-        width:0%;
-        background: linear-gradient(90deg,var(--green));
-        border-radius:999px;
-        transition: width .6s ease;
-        }
-
-        /* VIDAS (corações) */
-        .vidas{
-        display:flex;
-        gap: 12px;
-        align-items:center;
-        }
-        .vidas .coracao{
-        width:46px;
-        height:46px;
-        display:inline-flex;
-        align-items:center;
-        background: linear-gradient(180deg,#5b2626 0%, #ffecec 100%);
-        border-radius:10px;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-        }
-
-        /* personagem e container central */
-        #personagem{
-        width:140px;
-        height:140px;
-        border-radius:18px;
-        box-shadow: 0 12px 30px rgba(15,23,42,0.08);
-        
-        }
-
-        /* container principal da pergunta / atividade */
-        #container{
-        background: var(--card);
-        border-radius:16px;
-        padding:20px;
-        box-shadow: var(--shadow);
-        border:1px solid rgba(15,23,42,0.04);
-        min-height:20px;
-        display:flex;
-        flex-direction:column;
-        gap:14px;
-        align-items:center;
-        justify-content:center;
-        }
-
-        /* exemplo: título da pergunta */
-        #container .pergunta {
-        font-size:20px;
-        color:#1d2226;
-        text-align:center;
-        }
-
-        /* opções / botões de resposta (estilo cartão) */
-        .opcoes {
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-        width:100%;
-        max-width:720px;
-        }
-        .opcao {
-        background:#f6fffa;
-        border-radius:12px;
-        padding:12px 14px;
-        display:flex;
-        align-items:center;
-        cursor:pointer;
-        transition: transform .12s ease, box-shadow .12s ease;
-        border:1px solid rgba(15,23,42,0.03);
-        }
-        .opcao:hover{ transform: translateY(-4px); box-shadow: 0 12px 28px rgba(15,23,42,0.06); }
-        .opcao.selected{ background: linear-gradient(90deg,#e9fef0,#e0fde7); border:1px solid var(--green); }
-
-        /* texto da opção */
-        .opcao .texto { font-size:16px; font-weight:600; color:#083324; }
-
-        /* se opção inválida/errada — classes adicionadas via JS */
-        .opcao.errada{ background: linear-gradient(90deg,#fff0f0,#ffecec); border:1px solid rgba(220,40,40,0.14); color:#9b1c1c; }
-        .opcao.correta{ background: linear-gradient(90deg,#e3fff0,#caf9d6); border:1px solid var(--green-dark); }
-
-        /* RODAPÉ com botões de ação */
-        .rodape{
-        display:flex;
-        gap:12px;
-        justify-content:center;
-        align-items:center;
-        margin-top:10px;
-        }
-        .btn{
-        border:0;
-        padding:10px 18px;
-        border-radius:12px;
-        font-weight:700;
-        cursor:pointer;
-        box-shadow: 0 8px 20px rgba(15,23,42,0.06);
-        }
-        .btn-pular{
-        background:transparent;
-        color:var(--green-dark);
-        border:2px solid rgba(30,120,30,0.08);
-        }
-        .btn-verificar{
-        background: linear-gradient(90deg,var(--green),var(--green-dark));
-        color:#fff;
-        }
-
-        /* FOOTER */
-        footer{
-        text-align:center;
-        margin-top:20px;
-        color: var(--muted);
-        font-size:13px;
-        }
-        .footer-links{
-        display:flex;
-        gap:12px;
-        justify-content:center;
-        flex-wrap:wrap;
-        margin-bottom:8px;
-        }
-        .footer-links a{ color: var(--muted); text-decoration:none; font-weight:600; padding:6px; border-radius:8px; }
-        .footer-links a:hover{ color:var(--green-dark); }
-
-        /* TELA FINAL */
-        #telaFinal{
-        max-width:900px; margin:28px auto; background:var(--card); padding:24px; border-radius:12px; box-shadow:var(--shadow); text-align:center;
-        }
-        #telaFinal h1{ color:var(--green-dark); font-size:28px; margin-bottom:12px; }
-
-        /* pequenas animações */
-        .fade-in{ animation: fadeIn .35s ease both; }
-        @keyframes fadeIn { from { opacity:0; transform: translateY(6px) } to { opacity:1; transform:none } }
-
-        /* RESPONSIVE */
-        @media (max-width:900px){
-        .conteudo-licao{ padding:14px; margin:20px auto; }
-        #personagem{ width:120px; height:120px; }
-        .main-header .main-nav{ display:none; }
-        }
-        @media (max-width:520px){
-        #personagem{ width:100px; height:100px; }
-        .opcoes { gap:8px; }
-        .opcao { padding:10px; }
-        .header-licao{ flex-direction:column; align-items:flex-start; gap:8px; }
-        }
-
-    </style>
-    
-    <div id="telaCarregamento" style="
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-        background-color: white; display: flex; justify-content: center; align-items: center; 
-        z-index: 1000; flex-direction: column;">
-        
-        <img class="rotate" src="carregando.jpeg" alt="Carregando Lição" style="width: 100px; height: 100px; margin-bottom: 20px;">
-        <h2>Carregando Lição...</h2>
+  <!-- CONTEÚDO -->
+  <main id="telaLicao" class="conteudo-licao" style="display:none;">
+    <div id="boxPersonagem">
+      <img id="personagemImg" src="" alt="personagem parado">
+      <video id="personagemAnim" muted playsinline></video>
     </div>
 
-    <header class="header-licao"> 
-        <button id="sair" title="Sair">❌</button>
-        
-        <div class="progresso">
-            <div class="progresso-inner" id="progresso"></div> 
-        </div>
-        
-        <div class="vidas" id="coracoes-container"></div>
-    </header>
+    <div id="container">
+      <div id="frase" class="pergunta"></div>
+      <div id="linha"></div>
 
-    <main id="telaLicao" class="conteudo-licao"> 
-        
-        <img src="Henrique.jpeg" alt="personagem" id="personagem">
-        
-        <div id="container"> 
-            </div>
-        
-    </main>
-    
-    <div id="telaFinal" style="display: none; margin-top: 50px; text-align: center;">
-        <h1>Lição Concluída!</h1>
-        <button class="btn btn-verificar" onclick="window.location.href='index.html'">Voltar</button>
+      <div id="opcoes" class="opcoes"></div>
+
+      <div class="rodape" style="margin-top:18px;">
+        <button id="pular" class="btn btn-pular">Pular</button>
+        <button id="btnConfirmar" class="btn btn-verificar">Confirmar</button>
+      </div>
     </div>
+  </main>
 
-    <div class="rodape">
-        <button class="btn btn-pular" id="pular">Pular</button>
-        <button id="confirmar" class="btn btn-verificar">Confirmar</button>
+  <!-- TELA FINAL BOM -->
+  <div id="telaFinal" style="max-width:900px;margin:28px auto;text-align:center;">
+    <h1>🎉 Parabéns! Você concluiu a lição!</h1>
+    <p id="cupomMensagem"></p>
+    <div style="margin-top:16px;">
+      <button class="btn btn-verificar" onclick="location.href='pagina_das_licoes.html'">Voltar às lições</button>
+      <button class="btn" onclick="location.href='tickets.html'">Meus cupons</button>
     </div>
-    
-    <script src="etapas.js"></script>
-    <script>
-    // Pega o idioma salvo ao clicar no país
-    const idioma = localStorage.getItem("idiomaEscolhido");
+  </div>
 
-    if (!idioma) {
-        alert("Nenhum idioma foi selecionado! Voltando para a página inicial.");
-        window.location.href = "pagina_das_licoes.html";
-    }
+  <!-- TELA FINAL RUIM -->
+  <div id="telaMalfim" style="max-width:900px;margin:28px auto;text-align:center;">
+    <h1>😕 Você ficou sem vidas</h1>
+    <p>Tente novamente mais tarde.</p>
+    <div style="margin-top:16px;">
+      <button class="btn btn-verificar" onclick="location.href='pagina_das_licoes.html'">Voltar</button>
+    </div>
+  </div>
 
-    // Torna o idioma acessível ao script.js
-    window.idiomaAtual = idioma;
-</script>
-
-    <script src="script.js" defer></script>
+  <!-- scripts: etapas.js (seu) deve estar disponível -->
+  <script src="etapas.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
