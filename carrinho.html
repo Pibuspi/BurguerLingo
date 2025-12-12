@@ -371,6 +371,19 @@
         const cartContentDiv = document.getElementById('cart-content');
         const cartSummaryDiv = document.getElementById('cart-summary');
 
+        function calcularDescontoAplicado(total) {
+    const codigo = localStorage.getItem("cupomSelecionado");
+    if (!codigo) return total; // sem cupom
+
+    let porcentagem =
+        codigo.includes("5") ? 5 :
+        codigo.includes("10") ? 10 :
+        codigo.includes("15") ? 15 :
+        0;
+
+    let desconto = total * (porcentagem / 100);
+    return total - desconto;
+}
         /* ================== Função principal: renderCart ==================
            - Lê o carrinho do localStorage (chave 'burguerLingoCart')
            - Calcula totais
@@ -430,17 +443,39 @@
             cartContentDiv.innerHTML = cartTableHTML;
 
             /* resumo com botão finalizar que abre o modal */
-            const summaryHTML = `
-                <div class="cart-summary">
-                    <div class="summary-line"><span class="muted">Subtotal:</span><strong>${formatCurrency(total)}</strong></div>
-                    <div style="margin-top:6px;">
-                        <button class="checkout-btn" onclick="openPagamentoModal()">
-                            FINALIZAR PEDIDO <i class="fas fa-arrow-right" style="margin-left:8px"></i>
-                        </button>
-                    </div>
-                </div>
-            `;
-            cartSummaryDiv.innerHTML = summaryHTML;
+            const totalComDesconto = calcularDescontoAplicado(total);
+const temCupom = totalComDesconto !== total;
+
+let summaryHTML = `
+<div class="cart-summary">
+    <div class="summary-line">
+        <span class="muted">Subtotal:</span>
+        <strong>${formatCurrency(total)}</strong>
+    </div>
+`;
+
+if (temCupom) {
+    summaryHTML += `
+        <div class="summary-line">
+            <span style="color:green;">Cupom aplicado:</span>
+            <strong style="color:green;">-${formatCurrency(total - totalComDesconto)}</strong>
+        </div>
+    `;
+}
+
+summaryHTML += `
+    <div class="summary-line">
+        <span>Total a pagar:</span>
+        <strong>${formatCurrency(totalComDesconto)}</strong>
+    </div>
+
+    <button class="checkout-btn" onclick="openPagamentoModal()">
+        FINALIZAR PEDIDO <i class="fas fa-arrow-right" style="margin-left:8px"></i>
+    </button>
+</div>
+`;
+cartSummaryDiv.innerHTML = summaryHTML;
+
         }
 
         /* ================== Funções de manipulação do carrinho ================== */
