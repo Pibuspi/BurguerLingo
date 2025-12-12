@@ -494,14 +494,12 @@
         const email = document.querySelector("#emailCadastro").value;
         const senha = document.querySelector("#senhaCadastro").value;
 
-        createUserWithEmailAndPassword(auth, email, senha)
-            .then(() => alert("Conta criada com sucesso!") => {
-            href = "index.html"
-            });
-            .catch((error) => alert("Conta já criada com esse email"));
-
-
-    });
+    createUserWithEmailAndPassword(auth, email, senha)
+        .then(() => {
+            alert("Conta criada com sucesso!");
+            window.location.href = "index.html";
+        })
+        .catch((error) => alert("Conta já criada com esse email"));
 
 
     // ✅ Login com e-mail/senha
@@ -518,27 +516,26 @@
                 })
                 .catch((error) => alert("Erro: " + error.message));
         });
-
-
-    // ✅ Login com Google
-    const provider = new GoogleAuthProvider();
-    document.querySelector("#btnGoogle")?.addEventListener("click", (e) => {
-    e.preventDefault();
-    signInWithPopup(auth, provider)
-        .then((result) => {
-        const user = result.user;
-        alert(`Bem-vindo, ${user.displayName}!`);
-        window.location.href = "index.html";
-        })
-        .catch((error) => alert("Erro: " + error.message));
     });
+        // ...existing code...
+        // ✅ Login com Google
+        const provider = new GoogleAuthProvider();
+        const btnGoogle = document.querySelector("#btnGoogle");
+        if (btnGoogle) {
+            btnGoogle.addEventListener("click", (e) => {
+                e.preventDefault();
+                signInWithPopup(auth, provider)
+                    .then((result) => {
+                        const user = result.user;
+                        alert(`Bem-vindo, ${user.displayName}!`);
+                        window.location.href = "index.html";
+                    })
+                    .catch((error) => alert("Erro: " + error.message));
+            });
+        }
 
-    const analytics = getAnalytics(app);
-    </script>
-
+        const analytics = getAnalytics(app);
+        // ...existing code...
+        </script>
 </body>
 </html>
-
-
-
-
