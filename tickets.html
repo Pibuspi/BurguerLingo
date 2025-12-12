@@ -7,10 +7,12 @@
 
     <link rel="stylesheet" href="Main-burguer.css">
     <link rel="stylesheet" href="burguer lingo.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         body { background:#fafafa; font-family: Arial; margin:0; }
+        
         .container { 
             max-width: 900px; 
             margin: 20px auto; 
@@ -19,7 +21,9 @@
             border-radius:12px; 
             box-shadow:0 6px 18px rgba(0,0,0,0.05);
         }
+
         h2 { color: orange; text-align:center; margin-bottom:20px; }
+
         .cupom {
             border:1px dashed orange;
             padding:18px;
@@ -30,7 +34,12 @@
             align-items:center;
             background:#fff8e7;
         }
-        .cupom.used { opacity:0.45; background:#f2f2f2; }
+
+        .cupom.used { 
+            opacity:0.45; 
+            background:#f2f2f2; 
+        }
+
         .cupom button {
             background:orange;
             color:white;
@@ -40,6 +49,7 @@
             border-radius:8px;
             cursor:pointer;
         }
+
         .cupom button:disabled {
             background:gray;
             cursor:not-allowed;
@@ -51,7 +61,9 @@
 
     <header class="main-header">
         <button id="menu-btn" class="menu-hamburguer"><i class="fas fa-bars"></i></button>
-        <a href="index.html" class="logo-link"><img src="LogoBurguerDuo.png" style="height:44px;"></a>
+        <a href="index.html" class="logo-link">
+            <img src="LogoBurguerDuo.png" style="height:44px;">
+        </a>
         <nav class="main-nav">
             <a href="cardapio.html">CARDÁPIO</a>
             <a href="licaoIdioma.html">LINGO LESSONS</a>
@@ -61,55 +73,66 @@
 
     <div class="container">
         <h2><i class="fas fa-ticket-alt"></i> Meus Cupons</h2>
+
         <div id="listaCupons"></div>
     </div>
 
-    <script>
-        function listarCupons() {
-            const div = document.getElementById("listaCupons");
-            const cupons = JSON.parse(localStorage.getItem("burguerLingoCoupons")) || [];
-            const userCoupons = [
-  { id: 1, code: "BRASIL10", discount: 10, used: false },
-  { id: 2, code: "FRANCA10", discount: 10, used: false },
-  { id: 3, code: "EUA10", discount: 10, used: false },
-  { id: 4, code: "ESPANHA10", discount: 10, used: false },
-  { id: 5, code: "JAPAO10", discount: 10, used: false },
-  { id: 6, code: "ITALIA10", discount: 10, used: false },
-  { id: 7, code: "CHINA10", discount: 10, used: false },
-  { id: 8, code: "COREIA10", discount: 10, used: false },
-  { id: 9, code: "ALEMANHA10", discount: 10, used: false }
-];
+<script>
+function carregarCupons() {
+    const listaDiv = document.getElementById("listaCupons");
 
-localStorage.setItem("burguerLingoCoupons", JSON.stringify(userCoupons));
+    // pega cupons no formato A:
+    let cuponsBrutos = JSON.parse(localStorage.getItem("cupons")) || [];
 
-            if (cupons.length === 0) {
-                div.innerHTML = "<p style='text-align:center;color:#777;'>Você não possui cupons ainda.</p>";
-                return;
-            }
+    // converte para formato utilizável:
+    let cupons = cuponsBrutos.map(c => ({
+        codigo: c.codigo,
+        desconto: c.codigo.includes("5") ? 5 :
+                  c.codigo.includes("10") ? 10 :
+                  c.codigo.includes("15") ? 15 : 0,
+        usado: c.usado || false
+    }));
 
-            div.innerHTML = cupons.map(c => `
-                <div class="cupom ${c.used ? 'used' : ''}">
-                    <div>
-                        <strong>${c.code}</strong><br>
-                        Desconto: ${c.discount}%<br>
-                        ${c.used ? "<span style='color:red;'>Já utilizado</span>" : ""}
-                    </div>
+    listaDiv.innerHTML = "";
 
-                    <button onclick="usarCupom('${c.code}')" ${c.used ? "disabled" : ""}>
-                        Usar
-                    </button>
-                </div>
-            `).join("");
-        }
+    if (cupons.length === 0) {
+        listaDiv.innerHTML = "<p style='text-align:center;color:#777;'>Você ainda não possui tickets.</p>";
+        return;
+    }
 
-        function usarCupom(codigo){
-            localStorage.setItem("cupomSelecionado", code);
-            alert("Cupom aplicado! Agora finalize sua compra no carrinho.");
-            window.location.href = "carrinho.html";
-        }
+    cupons.forEach(c => {
+        const div = document.createElement("div");
+        div.className = "cupom " + (c.usado ? "used" : "");
 
-        listarCupons();
-    </script>
+        div.innerHTML = `
+            <div>
+                <strong>${c.codigo}</strong><br>
+                Desconto: ${c.desconto}%<br>
+                ${c.usado ? "<span style='color:red;'>Usado</span>" : ""}
+            </div>
+
+            <button ${c.usado ? "disabled" : ""} onclick="usarCupom('${c.codigo}')">
+                Usar Ticket
+            </button>
+        `;
+
+        listaDiv.appendChild(div);
+    });
+
+    // salva formato limpo de volta
+    localStorage.setItem("cupons_limpos", JSON.stringify(cupons));
+}
+
+function usarCupom(codigo) {
+    localStorage.setItem("cupomSelecionado", codigo);
+    alert("Ticket aplicado! Vá ao carrinho para usar o desconto.");
+    window.location.href = "carrinho.html";
+}
+
+carregarCupons();
+</script>
+
+
 
 </body>
 </html>
